@@ -2,10 +2,10 @@
 [![codecov](https://codecov.io/gh/Arquisoft/radarin_es6b/branch/master/graph/badge.svg?token=T42GOEAS4E)](https://codecov.io/gh/Arquisoft/radarin_es6b)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/101481fc657246dc86585d50d82b6879)](https://www.codacy.com/gh/Arquisoft/radarin_es6b/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Arquisoft/radarin_es6b&amp;utm_campaign=Badge_Grade)
 # Radarin project structure
-Link to the deployed sample application: [radarin0](https://radarin0webapp.herokuapp.com/). Note that sometimes **it can take a while to load** because Heroku in the free plan, takes the containers to sleep when they are not used for some time and taking them up takes time.
+Link to the deployed sample application: [radarines6b](https://radarines6bwebapp.herokuapp.com/). Note that sometimes **it can take a while to load** because Heroku in the free plan, takes the containers to sleep when they are not used for some time and taking them up takes time.
 
 ## Quick start guide
-If you want to execute the project you will need [git](https://git-scm.com/downloads), [Node.js and npm](https://www.npmjs.com/get-npm) and [Docker](https://docs.docker.com/get-docker/). Make sure the three of them are installed in your system. Download the project with `git clone https://github.com/pglez82/radarin_0`. The fastest way to launch everything is with docker:
+If you want to execute the project you will need [git](https://git-scm.com/downloads), [Node.js and npm](https://www.npmjs.com/get-npm) and [Docker](https://docs.docker.com/get-docker/). Make sure the three of them are installed in your system. Download the project with `git clone https://github.com/Arquisoft/radarin_es6b.git`. The fastest way to launch everything is with docker:
 ```
 docker-compose up --build
 ```
@@ -37,3 +37,11 @@ npm start
 ```
 You should be able to access the application in [http://localhost:3000](http://localhost:3000) and the documentation in [http://localhost:3000/docs](http://localhost:3000/docs)
 
+## Collaborators
+
+- Fernando Giganto Rodríguez
+- Mónica Villanueva Polledo
+- Candela Bobes Junquera
+- Pablo Rodríguez Rodríguez
+- Raúl Alonso García
+- Adrián Álvarez Rodríguez
