@@ -3,22 +3,20 @@
 
 
 [role="arc42help"]
-****
-.Contents
-The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:
 
-* important use cases or features: how do building blocks execute them?
-* interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?
-* operation and administration: launch, start-up, stop
-* error and exception scenarios
+.Contenidos
+La vista en tiempo de ejecucion describe el comportamiento e interacciones concretas del sistema en forma de escenarios:
+* ¿Cómo se ejecutan los bloques de código?: Casos importantes o funciones de la app.
+* ¿Cómo cooperan los bloques de código con los ususarios y los sistemas vecinos?: Interaciones de interfaces externas.
+* Operaciones y administración: lanzamiento, pausar, iniciar
+* Escenarios de errores y excepciones.
 
-Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their *architectural relevance*. It is *not* important to describe a large number of scenarios. You should rather document a representative selection.
+Importante: El principal criterio de elección de los escenarios viene escogido por su relevancia dentro de la arquitectura. No es importante describir muchos escenarios. Se debe documentar una seleccion representativa.
 
-.Motivation
-You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
-You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).
+Motivación: Se debería de entender como las instancias de los bloques de código de nuestro sistema realizan su trabajo y se comunican en tiempo de ejecución. 
+Se debe, principalmente, capturar escenarios en la documentación para mostrar la arquitectura a los stakeholders que son menos capaces de leer y entender modelos estáticos.
 
-****
+
 
 === Inicio de sesion
 
@@ -26,21 +24,8 @@ You will mainly capture scenarios in your documentation to communicate your arch
 * Se envian los datos al Administrador
 * El pod deniega o permite el acceso
 
-[plantuml, "log_in",png]
-----
-actor User
-User -> Radarin: 1.Inicio de sesion
-activate Radarin
-User -> Administrador: 2. Datos del usuario
-activate Administrador
-Administrador -> Pod: 3. Inicio de sesion
-activate Pod
-Pod -> Administrador: 4. Acceso denegado
-deactivate Administrador
-Pod -> Radarin: 5. Acceso correcto
-deactivate Pod
-deactivate Radarin
-----
+image:log_in.png["Vista en Tiempo de Ejecución de la opción de iniciar sesion"]
+
 
 === Registro
 
@@ -48,20 +33,8 @@ deactivate Radarin
 * Se envian los datos al Administrador
 * El pod comunica si el usuario se ha registrado con exito
 
-[plantuml, "register",png]
-----
-User -> Radarin: 1.Registro
-activate Radarin 
-User -> Administrador: 2. Datos del usuario
-activate Administrador
-Administrador -> Pod: 3. Registro
-activate Pod
-Pod -> Administrador: 4. Usuario ya registrado
-deactivate Administrador
-Pod -> Radarin: 5. Usuario registrado con exito
-deactivate Pod
-deactivate Radarin
-----
+image:register.png["Vista en Tiempo de Ejecución de la opción de registrarse"]
+
 
 === Añadir amigo
 
@@ -69,17 +42,8 @@ deactivate Radarin
 * El pod comprueba si el nombre existe
 * Se añade el amigo
 
-[plantuml, "add_friend",png]
-----
-actor User
-User -> Radarin: 1. Introducir nombre usuario amigo
-activate Radarin
-User -> Radarin: 2. Añadir amigo  
-Radarin -> Pod: 3. Añadir amigo
-deactivate Radarin
-activate Pod
-Pod -> Pod: 4. Comprobacion de datos
-----
+image:add_friend.png["Vista en Tiempo de Ejecución de añadir amigos"]
+
 
 === Eliminar amigo
 
@@ -87,17 +51,7 @@ Pod -> Pod: 4. Comprobacion de datos
 * El pod comprueba si el nombre existe
 * Se elimina el amigo
 
-[plantuml, "delete_friend",png]
-----
-actor User
-User -> Radarin: 1. Introducir nombre usuario amigo
-activate Radarin
-User -> Radarin: 2. Eliminar amigo  
-Radarin -> Pod: 3. Eliminar amigo
-deactivate Radarin
-activate Pod
-Pod -> Pod: 4. Comprobacion de datos
-----
+image:delete_friend(1).png["Vista en Tiempo de Ejecución de eliminar amigos"]
 
 
 === Ver amigos
@@ -105,14 +59,5 @@ Pod -> Pod: 4. Comprobacion de datos
 * El usuario solucita ver los amigos
 * El pod envia la lista con los amigos
 
-[plantuml, "show_friends",png]
-----
-actor User
-User -> Radarin: 1. Ver amigos
-activate Radarin
-Radarin -> Pod: 2. Solicitud ver amigos
-activate Pod
-Pod -> Radarin: 3. Lista de amigos
-deactivate Pod
-deactivate Radarin
-----
+image:show_friends.png["Vista en Tiempo de Ejecución de visualizar amigos"]
+
