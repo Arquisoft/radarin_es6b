@@ -91,7 +91,7 @@ Table with role names, person names, and their expectations with respect to the 
 En la siguiente tabla se muestran los distintos usuarios que están interesados en nuestra aplicación:
 [options="header",cols="1,2,2"]
 |===
-|Role|Coontacto|Expectativas
+|Role|Contacto|Expectativas
 | _Patrocinador_ | _Equipo SOLID_ | _Cumplir con el desarrollo y funcionalidad del proyecto utilizando SOLID_
 | _Docentes_ | _Profesores_ | _Evaluar que se cumplen los requisitos del proyecto, el trabajo en equipo por parte del equipo de desarrollo, etc..._
 | _Usuarios_ | _Usuarios potenciales de la aplicación_ | _Poder utilizar una aplicación para ver amigos cercanos a su posición_

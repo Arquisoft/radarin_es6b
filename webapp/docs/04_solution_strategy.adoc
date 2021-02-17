@@ -1,24 +1,25 @@
 [[section-solution-strategy]]
 == Solution Strategy
 
+=== Decisiones Teconológicas
 
-[role="arc42help"]
-****
-.Contents
-A short summary and explanation of the fundamental decisions and solution strategies, that shape the system's architecture. These include
+Para la realización de nustro proyecto hemos decidido que usaremos las siguientes tecnologías:
 
-* technology decisions
-* decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern
-* decisions on how to achieve key quality goals
-* relevant organizational decisions, e.g. selecting a development process or delegating certain tasks to third parties.
+1. React: Como se explicó en el punto 2.1 se usará esta libreria de JavaScript para crear y deseñar las interfaces gráficas. 
+2. SOLID: por requerimientos de la asignatura se deberán seguir los principios SOLID de descentralización de la información del usuario.
+3. SOLID-file-client: libreria que permite creaer tanto archivo como carpetas en _SOLID data stores_(Almacen de datos SOLID).
+4. GitHub: herramienta de control de versiones requerida también por la asigantura.
+5. Node.js: es un entorno en tiempo de ejecución multiplataforma, de código abierto, para la capa del servidor basado en el lenguaje de programación JavaScript, asíncrono, con E/S de datos en una arquitectura orientada a eventos y basado en el motor V8 de Google.
+6. Docker: nos permitirá automatizar el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones.
 
-.Motivation
-These decisions form the cornerstones for your architecture. They are the basis for many other detailed decisions or implementation rules.
 
-.Form
-Keep the explanation of these key decisions short.
 
-Motivate what you have decided and why you decided that way,
-based upon your problem statement, the quality goals and key constraints.
-Refer to details in the following sections.
-****
+=== Consideraciones
+
+==== Pruebas 
+
+Para alcanzar las metas de calidad se deberá crear tantos escenarios posibles de test para comprobar el correcto funcionamiento de la aplicación.
+
+==== Organizacionales 
+1. Para mantener una buena comunicación y resolver los problemas de forma transparente y fomentar la ayuda entre los integrantes del equipo, para las distintas dudas o prblemas que surjan durante el desarrollo del proyecto se usará el apartado de _Issues_ de Github.
+2. Separación de tareas en grupos divididos en front-end y back-end. Esto nos permitirá trabajar en grupos más pequeños en tareas bien diferenciadas entre los dos grupos.
