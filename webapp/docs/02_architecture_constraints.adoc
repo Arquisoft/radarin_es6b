@@ -17,3 +17,32 @@ If needed you can subdivide them into
 technical constraints, organizational and political constraints and
 conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
 ****
+
+=== Limitaciones técnicas
+[options="header",cols="1,2"]
+|===
+|Limitación|Motivación
+| _Implementación con React_ | _Para la parte del front-end se usará React, que es una librería JavaScript para desarrollar interfaces de usuario_
+|_Uso de POD_|_Los POD(personal online data sotres) guarda los datos personales del usuario. El usuario tiene control sobre sus POD's y donde alojaros( en un servidor personal o en un "pod providers")_
+|_Uso de SOLID_|_La aplicación deberá cumplir con los principios SOLID, siguiendo una gestión descentralizada del control de la información del usuario_
+|_Aplicación móvil_ | _Se debe desarrollar una aplicación móvil que enviará localizaciones de los usuarios y recibirá notificaciones de amigos cercanos. Además incluirá un sistema de monitorización_
+|===
+
+=== Restricciones organizativas
+[options="header",cols="1,2"]
+|===
+|Restricción|Explicación
+| _Tiempo_ | _El proyecto durará alrededor de 3 meses, lo que dura el cuatrimestre. Se entregará antes de que este acabe_
+| _Presupuesto del proyecto_ | _No existe ya que se trata de un proyecto universitario. Los recursos utilizados son gratuitos y limitados_ 
+|_Organización del equipo_ | _El equipo está formado por 6 personas_ 
+|_Pruebas_| _Se llevarán a cabo duranto el desarrollo de la aplicación para asegurar su funcionamiento_
+|_Reuniones_| _A parte de las reuniones durantes las clases prácticas de la asignatura, se harán otras en diferentes momentos si se necesitase_
+|===
+
+=== Restricciones políticas
+[options="header",cols="1,2"]
+|===
+|Restricción|Explicación
+| _Control de versiones_ | _El desarrollo de la aplicación se hará en GitHub, plataforma de desarrollo de software colaborativo_
+| _Documentación_ | _Se usará Arc42 y AsciiDoctor para su implementación_ 
+|===
