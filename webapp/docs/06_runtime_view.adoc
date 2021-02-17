@@ -18,40 +18,101 @@ Remark: The main criterion for the choice of possible scenarios (sequences, work
 You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
 You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).
 
-.Form
-There are many notations for describing scenarios, e.g.
-
-* numbered list of steps (in natural language)
-* activity diagrams or flow charts
-* sequence diagrams
-* BPMN or EPCs (event process chains)
-* state machines
-* ...
-
 ****
 
-=== <Runtime Scenario 1>
+=== Inicio de sesion
 
+* El usuario solicita el inicio de sesión a la aplicación
+* Se envian los datos al Administrador
+* El pod deniega o permite el acceso
 
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
-
-It is possible to use a sequence diagram:
-
-[plantuml,"Sequence diagram",png]
+[plantuml, "log_in",png]
 ----
-actor Alice
-actor Bob
-database Pod as "Bob's Pod"
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-Alice  --> Pod: Store route
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+actor User
+User -> Radarin: 1.Inicio de sesion
+activate Radarin
+User -> Administrador: 2. Datos del usuario
+activate Administrador
+Administrador -> Pod: 3. Inicio de sesion
+activate Pod
+Pod -> Administrador: 4. Acceso denegado
+deactivate Administrador
+Pod -> Radarin: 5. Acceso correcto
+deactivate Pod
+deactivate Radarin
 ----
-=== <Runtime Scenario 2>
 
-=== ...
+=== Registro
 
-=== <Runtime Scenario n>
+* El usuario solicita el registro a la aplicación
+* Se envian los datos al Administrador
+* El pod comunica si el usuario se ha registrado con exito
+
+[plantuml, "register",png]
+----
+User -> Radarin: 1.Registro
+activate Radarin 
+User -> Administrador: 2. Datos del usuario
+activate Administrador
+Administrador -> Pod: 3. Registro
+activate Pod
+Pod -> Administrador: 4. Usuario ya registrado
+deactivate Administrador
+Pod -> Radarin: 5. Usuario registrado con exito
+deactivate Pod
+deactivate Radarin
+----
+
+=== Añadir amigo
+
+* El usuario introduce el nombre del usuario a añadir
+* El pod comprueba si el nombre existe
+* Se añade el amigo
+
+[plantuml, "add_friend",png]
+----
+actor User
+User -> Radarin: 1. Introducir nombre usuario amigo
+activate Radarin
+User -> Radarin: 2. Añadir amigo  
+Radarin -> Pod: 3. Añadir amigo
+deactivate Radarin
+activate Pod
+Pod -> Pod: 4. Comprobacion de datos
+----
+
+=== Eliminar amigo
+
+* El usuario introduce el nombre del usuario a eliminar
+* El pod comprueba si el nombre existe
+* Se elimina el amigo
+
+[plantuml, "delete_friend",png]
+----
+actor User
+User -> Radarin: 1. Introducir nombre usuario amigo
+activate Radarin
+User -> Radarin: 2. Eliminar amigo  
+Radarin -> Pod: 3. Eliminar amigo
+deactivate Radarin
+activate Pod
+Pod -> Pod: 4. Comprobacion de datos
+----
+
+
+=== Ver amigos
+
+* El usuario solucita ver los amigos
+* El pod envia la lista con los amigos
+
+[plantuml, "show_friends",png]
+----
+actor User
+User -> Radarin: 1. Ver amigos
+activate Radarin
+Radarin -> Pod: 2. Solicitud ver amigos
+activate Pod
+Pod -> Radarin: 3. Lista de amigos
+deactivate Pod
+deactivate Radarin
+----
