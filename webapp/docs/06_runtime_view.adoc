@@ -4,21 +4,21 @@
 
 [role="arc42help"]
 
-.Contenidos
-La vista en tiempo de ejecucion describe el comportamiento e interacciones concretas del sistema en forma de escenarios:
-* ¿Cómo se ejecutan los bloques de código?: Casos importantes o funciones de la app.
-* ¿Cómo cooperan los bloques de código con los ususarios y los sistemas vecinos?: Interaciones de interfaces externas.
-* Operaciones y administración: lanzamiento, pausar, iniciar
-* Escenarios de errores y excepciones.
+.Contents
+The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:
 
-Importante: El principal criterio de elección de los escenarios viene escogido por su relevancia dentro de la arquitectura. No es importante describir muchos escenarios. Se debe documentar una seleccion representativa.
+* important use cases or features: how do building blocks execute them?
+* interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?
+* operation and administration: launch, start-up, stop
+* error and exception scenarios
 
-Motivación: Se debería de entender como las instancias de los bloques de código de nuestro sistema realizan su trabajo y se comunican en tiempo de ejecución. 
-Se debe, principalmente, capturar escenarios en la documentación para mostrar la arquitectura a los stakeholders que son menos capaces de leer y entender modelos estáticos.
+Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their architectural relevance. It is not important to describe a large number of scenarios. You should rather document a representative selection.
+
+Motivation:You should understand how (instances of) building blocks of your system perform their job and communicate at runtime. 
+You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).
 
 
-
-=== Inicio de sesion
+=== Login
 
 * El usuario solicita el inicio de sesión a la aplicación
 * Se envian los datos al Administrador
@@ -27,37 +27,37 @@ Se debe, principalmente, capturar escenarios en la documentación para mostrar l
 image:log_in.png["Vista en Tiempo de Ejecución de la opción de iniciar sesion"]
 
 
-=== Registro
+=== Sign up
 
-* El usuario solicita el registro a la aplicación
-* Se envian los datos al Administrador
-* El pod comunica si el usuario se ha registrado con exito
+* The user requests registration from the application.
+* The data is sent to the Administrator.
+* The pod communicates if the user has registered successfully or not.
 
 image:register.png["Vista en Tiempo de Ejecución de la opción de registrarse"]
 
 
-=== Añadir amigo
+=== Add friend
 
-* El usuario introduce el nombre del usuario a añadir
-* El pod comprueba si el nombre existe
-* Se añade el amigo
+* The user enters the name of the user to add.
+* The pod checks if the name exists.
+* Friend is added.
 
 image:add_friend.png["Vista en Tiempo de Ejecución de añadir amigos"]
 
 
-=== Eliminar amigo
+=== Delete friend
 
-* El usuario introduce el nombre del usuario a eliminar
-* El pod comprueba si el nombre existe
-* Se elimina el amigo
+* The user enters the name of the user to delete.
+* The pod checks if the name exists.
+* The friend is removed.
 
-image:delete_friend(1).png["Vista en Tiempo de Ejecución de eliminar amigos"]
+image:delete_friend (1).png["Vista en Tiempo de Ejecución de eliminar amigos"]
 
 
-=== Ver amigos
+=== Show friends
 
-* El usuario solucita ver los amigos
-* El pod envia la lista con los amigos
+* User requesto to see her friends.
+* The pod sends the list with her friends.
 
 image:show_friends.png["Vista en Tiempo de Ejecución de visualizar amigos"]
 
