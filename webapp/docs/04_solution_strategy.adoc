@@ -1,25 +1,25 @@
 [[section-solution-strategy]]
 == Solution Strategy
 
-=== Decisiones Teconológicas
+=== Technology Decisions
 
-Para la realización de nustro proyecto hemos decidido que usaremos las siguientes tecnologías:
+To carry out our project we have decided that we will use the following technologies:
 
-1. React: Como se explicó en el punto 2.1 se usará esta libreria de JavaScript para crear y deseñar las interfaces gráficas. 
-2. SOLID: por requerimientos de la asignatura se deberán seguir los principios SOLID de descentralización de la información del usuario.
-3. SOLID-file-client: libreria que permite creaer tanto archivo como carpetas en _SOLID data stores_(Almacen de datos SOLID).
-4. GitHub: herramienta de control de versiones requerida también por la asigantura.
-5. Node.js: es un entorno en tiempo de ejecución multiplataforma, de código abierto, para la capa del servidor basado en el lenguaje de programación JavaScript, asíncrono, con E/S de datos en una arquitectura orientada a eventos y basado en el motor V8 de Google.
-6. Docker: nos permitirá automatizar el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones.
+1. React:  As described in point 2.1, this JavaScript library will be used to create and design the graphical interfaces.
+2. SOLID: he requirements of the course must follow the SOLID principles of decentralization of user information.
+3. SOLID-file-client: library that allows creating both files and folders in _SOLID data stores_.
+4. GitHub: version control tool also required by the course.
+5. Node.js: is an open source, cross-platform runtime environment for the server layer based on the JavaScript programming language, asynchronous, with data I / O in an event-driven architecture based on the Google's V8 engine.
+6. Docker: it will allow us to automate the deployment of applications within software containers, as well as an additional layer of abstraction and application virtualization automation.
 
 
 
-=== Consideraciones
+=== Considerations
 
-==== Pruebas 
+==== Testing
 
-Para alcanzar las metas de calidad se deberá crear tantos escenarios posibles de test para comprobar el correcto funcionamiento de la aplicación.
+To achieve the quality goals, as many possible test scenarios must be created to verify the correct operation of the application.
 
-==== Organizacionales 
-1. Para mantener una buena comunicación y resolver los problemas de forma transparente y fomentar la ayuda entre los integrantes del equipo, para las distintas dudas o prblemas que surjan durante el desarrollo del proyecto se usará el apartado de _Issues_ de Github.
-2. Separación de tareas en grupos divididos en front-end y back-end. Esto nos permitirá trabajar en grupos más pequeños en tareas bien diferenciadas entre los dos grupos.
+==== Organizational
+1.To maintain good communication and solve problems in a transparent way and encourage help among the team members, for the different doubts or problems that arise during the development of the project, the _Issues_ section of Github will be used.
+2.  Separation of tasks into groups divided into front-end and back-end. This will allow us to work in smaller groups on well differentiated tasks between the two groups.
