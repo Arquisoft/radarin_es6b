@@ -20,16 +20,16 @@ Various options:
 ****
 
 .Motivation
-La meta de la aplicación es crear un sistema para facilitar encuentros entre amigos utilizando nuevas tecnologías. La aplicación podrá acceder a la información de localización del teléfono móvil de los usuarios que voluntariamente la tengan activada y permitirá que otros usuarios que sean sus amigos puedan conocer cuándo están cerca (notificándoles para que puedan entrar en contacto)
+The aim of the application is to create a system to facilitate meetings between friends using new technologies. The application will be able to access the location information from the users' mobile phone who voluntarily have it activated, and will allow other users, their friends, to know when they are close (notifying them so that they can get in contact).
 
 .Contents
-Este sistema será compatible con SOLID.
-Usando la tecnología SOLID y los PODs de SOLID, el sistema no almacenará información personal de los usuarios de forma centralizada, permitiendo que los usuarios se comuniquen entre ellos de una manera segura y eficaz.
+This system will be compatible with SOLID.
+Using SOLID technology and SOLID PODs, the system will not store users' personal information centrally, allowing users to communicate with each other in a secure and efficient way.
 
-.Caso de uso
-Diagrama de dos personas usando la aplicación:
+.Case of use
+Diagram of two people using the application:
 
-image::images/03-CasosDeUso.jpg[]
+image::03_CasosDeUso.png[Case of use]
 
 === Business Context
 
@@ -52,21 +52,21 @@ The title of the table is the name of your system, the three columns contain the
 [cols="^.^2,^.^3,^.^3"] [cols=3*,options="header"]
 .Business Context
 |===
-|Nombre
+|Name
 |Inputs
 |Outputs
 
-|Usuarios
-|Reciben la ubicación de sus amigos
-|Emiten su ubicación, eligen quienes son sus amigos.
+|Users
+|They receive the location of their friends
+|They broadcast their location and they choose who their friends are.
 
-|Aplicación
-|Recibe ubicaciones de los usuarios y de los PODs, y también puede recibir listas de amigos
-|Comparte ubicaciones o las guarda en los PODs correspondientes
+|Aplication
+|Receive locations from users and PODs, and can also receive lists of friends
+|Share locations or save them to the corresponding PODs
 
 |PODs
-|Recibe peticiones para que envíe información, y recibe ubicaciones y amigos para guardar.
-|Comparte información con la aplicación
+|They get requests to submit information, and get locations and friends to save.
+|Share information with the application
 |===
 
 === Technical Context
@@ -86,7 +86,7 @@ together with a mapping table showing the relationships between channels and inp
 ****
 
 .Herramientas y Framworks utilizados
-Como mencionamos anteriormente, la aplicación utilizará *SOLID* para la comunicación.
-Para el desarrollo utilizaremos *React*, una librería de código abierto de JavaScript, que nos facilitará crear interfaces de usuario.
-También utilizaremos *JavaScript* para el desarrollo de la aplicación.
+As we mentioned earlier, the application will use *SOLID* for communication.
+For development we will use *React*, an open source JavaScript library, which will make creating user intefaces easier for us.
+We will also use *JavaScript* for application development.
 
