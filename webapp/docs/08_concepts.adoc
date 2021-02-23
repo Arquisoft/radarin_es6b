@@ -1,67 +1,31 @@
 [[section-concepts]]
 == Cross-cutting Concepts
 
-
-[role="arc42help"]
-****
-.Content
-This section describes overall, principal regulations and solution ideas that are
-relevant in multiple parts (= cross-cutting) of your system.
-Such concepts are often related to multiple building blocks.
-They can include many different topics, such as
-
-* domain models
-* architecture patterns or design patterns
-* rules for using specific technology
-* principal, often technical decisions of overall decisions
-* implementation rules
-
-.Motivation
-Concepts form the basis for _conceptual integrity_ (consistency, homogeneity)
-of the architecture. Thus, they are an important contribution to achieve inner qualities of your system.
-
-Some of these concepts cannot be assigned to individual building blocks
-(e.g. security or safety). This is the place in the template that we provided for a
-cohesive specification of such concepts.
-
-.Form
-The form can be varied:
-
-* concept papers with any kind of structure
-* cross-cutting model excerpts or scenarios using notations of the architecture views
-* sample implementations, especially for technical concepts
-* reference to typical usage of standard frameworks (e.g. using Hibernate for object/relational mapping)
-
-.Structure
-A potential (but not mandatory) structure for this section could be:
-
-* Domain concepts
-* User Experience concepts (UX)
-* Safety and security concepts
-* Architecture and design patterns
-* "Under-the-hood"
-* development concepts
-* operational concepts
-
-Note: it might be difficult to assign individual concepts to one specific topic
-on this list.
-
-image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutting concepts"]
-****
-
-
 === Domain model
 
-image:UmlDiagram.png["Example UML Diagram"]
+* Our domain model will have the following entities:
+
+    ** User
+    ** Friends
+    ** Location
+    ** Map
+
+=== User Experience concepts  
+The application is intended to connect friends with each other to share their locations in an intuitive way. In order for the user experience to be as satisfactory as possible, we must take special care that it is friendly and accessible to all users.
+
+It is also important that users familiarize themselves with the use of PODs, since these will be unknown to the vast majority of users. So it is important to introduce them to the world of decentralized information in an appealing way.
+
+=== Safety and security concepts
+
+It is a main objective of the application that it is safe for the user. To achieve this, user information is stored in POD's in which only the user and those authorized by the user can access their information, following the SOLID principles promoted in this subject. The application will only use the necessary data at the time of obtaining its location after acceptance by the user.
 
 
 
-=== _<Concept 2>_
+=== Architecture and design patterns
 
-_<explanation>_
-
-...
-
-=== _<Concept n>_
-
-_<explanation>_
+*In this project we are going to use:
+    
+    ** Model view controller (MVC)
+    ** For persistence the SOLID principles will be followed
+    ** React and React Native
+    ** Docker
