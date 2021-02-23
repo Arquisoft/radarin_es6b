@@ -1,17 +1,14 @@
 [[section-technical-risks]]
-== Risks and Technical Debts
 
 
-[role="arc42help"]
-****
-.Contents
-A list of identified technical risks or technical debts, ordered by priority
 
-.Motivation
-“Risk management is project management for grown-ups” (Tim Lister, Atlantic Systems Guild.) 
+== Risks and Technical Debts table 
+[options="header",cols="1,2,2"]
+|===
+|Risk|Explanation|Solution
+| _SOLID_ | _No member of the team has prior knowledge of SOLID. Being a new technology it is still improving_ | _Read documentation, carry out a lot of tests and consult specialized forums on this topic_
+| _REACT_ | _None of us have worked with this library before, so we must familiarize ourselves with it since learning a framework from scratch requires a lot of time_ | _Read documentation, watch tutorials and practice a lot_
+| _POD_ | _As in the previous cases, we do not have knowledge about this technology so it will have to be investigated_ | _Test the pods in different scenarios for their complete understanding_
+| _Docker_ | _Basic knowledge about the deployment of the application in a Docker container and the basic commands for its use_ | _Learn these commands and know how to use them correctly_
+|===
 
-This should be your motto for systematic detection and evaluation of risks and technical debts in the architecture, which will be needed by management stakeholders (e.g. project managers, product owners) as part of the overall risk analysis and measurement planning.
-
-.Form
-List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
-****
