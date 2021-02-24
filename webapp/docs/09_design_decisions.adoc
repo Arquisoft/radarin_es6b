@@ -24,3 +24,17 @@ Various options:
 * more detailed in form of separate sections per decision
 * ADR (architecture decision record) for every important decision
 ****
+
+This table will increase during the development of our project. This point is related to the point 4 of this documentation.
+The design decision are:
+
+[options="header",cols="2,2,2"]
+|===
+|Decision and comments|Advantages|Disadvantages
+| The language of the documentation will be in English | Internationalization | Need to write in a language we don't control
+| Use of React | The teachers can help us and there are a lot of tutorials online
+| Use of Google Maps API | Plenty of documentation and the most easy API to obtain the location 
+| Use of Git for control system and GitHub | Keep a backup of the code and work at the same time in the project | Some of the members of the group need to get used to work with it
+| Use of Visual Studio Code as developmet environment | Easy for us to use it 
+| For the login the app will redirect you to a Solid pop-up to be able to connect with the PODs | Usabililty and security | Need Solid to log into the app
+|===

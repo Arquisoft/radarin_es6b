@@ -20,9 +20,9 @@ You will mainly capture scenarios in your documentation to communicate your arch
 
 === Login
 
-* El usuario solicita el inicio de sesión a la aplicación
-* Se envian los datos al Administrador
-* El pod deniega o permite el acceso
+* The user requests the application login
+* The data is sent to the Administrator
+* The pod denies or allows access
 
 image:log_in.png["Vista en Tiempo de Ejecución de la opción de iniciar sesion"]
 
