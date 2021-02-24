@@ -57,7 +57,7 @@ Motivation::
 The motivation for using what is described above, that is, SOLID, is that the application remains decentralized. In this way the
 user is the full owner of the information shared with the app, giving permission to provide the data he wants, making,
 in this way, a minimum load of information is stored in the database.
-
+ 
 Quality and/or Performance Features::
 The application database will be lighter, which will encourage better application performance, since most of the data
 they will be able to be taken directly from the user's device, in this case the PC. User permission will be asked to share certain
