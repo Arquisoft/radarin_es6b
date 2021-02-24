@@ -47,20 +47,21 @@ Describe (usually in a combination of diagrams, tables, and text):
 
 For multiple environments or alternative deployments please copy that section of arc42 for all relevant environments.
 ****
-
-_**<Overview Diagram>**_
+A web browser is necessary for the correct operation of the application, since it works by connecting to the internet
+and accessing the server where the POD is located, which having it is a necessary condition to be able to use the app.
+This POD uses SOLID and stores the user's personal data in a non-localized way. In the diagram shown below
+We illustrate the relationship between the different devices using the PC by the user.
+image:deployment_view_pc.png["Relation app devices: PC"]
 
 Motivation::
-
-_<explanation in text form>_
+The motivation for using what is described above, that is, SOLID, is that the application remains decentralized. In this way the
+user is the full owner of the information shared with the app, giving permission to provide the data he wants, making,
+in this way, a minimum load of information is stored in the database.
 
 Quality and/or Performance Features::
-
-_<explanation in text form>_
-
-Mapping of Building Blocks to Infrastructure::
-_<description of the mapping>_
-
+The application database will be lighter, which will encourage better application performance, since most of the data
+they will be able to be taken directly from the user's device, in this case the PC. User permission will be asked to share certain
+information but this will not be stored within the database.
 
 === Infrastructure Level 2
 
@@ -70,12 +71,20 @@ Here you can include the internal structure of (some) infrastructure elements fr
 
 Please copy the structure from level 1 for each selected element.
 ****
+A web browser is necessary for the correct operation of the application, since it works by connecting to the internet
+and accessing the server where the POD is located, which having it is a necessary condition to be able to use the app.
+This POD uses SOLID and stores the user's personal data in a non-localized way. In the diagram shown below
+We illustrate the relationship between the different devices using the mobile phone by the user.
 
-==== _<Infrastructure Element 1>_
+image:deployment_view_movil.png["Relation app devices: Movil"]
 
-_<diagram + explanation>_
+Motivation::
+The motivation for using what is described above, that is, SOLID, is that the application remains decentralized. In this way the
+user is the full owner of the information shared with the app, giving permission to provide the data he wants, making,
+in this way, a minimum load of information is stored in the database.
 
-==== _<Infrastructure Element 2>_
-
-_<diagram + explanation>_
+Quality and/or Performance Features::
+The application database will be lighter, which will encourage better application performance, since most of the data
+they will be able to be taken directly from the user's device, in this case the mobile phone. User permission will be asked to share certain
+information but this will not be stored within the database.
   
