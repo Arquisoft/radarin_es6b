@@ -24,7 +24,7 @@ You will mainly capture scenarios in your documentation to communicate your arch
 * The data is sent to the Administrator
 * The pod denies or allows access
 
-image:log_in.png["Vista en Tiempo de Ejecución de la opción de iniciar sesion"]
+image:log_in.png["Runtime view of login option"]
 
 
 === Sign up
@@ -33,7 +33,7 @@ image:log_in.png["Vista en Tiempo de Ejecución de la opción de iniciar sesion"
 * The data is sent to the Administrator.
 * The pod communicates if the user has registered successfully or not.
 
-image:register.png["Vista en Tiempo de Ejecución de la opción de registrarse"]
+image:register.png["Runtime view of the option to sign up"]
 
 
 === Add friend
@@ -42,7 +42,7 @@ image:register.png["Vista en Tiempo de Ejecución de la opción de registrarse"]
 * The pod checks if the name exists.
 * Friend is added.
 
-image:add_friend.png["Vista en Tiempo de Ejecución de añadir amigos"]
+image:add_friend.png["Runtime view of adding friends"]
 
 
 === Delete friend
@@ -51,7 +51,7 @@ image:add_friend.png["Vista en Tiempo de Ejecución de añadir amigos"]
 * The pod checks if the name exists.
 * The friend is removed.
 
-image:delete_friend (1).png["Vista en Tiempo de Ejecución de eliminar amigos"]
+image:delete_friend (1).png["Runtime View of Remove Friends"]
 
 
 === Show friends
@@ -59,5 +59,5 @@ image:delete_friend (1).png["Vista en Tiempo de Ejecución de eliminar amigos"]
 * User requesto to see her friends.
 * The pod sends the list with her friends.
 
-image:show_friends.png["Vista en Tiempo de Ejecución de visualizar amigos"]
+image:show_friends.png["Runtime view to visualize friends"]
 
