@@ -1,31 +1,31 @@
 [[section-architecture-constraints]]
 == Architecture Constraints
 
-=== Limitaciones técnicas
+=== Technical Constraints
 [options="header",cols="1,2"]
 |===
-|Limitación|Motivación
-| _Implementación con React_ | _Para la parte del front-end se usará React, que es una librería JavaScript para desarrollar interfaces de usuario_
-|_Uso de POD_|_Los POD(personal online data sotres) guarda los datos personales del usuario. El usuario tiene control sobre sus POD's y donde alojaros( en un servidor personal o en un "pod providers")_
-|_Uso de SOLID_|_La aplicación deberá cumplir con los principios SOLID, siguiendo una gestión descentralizada del control de la información del usuario_
-|_Aplicación móvil_ | _Se debe desarrollar una aplicación móvil que enviará localizaciones de los usuarios y recibirá notificaciones de amigos cercanos. Además incluirá un sistema de monitorización_
+|Constraint|Motivation
+| _Implementation with React_ | _For the front-end part, React will be used, which is a JavaScript library to develop user interfaces_
+|_Using POD_|_The POD (personal online data sotres) stores the user's personal data. The user has control over their POD's and where to stay (on a personal server or in a "pod providers")_
+|_Using SOLID_|_The application must comply with the SOLID principles, following a decentralized management of the control of user information_
+|_Mobile app_ | _A mobile application must be developed that will send user locations and receive notifications from close friends. It will also include a monitoring system_
 |===
 
-=== Restricciones organizativas
+=== Organizational constraints
 [options="header",cols="1,2"]
 |===
-|Restricción|Explicación
-| _Tiempo_ | _El proyecto durará alrededor de 3 meses, lo que dura el cuatrimestre. Se entregará antes de que este acabe_
-| _Presupuesto del proyecto_ | _No existe ya que se trata de un proyecto universitario. Los recursos utilizados son gratuitos y limitados_ 
-|_Organización del equipo_ | _El equipo está formado por 6 personas_ 
-|_Pruebas_| _Se llevarán a cabo duranto el desarrollo de la aplicación para asegurar su funcionamiento_
-|_Reuniones_| _A parte de las reuniones durantes las clases prácticas de la asignatura, se harán otras en diferentes momentos si se necesitase_
+|Constraint|Explication
+| _Time_ | _The project will last about 3 months, which lasts for the semester. Will be delivered before this is over_
+| _The project budget_ | _It does not exist since it is a university project. The resources used are free and limited_ 
+|_Team organization_ | _The team consists of 6 people_ 
+|_Tests_| _They will be carried out during the development of the application to ensure its operation_
+|_Meetings_| _Apart from the meetings during the practical classes of the subject, others will be held at different times if necessary._
 |===
 
-=== Restricciones políticas
+=== Convention constraints
 [options="header",cols="1,2"]
 |===
-|Restricción|Explicación
-| _Control de versiones_ | _El desarrollo de la aplicación se hará en GitHub, plataforma de desarrollo de software colaborativo_
-| _Documentación_ | _Se usará Arc42 y AsciiDoctor para su implementación_ 
+|Constraint|Explication
+| _Version control_ | _The development of the application will be done on GitHub, a collaborative software development platform_
+| _Documentation_ | _Arc42 and AsciiDoctor will be used for its implementation_ 
 |===
