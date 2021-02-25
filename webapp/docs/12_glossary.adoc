@@ -26,8 +26,8 @@ Potentially more columns in case you need translations.
 [options="header"]
 |===
 | Term         | Definition
-| <SOLID>     | <Specification that lets people store their data securely in decentralized data stores called PODs. >
-| <POD>       | <Secure personal web servers for data. When data is stored in someone's Pod, they control which people and applications can access it.>
-| <React>     | <Framework from Javascript to build user interfaces for the web as well as mobile apps.>
-| <GitHub>    | <Collaborative development platform to host projects using the Git version control system.>
+| SOLID        | Specification that lets people store their data securely in decentralized data stores called PODs.
+| POD          | Secure personal web servers for data. When data is stored in someone's Pod, they control which people and applications can access it.
+| React        | Framework from Javascript to build user interfaces for the web as well as mobile apps.
+| GitHub       | Collaborative development platform to host projects using the Git version control system.
 |===
