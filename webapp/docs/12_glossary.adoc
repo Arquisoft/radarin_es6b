@@ -26,6 +26,8 @@ Potentially more columns in case you need translations.
 [options="header"]
 |===
 | Term         | Definition
-| <Term-1>     | <definition-1>
-| <Term-2>     | <definition-2>
+| <SOLID>     | <Specification that lets people store their data securely in decentralized data stores called PODs. >
+| <POD>       | <Secure personal web servers for data. When data is stored in someone's Pod, they control which people and applications can access it.>
+| <React>     | <Framework from Javascript to build user interfaces for the web as well as mobile apps.>
+| <GitHub>    | <Collaborative development platform to host projects using the Git version control system.>
 |===
