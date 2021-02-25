@@ -23,7 +23,7 @@ It is a main objective of the application that it is safe for the user. To achie
 
 === Architecture and design patterns
 
-*In this project we are going to use:
+* In this project we are going to use:
     
     ** Model view controller (MVC)
     ** For persistence the SOLID principles will be followed
