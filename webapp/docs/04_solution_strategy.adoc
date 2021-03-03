@@ -6,11 +6,12 @@
 To carry out our project we have decided that we will use the following technologies:
 
 1. React:  As described in point 2.1, this JavaScript library will be used to create and design the graphical interfaces.
-2. SOLID: he requirements of the course must follow the SOLID principles of decentralization of user information.
-3. SOLID-file-client: library that allows creating both files and folders in _SOLID data stores_.
-4. GitHub: version control tool also required by the course.
-5. Node.js: is an open source, cross-platform runtime environment for the server layer based on the JavaScript programming language, asynchronous, with data I / O in an event-driven architecture based on the Google's V8 engine.
-6. Docker: it will allow us to automate the deployment of applications within software containers, as well as an additional layer of abstraction and application virtualization automation.
+2. React Native: To develop the mobile application we are going to use React Native because it has the highest performance among cross-platform frameworks. It is an excellent framework that is easy to learn & offers good performance as well as an interface that is comparable to native apps.
+3. SOLID: he requirements of the course must follow the SOLID principles of decentralization of user information.
+4. SOLID-file-client: library that allows creating both files and folders in _SOLID data stores_.
+5. GitHub: version control tool also required by the course.
+6. Node.js: is an open source, cross-platform runtime environment for the server layer based on the JavaScript programming language, asynchronous, with data I / O in an event-driven architecture based on the Google's V8 engine.
+7. Docker: it will allow us to automate the deployment of applications within software containers, as well as an additional layer of abstraction and application virtualization automation.
 
 
 
@@ -21,5 +22,5 @@ To carry out our project we have decided that we will use the following technolo
 To achieve the quality goals, as many possible test scenarios must be created to verify the correct operation of the application.
 
 ==== Organizational
-1.To maintain good communication and solve problems in a transparent way and encourage help among the team members, for the different doubts or problems that arise during the development of the project, the _Issues_ section of Github will be used.
-2.  Separation of tasks into groups divided into front-end and back-end. This will allow us to work in smaller groups on well differentiated tasks between the two groups.
+1. To maintain good communication and solve problems in a transparent way and encourage help among the team members, for the different doubts or problems that arise during the development of the project, the _Issues_ section of Github will be used.
+2. Separation of tasks into groups divided into front-end and back-end. This will allow us to work in smaller groups on well differentiated tasks between the two groups.
