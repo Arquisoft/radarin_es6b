@@ -7,7 +7,7 @@
 |===
 |Risk|Explanation|Solution
 | _SOLID_ | _No member of the team has prior knowledge of SOLID. Being a new technology it is still improving_ | _Read documentation, carry out a lot of tests and consult specialized forums on this topic_
-| _REACT_ | _None of us have worked with this library before, so we must familiarize ourselves with it since learning a framework from scratch requires a lot of time_ | _Read documentation, watch tutorials and practice a lot_
+| _REACT & REACT NATIVE_ | _None of us have worked with this library before, so we must familiarize ourselves with it since learning a framework from scratch requires a lot of time_ | _Read documentation, watch tutorials and practice a lot_
 | _POD_ | _As in the previous cases, we do not have knowledge about this technology so it will have to be investigated_ | _Test the pods in different scenarios for their complete understanding_
 | _Docker_ | _Basic knowledge about the deployment of the application in a Docker container and the basic commands for its use_ | _Learn these commands and know how to use them correctly_
 |===
