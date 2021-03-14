@@ -10,7 +10,7 @@ function NavComponent(){
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-                <Nav.Link  >Localizaciones</Nav.Link>
+                <Nav.Link >Localizaciones</Nav.Link>
                 <Nav.Link>Amigos</Nav.Link> 
               
             </Nav> 
