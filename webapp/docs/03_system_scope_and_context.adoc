@@ -2,7 +2,7 @@
 == System Scope and Context
 
 .Motivation
-The aim of the application is to create a system to facilitate meetings between friends using new technologies. The application will be able to access the location information from the users' mobile phone who voluntarily have it activated, and will allow other users, their friends, to know when they are close (notifying them so that they can get in contact).
+The aim of the application is to create a system to facilitate meetings between friends using new technologies. The application will be able to access the location information from the users' mobile application who voluntarily have it activated, and will allow other users, their friends, to know when they are close (notifying them in the mobile application so that they can get in contact).
 
 .Contents
 This system will be compatible with SOLID.
@@ -23,16 +23,24 @@ image::03_CasosDeUso.png[Case of use]
 |Outputs
 
 |Users
-|They receive the location of their friends
-|They broadcast their location and they choose who their friends are.
+|They receive the location of their friends.
+|They choose who their friends are.
 
-|Aplication
-|Receive locations from users and PODs, and can also receive lists of friends
-|Share locations or save them to the corresponding PODs
+|Application Mobile
+|They broadcast the users' location.
+|Receive notifications from nearby friend users.
+
+|Application Web
+|Receive and save locations from Aplication Mobile 
+|Manage and visualize locations 
 
 |PODs
-|They get requests to submit information, and get locations and friends to save.
+|They act like a server of personal information of the user
 |Share information with the application
+
+|Locations Server
+|Save locations with an ID
+|Share locations 
 |===
 
 === Technical Context
