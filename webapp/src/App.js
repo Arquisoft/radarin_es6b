@@ -22,8 +22,7 @@ class App extends React.Component{
     return(
       <div className="App" >
         <header className="App-header">
-          <NavComponent />
-        
+        <NavComponent />
            {/* <img src={logo} className="App-logo" alt="logo"/> */}
           <Welcome name="ASW students"/> 
           
