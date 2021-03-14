@@ -16,6 +16,11 @@ This project has as high level requirements:
 * Users can see their close friends.
 * Users will receive notifications whenever a friend is near them.
 * Possible close friends may be suggested.
+* There should be administration options for user management.
+* The information of the users, such as their friends, will be saved in the user's Pod; except the location that will be saved on a server.
+* It is based on a decentralized architecture where the location data storage is located on a server.
+* It has a mobile application.
+* Server status can be monitored.
 
 === Quality Goals
 

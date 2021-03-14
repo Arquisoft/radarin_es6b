@@ -32,7 +32,8 @@ Important Interfaces::
 [options="header"]
 |===
 |Interface name|Responsability
-| _POD Manager_ | _The interface manages the entire application._
+| _POD Manager_ | _The interface manages the user POD._
+| _Server Manager_ | _The interface that stores user locations on the server._
 |===
 
 
@@ -45,10 +46,10 @@ Contained Building Blocks::
 [options="header"]
 |===
 |Name|Responsability
-| _Graphic interface_ | _Manage user communication with the application._
-| _Business layer_ | _Treat the data obtained from the graphical interface and execute actions._
-| _Persistance_ | _Treats data that is going to be persistent; that is, the data that is going to be kept on a server._
-| _NoPersistance_ | _It treats the data that will be used in the session that is started at that moment._
+| _Front End_ | _Manage user communication with the web application._
+| _Radarin App_ | _Manage user communication with the mobile application._
+| _Back End_ | _Treat user requests; both the requests made in the mobile application and on the website._
+| _Authentification_ | _Authenticate a user session to be able to use the user's POD and thus perform operations with the user's information centrally._
 |===
 
 
