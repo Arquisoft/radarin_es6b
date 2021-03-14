@@ -5,19 +5,20 @@ import Welcome from './components/Welcome';
 import EmailForm from "./components/EmailForm";
 import UserList from "./components/UserList";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Map from './components/Map.js';
 
-class App extends React.Component{
-  constructor(){
+class App extends React.Component {
+  constructor() {
     super()
-    this.state = {users:[]}
+    this.state = { users: [] }
   }
 
-  refreshUsers(users){
-    this.setState({users:users})
+  refreshUsers(users) {
+    this.setState({ users: users })
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo"/>
@@ -31,6 +32,7 @@ class App extends React.Component{
             target="_blank"
             rel="noopener noreferrer">Source code</a>
         </div>
+        <Map/>
       </div>
     )
   }
