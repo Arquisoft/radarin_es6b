@@ -1,14 +1,13 @@
 import React from 'react';
 import './App.css';
-import logo from './logo.svg';
 import Welcome from './components/Welcome';
 import EmailForm from "./components/EmailForm";
+import NavComponent from './components/NavComponent';
 import UserList from "./components/UserList";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Map from './components/Map.js';
 
-class App extends React.Component {
-  constructor() {
+class App extends React.Component{
+  constructor(){
     super()
     this.state = { users: [] }
   }
@@ -17,13 +16,16 @@ class App extends React.Component {
     this.setState({ users: users })
   }
 
-  render() {
-    return (
-      <div className="App">
+  render(){
+    return(
+      <div className="App" >
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo"/>
-          <Welcome name="ASW students"/>
+        <NavComponent />
+           {/* <img src={logo} className="App-logo" alt="logo"/> */ }
+          <Welcome name="ASW students"/> 
+          
         </header>
+       
         <div className="App-content">
           <EmailForm refreshUsers={this.refreshUsers.bind(this)}/>
           <UserList users={this.state.users}/>
@@ -32,7 +34,6 @@ class App extends React.Component {
             target="_blank"
             rel="noopener noreferrer">Source code</a>
         </div>
-        <Map/>
       </div>
     )
   }
