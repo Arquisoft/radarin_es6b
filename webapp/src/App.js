@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import logo from './logo.svg';
 import Welcome from './components/Welcome';
 import EmailForm from "./components/EmailForm";
 import NavComponent from './components/NavComponent';
