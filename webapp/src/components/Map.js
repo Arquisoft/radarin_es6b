@@ -23,6 +23,7 @@ function Map() {
           }
         );
 
+        window.addEventListener("resize", () => map.getViewPort().resize());
         new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
         H.ui.UI.createDefault(map, defaultLayers);
@@ -36,7 +37,7 @@ function Map() {
             console.log(navigator.geolocation);
             navigator.geolocation.getCurrentPosition((position)=>{
                 const H = window.H;
-
+                
                 window.addEventListener("resize", () => map.getViewPort().resize());
 
                 var LocationOfMarker = { lat: position.coords.latitude, lng: position.coords.longitude };
@@ -59,7 +60,7 @@ function Map() {
     var tamY=window.screen.width;
     
     return (
-        <div ref={mapRef} id="map" style={{ height: tamX, width: tamY, margin:'auto'}} />
+        <div ref={mapRef} id="map" style={{ height: tamX, width: tamY}} />
       );
 }
 
