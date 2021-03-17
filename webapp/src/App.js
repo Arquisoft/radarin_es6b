@@ -1,54 +1,10 @@
-/*import React from 'react';
-import './App.css';
-import Welcome from './components/Welcome';
-import EmailForm from "./components/EmailForm";
-import NavComponent from './components/NavComponent';
-import UserList from "./components/UserList";
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-class App extends React.Component{
-  constructor(){
-    super()
-    this.state = { users: [] }
-  }
-
-  refreshUsers(users) {
-    this.setState({ users: users })
-  }
-
-  render(){
-    return(
-      <div className="App" >
-        <header className="App-header">
-        <NavComponent />
-           {/* <img src={logo} className="App-logo" alt="logo"/>  }
-          <Welcome name="ASW students"/> 
-          
-        </header>
-       
-        <div className="App-content">
-          <EmailForm refreshUsers={this.refreshUsers.bind(this)}/>
-          <UserList users={this.state.users}/>
-          <a className="App-link"
-            href="https://github.com/pglez82/radarin_0"
-            target="_blank"
-            rel="noopener noreferrer">Source code</a>
-        </div>
-      </div>
-    )
-  }
-}
-
-export default App;*/
-
 import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import LogIn from "./components/LogIn";
 import solidauth from "solid-auth-client";
-import Prueba from "./components/Prueba";
-//import LoginForm from "./components/LoginForm";
+import Home from "./Home";
 
 class App extends React.Component {
   constructor() {
@@ -60,16 +16,7 @@ class App extends React.Component {
     };
   }
 
-  //async fetchUsers() {
-  //const URL = (await solidauth.currentSession()).webId;
-  //try {
-  //let listOfFriends = await getFriends(URL);
-  //this.setState((prevState) => ({ ...prevState, users: listOfFriends }));
-  //console.log(listOfFriends);
-  // } catch (error) {
-  // console.log("Error fetching user list from restapi. Is it on?");
-  //}
-  //}
+ 
 
   async logIn() {
     let session = await solidauth.currentSession();
@@ -80,7 +27,6 @@ class App extends React.Component {
       webId: session.webId,
       logged: !oldState.logged
     }));
-    //this.fetchUsers();
     alert(`Has accedido como ${session.webId}`);
   }
 
@@ -127,7 +73,7 @@ class App extends React.Component {
               <Button variant="secondary" onClick={this.logOut.bind(this)}>
                 Unlik your POD{" "}
               </Button>
-              <Prueba />
+              <Home />
             </div>
           </div>
         )}

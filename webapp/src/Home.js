@@ -5,3 +5,5 @@ import Map from './components/Map'
 export const Home = (props) => (
   <Map/>
 )
+
+export default Home;
