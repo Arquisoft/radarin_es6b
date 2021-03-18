@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
-import Welcome from './components/Welcome';
-import EmailForm from "./components/EmailForm";
-import NavComponent from './components/NavComponent';
-import UserList from "./components/UserList";
+import {HomeView} from './components/HomeView';
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component{
@@ -19,21 +17,17 @@ class App extends React.Component{
   render(){
     return(
       <div className="App" >
-        <header className="App-header">
-        <NavComponent />
-           {/* <img src={logo} className="App-logo" alt="logo"/> */ }
-          <Welcome name="ASW students"/> 
-          
-        </header>
-       
-        <div className="App-content">
-          <EmailForm refreshUsers={this.refreshUsers.bind(this)}/>
-          <UserList users={this.state.users}/>
-          <a className="App-link"
-            href="https://github.com/pglez82/radarin_0"
-            target="_blank"
-            rel="noopener noreferrer">Source code</a>
-        </div>
+        <React.Fragment>
+
+          <Router>
+            <HomeView/>
+            <Switch>
+
+            </Switch>
+
+          </Router>
+
+        </React.Fragment>
       </div>
     )
   }

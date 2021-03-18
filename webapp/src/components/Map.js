@@ -56,8 +56,8 @@ function Map() {
             }    
         }
     }, [map])
-    var tamX=window.screen.height;
-    var tamY=window.screen.width;
+    var tamX=window.screen.height ;
+    var tamY=window.screen.width ;
     
     return (
         <div ref={mapRef} id="map" style={{ height: tamX, width: tamY}} />
