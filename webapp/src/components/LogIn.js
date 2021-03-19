@@ -23,7 +23,7 @@ class LogIn extends React.Component {
           will not store personal information but you will be asked for
           permission to obtain the information needed.
         </p>
-        <Typography variant="h7" component="h7" align="center">
+        <Typography variant="h6" component="h6" align="center">
           To use this application you will need a Solid identity
         </Typography>
         <br />
