@@ -8,7 +8,7 @@ function Map() {
     const mapRef = useCallback((nodo)=> {
         const H = window.H;
         const platform = new H.service.Platform({
-            apikey: "zxrFvGBh4mx3VNlzQJnDK9IozQjQ2g_i6E1wDgvoVec"
+            apikey: "zQmSC5g6iCzwzHSkn8up-Tx4kfaLwMQnfZveycxDl3s"
         });
     
         const defaultLayers = platform.createDefaultLayers();
@@ -18,12 +18,11 @@ function Map() {
           defaultLayers.vector.normal.map,
           {
             center: { lat: 50, lng: 5 },
-            zoom: 10,
+            zoom: 18,
             pixelRatio: window.devicePixelRatio || 1
           }
         );
 
-        window.addEventListener("resize", () => map.getViewPort().resize());
         new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
         H.ui.UI.createDefault(map, defaultLayers);
@@ -37,13 +36,14 @@ function Map() {
             console.log(navigator.geolocation);
             navigator.geolocation.getCurrentPosition((position)=>{
                 const H = window.H;
-                
-                window.addEventListener("resize", () => map.getViewPort().resize());
+                var imagenIcono = new H.map.Icon("/img/marker-icon.png", { size: { w: 50, h: 50 } });
 
                 var LocationOfMarker = { lat: position.coords.latitude, lng: position.coords.longitude };
 
-                var marker = new H.map.Marker(LocationOfMarker);    
-                
+                var marker = new H.map.Marker(LocationOfMarker,{icon: imagenIcono}); 
+
+                window.addEventListener("resize", () => map.getViewPort().resize());
+
                 map.addObject(marker);
 
                 map.setCenter(LocationOfMarker);
@@ -55,12 +55,10 @@ function Map() {
                 map?.dispose();
             }    
         }
-    }, [map])
-    var tamX=window.screen.height ;
-    var tamY=window.screen.width ;
-    
+    }, [map]);
+    const tam=window.screen.height/1.25;
     return (
-        <div ref={mapRef} id="map" style={{ height: tamX, width: tamY}} />
+             <div ref={mapRef} id="map" style={{ height: tam }}/>
       );
 }
 

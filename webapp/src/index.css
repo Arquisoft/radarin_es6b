@@ -12,3 +12,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#map{
+  justify-content:center;
+  border-style: solid;
+  border-color: #00FFF3;
+}

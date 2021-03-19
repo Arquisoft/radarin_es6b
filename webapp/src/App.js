@@ -1,35 +1,15 @@
-import React from 'react';
 import './App.css';
-import {HomeView} from './components/HomeView';
-import { BrowserRouter as Router, Switch } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import LoginView from './components/LoginView';
+import React from 'react';
 
-class App extends React.Component{
-  constructor(){
-    super()
-    this.state = { users: [] }
-  }
-
-  refreshUsers(users) {
-    this.setState({ users: users })
-  }
-
-  render(){
-    return(
-      <div className="App" >
+class App extends React.Component {
+  render() {
+    return (
         <React.Fragment>
-
-          <Router>
-            <HomeView/>
-            <Switch>
-
-            </Switch>
-
-          </Router>
-
+            <LoginView/>
         </React.Fragment>
-      </div>
-    )
+    );
   }
 }
 
