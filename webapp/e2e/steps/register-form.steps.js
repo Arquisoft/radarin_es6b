@@ -8,6 +8,16 @@ defineFeature(feature, test => {
   })
 
   test('The user is not registered in the site', ({given,when,then}) => {
-      console.log("Pase los test");
+       given('An unregistered user', () => {
+
+    	});
+
+    	when('I fill the data in the form and press submit', () => {
+
+    	});
+
+    	then('A welcome message should be shown in the screen', () => {
+
+    	});
   });
 });
