@@ -1,12 +1,120 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 
-import React from 'react';
+/* import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import ScreenA from './components/tutorial1/screen1';
+import ScreenB from './components/tutorial1/screen1';
+
+
+const Drawer = createDrawerNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator
+        initialRouteName="Screen_A"
+        drawerPosition='left'
+        drawerType="front"
+        edgeWidth={100}
+        hideStatusBar={false}
+        overlayColor='#00000090'
+        drawerStyle={{
+          backgroundColor: '#e6e6e6',
+          width: 250
+        }}
+        screenOptions={{
+          headerShown: true,
+          swipeEnabled: true,
+          gestureEnabled: true,
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#0080ff'
+          },
+          headerTintColor: '#ffffff',
+          headerTitleStyle: {
+            fontSize: 25,
+            fontWeight: 'bold'
+          }
+        }}
+      >
+        <Drawer.Screen
+          name="Screen_A"
+          component={ScreenA}
+          options={{
+            title: 'Screen_A Title',
+            
+          }}
+        />
+        <Drawer.Screen
+          name="Screen_B"
+          component={ScreenB}
+          options={{
+            title: 'Screen_B Title',
+            
+          }}
+          initialParams={{ ItemName: 'Item from Drawer', ItemId: 12 }}
+        />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  )
+}
+
+export default App; */
+
+
+
+
+/* import React from 'react';
+
+import {createAppContainer} from "@react-navigation/native";
+import {createDrawerNavigator} from "@react-navigation/drawer";
+import {ProfileScreen,MapScreen} from "./components/screens";
+import SideBar from './components/SideBar';
+
+const DrawerNavigator = createDrawerNavigator ({
+  ProfileScreen,
+  MapScreen
+},
+{
+  contentComponent: props => <SideBar {...props} />
+});
+
+
+
+export default createAppContainer(DrawerNavigator); */
+
+
+
+
+import {StackNavigator} from '@react-navigation/drawer';
+import {createAppContainer} from "@react-navigation/native";
+import DrawerStack from './components/tutorial1/drawerStack';
+
+
+const Navigator = StackNavigator({
+  drawerStack: {screen:DrawerStack}
+},{
+  headerMode:'none',
+  initialRouteName: 'drawerStack'
+})
+
+const App = createAppContainer(Navigator);
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* import React from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -107,6 +215,5 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
-});
-
-export default App;
+}); 
+export default App;*/
