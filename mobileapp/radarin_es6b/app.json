@@ -26,10 +26,13 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "useNextNotificationsApi": true
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     }
+    
   }
+  
 }
