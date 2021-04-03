@@ -6,7 +6,7 @@ import solidauth from "solid-auth-client";
 
 import * as ReactBootstrap from 'react-bootstrap';
 import styled from 'styled-components'
-import Map from './Map';
+import Map from './utils/Map';
 
 
 const Styles = styled.div`

@@ -8,7 +8,7 @@ function Map() {
     const mapRef = useCallback((nodo)=> {
         const H = window.H;
         const platform = new H.service.Platform({
-            apikey: "YYlUjWqmq4hP2O2vPCl4znofwND-Tam94_bO_pR8UjA"
+            apikey: "r6M0oC6XBjo6an8ToKcHlQkBhHQpSCL-zqcjm5xFS84"
         });
     
         const defaultLayers = platform.createDefaultLayers();
