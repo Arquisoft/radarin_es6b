@@ -3,10 +3,12 @@ import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import Map from '../components/MapLocation'
 
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
+      <Map></Map>
     </View>
   );
 }
