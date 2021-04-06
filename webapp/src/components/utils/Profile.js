@@ -1,7 +1,7 @@
-import { useLDflex, useWebId } from "@solid/react";
+import { useLDflex } from "@solid/react";
 
 const Profile= (webId) => {
-    const currentLoggedUser = useWebId();
+    const currentLoggedUser = webId;
     const [name, nameP, nameE] = useLDflex(`[${webId}].name`);
     const [friends, friendsP, friendsE] = useLDflex(`[${webId}].knows`);
     const [image, imageP, imageE] = useLDflex(`[${webId}].image`);

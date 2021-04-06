@@ -50,6 +50,18 @@ router.post("/user/save", async (req, res) => {
 
 });
 
+router.post("/user/getById", async (req, res) => {
+    const id = req.body.solidId;
+    let user = await User.findOne({ solidId:id });
+    res.send(user);
+});
+
+router.post("/user/getUsers", async (req, res) => {
+    const id = req.body.solidId;
+    const myFriends= await User.find({solidId:{$ne:id}});
+    res.send(myFriends);
+});
+
 
 
 module.exports = router
