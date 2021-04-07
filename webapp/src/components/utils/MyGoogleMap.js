@@ -1,144 +1,101 @@
-import React from 'react';
-import { withGoogleMap,InfoWindow, GoogleMap, withScriptjs, Marker, Map, GoogleApiWrapper} from "react-google-maps";
-import Geocode from "react-geocode";
+import React, { useEffect, useState, useCallback } from 'react';
+import { withGoogleMap, GoogleMap, withScriptjs, Marker, InfoWindow } from "react-google-maps";
+import { useWebId } from '@solid/react';
+import useProfile from './Profile';
 
 
-Geocode.setApiKey("AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY");
-Geocode.enableDebug();
+function MyGoogleMap(props) {
 
 
+    const zoom = 18;
+    const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
+    const [showingInfoWindow, setShowingInfoWindow] = useState(false);
+    const webId = useWebId();
+    const profile = useProfile(webId);
 
-class MyGoogleMap extends React.Component {
-
-    state = {
-        zoom: 18,
-        height: 600,
-        mapPosition: {
-            lat: 0,
-            lng: 0,
-        }, 
-        showingInfoWindow: false,  // Hides or shows the InfoWindow
-        activeMarker: {},          // Shows the active marker upon click
-        selectedPlace: {}   
-    }
-
-
-    componentDidMount() {
+    const getLocate = useCallback(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
-                this.setState({
-                    mapPosition: {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    }
+                setMapPosition({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
                 });
             });
         } else {
             console.error("Geolocation is not supported by this browser!");
         }
+    }, [setMapPosition]);
+
+
+    useEffect(() => {
+        getLocate();
+    }, [getLocate]);
+
+
+    const onMarkerClick = function (marker, e) {
+        setShowingInfoWindow(true);
     };
 
-    
-       
-    onMarkerClick = (props, marker, e) =>
-        this.setState({
-          selectedPlace: props,
-          activeMarker: marker, 
-          showingInfoWindow: true
-        });
-    
-    onClose = props => {
-        if (this.state.showingInfoWindow) {
-          this.setState({
-            showingInfoWindow: false,
-            activeMarker: null
-          });
-        }
-      };
-
-    onChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
+    const onClose = function (marker, e) {
+        setShowingInfoWindow(false);
     };
 
-    onMarkerDragEnd = (event) => {
-        let newLat = event.latLng.lat(),
-            newLng = event.latLng.lng();
+    const AsyncMap = withScriptjs(
+        withGoogleMap(
+            props => (
 
-        Geocode.fromLatLng(newLat, newLng).then(
-            response => {                    
-                this.setState({
-                    mapPosition: {
-                        lat: newLat,
-                        lng: newLng
-                    },
-                })
-            },
-            error => {
-                console.error(error);
-            }
-        );
-    };
+                <GoogleMap
 
-    render() {
-        const AsyncMap = withScriptjs(
-            withGoogleMap(
-                props => (
-                    
-                    <GoogleMap
-                        
-                        defaultZoom={this.state.zoom}
-                        defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
+                    defaultZoom={zoom}
+                    defaultCenter={{ lat: mapPosition.lat, lng: mapPosition.lng }}
+                >
+                    <Marker
+                        onClick={onMarkerClick}
+                        google={props.google}
+                        name={'Current position'}
+                        draggable={true}
+                        position={{ lat: mapPosition.lat, lng: mapPosition.lng }}
                     >
-
-                        <Marker
-                            onClick={this.onMarkerClick}
-                            google={this.props.google}
-                            name={'Current position'}
-                            draggable={true}
-                            onDragEnd={this.onMarkerDragEnd}
-                            position={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
-                        
-                       />
-
-        
-                            
-                      
-                        
-                               
-                    </GoogleMap>
-                )
+                        {
+                            showingInfoWindow
+                            &&
+                            <InfoWindow
+                                onCloseClick={onClose}
+                            >
+                                <div>
+                                    <h4>Me({`${profile.fullName}`})</h4>
+                                </div>
+                            </InfoWindow>
+                        }
+                    </Marker>
+                </GoogleMap>
             )
-        );
-
-            
-         
-
-
-
-         
-        return (
-            <div >
-                <h1>Radarin Map</h1>
-
-                <AsyncMap
-                    
-                    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY&libraries=places"
-                    loadingElement={
-                        <div style={{ height: `100%` }} />
-                    }
-                    containerElement={
-                        <div style={{ height: '750px' }} />
-                    }
-                    mapElement={
-                        <div style={{ height: `100%` }} />
-                    }
-                
-                />
-                
-            </div>
-            
         )
-    }
+    );
+
+
+    return (
+        <div >
+            <h1>Radarin Map</h1>
+
+            <AsyncMap
+
+                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY&libraries=places"
+                loadingElement={
+                    <div style={{ height: `100%` }} />
+                }
+                containerElement={
+                    <div style={{ height: '750px' }} />
+                }
+                mapElement={
+                    <div style={{ height: `100%` }} />
+                }
+
+            />
+
+        </div>
+
+    );
 
 }
 

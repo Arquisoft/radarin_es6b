@@ -1,12 +1,9 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { compose, withProps, withStateHandlers } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
-import Geocode from "react-geocode";
 import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
 
-Geocode.setApiKey("AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY");
-Geocode.enableDebug();
 
 const MyMapComponent = compose(
     withStateHandlers(() => ({
