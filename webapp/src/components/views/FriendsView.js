@@ -25,7 +25,6 @@ function FriendsView() {
 
 
     const accionSelectFriend = (id) => {
-        alert(id);
         setSelectFriend(id);
     };
 

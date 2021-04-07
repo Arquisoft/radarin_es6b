@@ -18,7 +18,7 @@ const ProfileImage = ({ fullName, imageSrc}) => {
     return (<Tooltip title={`${fullName}`} aria-label="user" className={classes.flex}>
             <Chip
             color="primary"  
-            avatar={<Avatar name={fullName} src={imageSrc}/>}
+            avatar={<Avatar name={fullName} src={`${imageSrc}`}/>}
             label={fullName ? `${fullName}` : 'Usuario'}
         />
     </Tooltip>
