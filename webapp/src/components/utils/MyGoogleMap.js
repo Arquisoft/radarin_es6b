@@ -1,10 +1,12 @@
 import React from 'react';
-import { withGoogleMap, GoogleMap, withScriptjs, Marker } from "react-google-maps";
+import { withGoogleMap,InfoWindow, GoogleMap, withScriptjs, Marker, Map, GoogleApiWrapper} from "react-google-maps";
 import Geocode from "react-geocode";
 
 
 Geocode.setApiKey("AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY");
 Geocode.enableDebug();
+
+
 
 class MyGoogleMap extends React.Component {
 
@@ -14,7 +16,10 @@ class MyGoogleMap extends React.Component {
         mapPosition: {
             lat: 0,
             lng: 0,
-        }
+        }, 
+        showingInfoWindow: false,  // Hides or shows the InfoWindow
+        activeMarker: {},          // Shows the active marker upon click
+        selectedPlace: {}   
     }
 
 
@@ -32,6 +37,24 @@ class MyGoogleMap extends React.Component {
             console.error("Geolocation is not supported by this browser!");
         }
     };
+
+    
+       
+    onMarkerClick = (props, marker, e) =>
+        this.setState({
+          selectedPlace: props,
+          activeMarker: marker, 
+          showingInfoWindow: true
+        });
+    
+    onClose = props => {
+        if (this.state.showingInfoWindow) {
+          this.setState({
+            showingInfoWindow: false,
+            activeMarker: null
+          });
+        }
+      };
 
     onChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
@@ -60,29 +83,45 @@ class MyGoogleMap extends React.Component {
         const AsyncMap = withScriptjs(
             withGoogleMap(
                 props => (
+                    
                     <GoogleMap
+                        
                         defaultZoom={this.state.zoom}
                         defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
                     >
 
                         <Marker
+                            onClick={this.onMarkerClick}
                             google={this.props.google}
                             name={'Current position'}
                             draggable={true}
                             onDragEnd={this.onMarkerDragEnd}
                             position={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
-                        />
-                        <Marker />
+                        
+                       />
+
+        
+                            
+                      
+                        
+                               
                     </GoogleMap>
                 )
             )
         );
 
+            
+         
+
+
+
+         
         return (
             <div >
                 <h1>Radarin Map</h1>
 
                 <AsyncMap
+                    
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY&libraries=places"
                     loadingElement={
                         <div style={{ height: `100%` }} />
@@ -93,8 +132,11 @@ class MyGoogleMap extends React.Component {
                     mapElement={
                         <div style={{ height: `100%` }} />
                     }
+                
                 />
+                
             </div>
+            
         )
     }
 
