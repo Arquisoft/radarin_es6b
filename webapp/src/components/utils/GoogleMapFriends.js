@@ -1,13 +1,25 @@
 import React from 'react';
-import { compose, withProps } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { compose, withProps, withStateHandlers } from "recompose"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import Geocode from "react-geocode";
-
+import { useWebId } from '@solid/react';
+import useProfile from "./Profile";
 
 Geocode.setApiKey("AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY");
 Geocode.enableDebug();
 
 const MyMapComponent = compose(
+    withStateHandlers(() => ({
+        isOpenMy: false,
+        isOpenFriend: false
+    }), {
+        onToggleOpenMy: ({ isOpenMy }) => () => ({
+            isOpenMy: !isOpenMy,
+        }),
+        onToggleOpenFriend: ({ isOpenFriend }) => () => ({
+            isOpenFriend: !isOpenFriend,
+        })
+    }),
     withProps({
         googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY",
         loadingElement: <p>Cargando</p>,
@@ -22,14 +34,53 @@ const MyMapComponent = compose(
 
 
     ((props) => {
+        const webId = useWebId();
+        const profile = useProfile(webId);
+        console.log(props.friend.webId);
+        const profileFriend = useProfile(props.friend.webId);
 
         return (
             <GoogleMap
-                defaultZoom={18}
-                defaultCenter={{ lat: props.Latitud, lng: props.Longitud }}
+                defaultZoom={props.friend.webId? 2 :18}
+                defaultCenter={props.friend.webId? { lat: (props.Latitud+props.friend.lat)/2, lng: (props.Longitud + props.friend.lng)/2 } :{ lat: props.Latitud, lng: props.Longitud }}
             >
-                {props.isMarkerShown && <Marker position={{ lat: props.Latitud, lng: props.Longitud }} />}
-                {props.friend.webId && <Marker position={{ lat: props.friend.lat, lng: props.friend.lng }} />}
+
+                <Marker
+                    position={{ lat: props.Latitud, lng: props.Longitud }}
+                    onClick={props.onToggleOpenMy}
+                >
+                    {props.isOpenMy &&
+                        <InfoWindow
+                            onCloseClick={props.onToggleOpenMy}
+                        >
+                            <div>
+                                <h4>Me({`${profile.fullName}`})</h4>
+                            </div>
+                        </InfoWindow>
+
+                    }
+                </Marker>
+
+                {
+                    props.friend.webId
+                    &&
+
+                    <Marker
+                        position={{ lat: props.friend.lat, lng: props.friend.lng }}
+                        onClick={props.onToggleOpenFriend}
+                    >
+                        {props.isOpenFriend &&
+                            <InfoWindow
+                                onCloseClick={props.onToggleOpenFriend}
+                            >
+                                <div>
+                                    <h4>{`${profileFriend.fullName}`}</h4>
+                                </div>
+                            </InfoWindow>
+
+                        }
+                    </Marker>
+                }
 
             </GoogleMap>);
     });
@@ -49,9 +100,7 @@ class MyFancyComponent extends React.PureComponent {
         }
     };
 
-
-
-     getFriends = async function () {
+    getFriends = async function () {
 
         const information = {
             "solidId": this.props.selectedFriend
