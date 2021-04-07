@@ -2,6 +2,8 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 
 
+import Notification from '../components/Notification';
+
 import { Text, View } from '../components/Themed';
 import Login from '../components/login';
 
