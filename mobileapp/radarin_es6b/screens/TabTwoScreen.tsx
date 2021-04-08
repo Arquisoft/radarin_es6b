@@ -5,12 +5,12 @@ import { StyleSheet } from 'react-native';
 import Notification from '../components/Notification';
 
 import { Text, View } from '../components/Themed';
-import Login from '../components/login';
+import Login from './login';
 
 export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
-    
+      <Login></Login>
     </View>
   );
 }
