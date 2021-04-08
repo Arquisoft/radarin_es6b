@@ -46,13 +46,14 @@ export default function App() {
   if (!isLoadingComplete) {
     return null;
   } else {
-   /*  return (
+    return (
       <SafeAreaProvider>
         <Navigation colorScheme={colorScheme} />
         <StatusBar />
-      </SafeAreaProvider > */
+      </SafeAreaProvider >
+      );
     
-  return (
+  /* return (
     <SafeAreaProvider>
     <Navigation colorScheme={colorScheme} />
     <StatusBar />
@@ -78,7 +79,7 @@ export default function App() {
     </View>
     
     </SafeAreaProvider >
-  );
+  ); */
       }
 }
 async function schedulePushNotification() {
