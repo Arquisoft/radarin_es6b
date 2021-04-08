@@ -46,40 +46,23 @@ export default function App() {
   if (!isLoadingComplete) {
     return null;
   } else {
-    return (
-      <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
-      </SafeAreaProvider >
-      );
     
-  /* return (
+   return (
     <SafeAreaProvider>
     <Navigation colorScheme={colorScheme} />
     <StatusBar />
   
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-      }}>
-      <Text>Your expo push token: {expoPushToken}</Text>
-      <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-        <Text>{notification && notification.request.content.title} </Text>
-        <Text>{notification && notification.request.content.body}</Text>
-        <Text>{notification && JSON.stringify(notification.request.content.data)}</Text>
-      </View>
+    
       <Button
         title="Press to schedule a notification"
         onPress={async () => {
           await schedulePushNotification();
         }}
       />
-    </View>
+    
     
     </SafeAreaProvider >
-  ); */
+  ); 
       }
 }
 async function schedulePushNotification() {
