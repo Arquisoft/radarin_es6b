@@ -4,49 +4,37 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import React, { useEffect } from 'react';
 import Contaniner from './components/utils/Contenedor';
 import { useWebId } from '@solid/react';
+import { saveUser } from './api/api';
 
 function App() {
 
-  const webId=useWebId();
+  const webId = useWebId();
 
-  function saveLocateUser(){
-    if(webId){
+  function saveLocateUser() {
+    if (webId) {
       // pedimos la pocalización actual
-      navigator.geolocation.getCurrentPosition((pos)=>{
-
-        // información a enviar al backend
-        const information= {
-          "solidId": webId,
-          "latitud": pos.coords.latitude,
-          "longitud": pos.coords.longitude
-        }
-        // de momento solo en locaL
-        fetch("http://localhost:5000/api//user/save",{
-            method: "post",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(information)
-        });
+      navigator.geolocation.getCurrentPosition((pos) => {
+        //salvamos al usuario
+        saveUser(webId, pos.coords.latitude, pos.coords.longitude).catch(err=>console.log(err));
       });
     }
   };
 
 
-  useEffect(()=>{
+  useEffect(() => {
     // Guardamos la localización cada 20 segundos
-    setInterval(saveLocateUser,20000);
+    setInterval(saveLocateUser, 20000);
   });
 
 
-    return (
-      <div className="App">
-        <React.Fragment>
-            <CssBaseline />
-            <Contaniner />
-        </React.Fragment>
-      </div>
-    );
+  return (
+    <div className="App">
+      <React.Fragment>
+        <CssBaseline />
+        <Contaniner />
+      </React.Fragment>
+    </div>
+  );
 }
 
 export default App;

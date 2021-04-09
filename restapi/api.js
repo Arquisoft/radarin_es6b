@@ -45,7 +45,6 @@ router.post("/user/save", async (req, res) => {
     }
 
     await user.save();
-
     res.send(user);
 
 });

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import { AppBar, Toolbar, makeStyles, IconButton } from '@material-ui/core/';
 import GetProfile from '../utils/GetProfile'
 import { LoggedIn } from '@solid/react';
@@ -16,26 +16,32 @@ const useStyles = makeStyles((theme) => ({
     offset: theme.mixins.toolbar,
     menuButton: {
         marginRight: theme.spacing(2),
-      },
+    },
     appBar: {
-         marginLeft: 240,
+        marginLeft: 240,
     },
 }));
 
-const NavBar = (props)=>{
+function NavBar(props){
 
     const classes = useStyles();
+    const [width,setWidth]=useState(window.screen.width);
+
+    useEffect(()=>{
+        setWidth(window.screen.width);
+    },[width]);
 
     return (
         <AppBar className={classes.appBar}>
             <Toolbar>
                 <div className={classes.title} align="left">
-                    <img src="/img/icon.svg" alt="logo-Imagen" width="50" height="50" />
+                   
                     <img src="/img/LogoRadarin.png" alt="logo-Texto" height="50" />
                 </div>
+
                 <LoggedIn>
-                    <IconButton aria-label="menu" className={classes.menuButton}  color="inherit" onClick={() => props.accionAbrir()}>
-                        <MenuIcon/>
+                    <IconButton aria-label="menu" className={classes.menuButton} color="inherit" onClick={() => props.accionAbrir()}>
+                        <MenuIcon />
                     </IconButton>
                 </LoggedIn>
                 <GetProfile />

@@ -3,6 +3,7 @@ import { compose, withProps, withStateHandlers } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
+import { getUserByWebId } from '../../api/api';
 
 
 const MyMapComponent = compose(
@@ -39,9 +40,9 @@ const MyMapComponent = compose(
         const fitBounds = useCallback(() => {
             if (mapRef.current) {
                 const bounds = new window.google.maps.LatLngBounds();
-                bounds.extend({lat: props.Latitud, lng: props.Longitud});
+                bounds.extend({ lat: props.Latitud, lng: props.Longitud });
                 if (props.friend.webId) {
-                    bounds.extend({lat: props.friend.lat, lng: props.friend.lng});
+                    bounds.extend({ lat: props.friend.lat, lng: props.friend.lng });
                 }
                 mapRef.current.fitBounds(bounds);
             }
@@ -96,9 +97,9 @@ const MyMapComponent = compose(
             </GoogleMap>);
     });
 
-function MyFancyComponent({selectedFriend}) {
+function MyFancyComponent({ selectedFriend }) {
 
-    const [mapPosition, setMapPosition] = useState({lat:0, lng:0});
+    const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
     const [friend, setFriend] = useState({
         webId: selectedFriend,
         lat: 0,
@@ -107,29 +108,18 @@ function MyFancyComponent({selectedFriend}) {
 
     const getFriends = useCallback(async function () {
 
-        if (!selectedFriend) return;
+        if (!selectedFriend) { return; }
 
-        const information = {
-            "solidId": selectedFriend
-        }
-        var respuesta = await fetch("http://localhost:5000/api/user/getById",
-            {
-                method: "post",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(information)
-            });
-
-        var user = await respuesta.json();
-
-        if (user != null) {
-            setFriend({
+        getUserByWebId(selectedFriend).then(user => {
+            if (user != null) {
+                setFriend({
                     webId: selectedFriend,
                     lat: user.latitud,
                     lng: user.longitud,
                 });
-        }
+            }
+        }).catch(err => console.log(err));
+        
     }, [selectedFriend]);
 
 
@@ -137,9 +127,9 @@ function MyFancyComponent({selectedFriend}) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
                 setMapPosition({
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    });
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                });
                 getFriends();
             });
         } else {
