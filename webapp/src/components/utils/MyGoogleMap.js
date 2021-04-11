@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { withGoogleMap, GoogleMap, withScriptjs, Marker, InfoWindow } from "react-google-maps";
 import { useWebId } from '@solid/react';
 import useProfile from './Profile';
-
+import {saveLocate} from '../../api/api';
 
 function MyGoogleMap(props) {
 
@@ -36,6 +36,11 @@ function MyGoogleMap(props) {
         setShowingInfoWindow(true);
     };
 
+    const onMapClick = function (map, e) {
+        alert("entre")
+        saveLocate(webId,43.5,-3.5,"Locate");
+    };
+
     const onClose = function (marker, e) {
         setShowingInfoWindow(false);
     };
@@ -45,7 +50,7 @@ function MyGoogleMap(props) {
             props => (
 
                 <GoogleMap
-
+                    onClick={onMapClick}
                     defaultZoom={zoom}
                     defaultCenter={{ lat: mapPosition.lat, lng: mapPosition.lng }}
                 >

@@ -21,9 +21,6 @@ function FriendsList(props) {
         getFriends();
     }, [getFriends]);
 
-
-
-
     return (
         <div style={{ display: 'inline-block', overflow: 'auto', width: '800px', height: '600px' }}>
             {
@@ -32,7 +29,6 @@ function FriendsList(props) {
                 })
             }
         </div>);
-
 }
 
 export default FriendsList;

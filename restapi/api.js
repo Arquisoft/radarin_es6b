@@ -1,7 +1,7 @@
 const express = require("express")
 const User = require("./models/users")
+const Locate = require("./models/locates")
 const router = express.Router()
-
 /*
 // Get all users
 router.get("/users/list", async (req, res) => {
@@ -61,6 +61,32 @@ router.post("/user/getUsers", async (req, res) => {
     res.send(myFriends);
 });
 
+router.post("/user/getLocates", async (req, res) => {
+    const id = req.body.solidId;
+    const myLocates= await Locate.find({solidId:id});
+    res.send(myLocates);
+});
+
+router.post("/user/locate/save", async (req, res) => {
+    const solidId = req.body.solidId;
+    const lat = req.body.latitud;
+    const lon = req.body.longitud;
+    const text=req.body.texto;
+
+    let locate = await Locate.findOne({ latitud:lat, longitud:lon });
+
+    if (locate == null) {
+        locate = new Locate({
+            latitud: lat,
+            longitud: lon,
+            solidId: solidId,
+            texto: text
+        });
+    }
+
+    await locate.save();
+    res.send(locate);
+});
 
 
 module.exports = router

@@ -1,15 +1,12 @@
 import React from 'react';
 import NavBar from '../views/NavBar';
-import Cajon from './cajon';
 import {
-    Hidden,
     makeStyles
 } from '@material-ui/core';
 import HomeView from '../views/HomeView';
 import LocatesView from '../views/LocatesView';
 import FriendsView from '../views/FriendsView';
 import AboutView from '../views/AboutView';
-import { LoggedIn } from '@solid/react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {useWebId} from '@solid/react';
 import NotLoginHome from '../views/NotLoginHome';
@@ -34,27 +31,11 @@ const estilos = makeStyles(theme => ({
 const Contenedor = () => {
 
     const classes = estilos();
-
-    const [abrir, setAbrir] = React.useState(false);
-
-    const accionAbrir = () => {
-        setAbrir(!abrir);
-    };
-
     const webId = useWebId()
 
     return (
         <div className={classes.root}>
-            <NavBar accionAbrir={accionAbrir} />
-            <LoggedIn>
-                <Hidden xsDown>
-                    <Cajon
-                        variant="temporary"
-                        open={abrir}
-                        onClose={accionAbrir}
-                    />
-                </Hidden>
-            </LoggedIn>
+            <NavBar />
             <div className={classes.content}>
                 <div className={classes.toolbar}>
                 </div>
