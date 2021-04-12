@@ -22,7 +22,7 @@
     "react-i18next": "^11.8.10",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1",
+    "react-scripts": "^4.0.1",
     "react-scroll-into-view-if-needed": "^2.1.7",
     "solid-auth-client": "^2.5.5",
     "styled-components": "^5.2.3",
