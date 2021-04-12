@@ -26,5 +26,4 @@ it('LoginBar', () => {
   })
 
   expect(container).toBeTruthy();
- 
 }) 

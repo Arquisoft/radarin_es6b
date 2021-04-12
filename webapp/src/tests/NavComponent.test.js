@@ -44,5 +44,7 @@ it('NavBar', () => {
   
 
   expect(container).toBeTruthy()
+  expect(container.querySelector('#img')).toBeTruthy();
+  
 
 }) 

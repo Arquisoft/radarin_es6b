@@ -26,5 +26,4 @@ it('Friends', () => {
   })
 
   expect(container).toBeTruthy();
-  //expect(getByText("Friends")).toBeInTheDocument();
 }) 

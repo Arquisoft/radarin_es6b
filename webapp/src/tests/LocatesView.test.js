@@ -26,5 +26,4 @@ it('Locates', () => {
   })
 
   expect(container).toBeTruthy();
-  //expect(getByText("Locates")).toBeInTheDocument();
 }) 

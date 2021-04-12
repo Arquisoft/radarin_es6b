@@ -2,11 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import AboutView from "../components/views/AboutView";
 import { act } from 'react-dom/test-utils';
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import { BrowserRouter as Router } from 'react-router-dom';
 
 let container
-
 
 
 beforeEach(() => {
@@ -40,10 +39,7 @@ it('AboutView', () => {
     </Router>, container)
 
   });
-  const enlace = container.querySelector('a');
-  const label = container.querySelector('p');
- 
-  
+  const enlace = container.querySelector('a');  
  
   act(() => {
     enlace.dispatchEvent(new MouseEvent('click', {bubbles: true}));
@@ -54,8 +50,8 @@ it('AboutView', () => {
 
 
   expect(container.querySelector('#doc')).toBeTruthy();
-  expect(container).toBeTruthy()
-
+  expect(container).toBeTruthy();
+ 
 
 })
 

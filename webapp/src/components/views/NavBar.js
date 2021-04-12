@@ -33,10 +33,10 @@ function NavBar(props){
 
     return (
         <AppBar className={classes.appBar}>
-            <Toolbar>
+            <Toolbar id="toolbar">
                 <div className={classes.title} align="left">
                    
-                    <img src="/img/LogoRadarin.png" alt="logo-Texto" height="50" />
+                    <img id="img" src="/img/LogoRadarin.png" alt="logo-Texto" height="50" />
                 </div>
 
                 <LoggedIn>
