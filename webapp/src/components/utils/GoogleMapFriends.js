@@ -1,12 +1,9 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { compose, withProps, withStateHandlers } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
-import Geocode from "react-geocode";
 import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
 
-Geocode.setApiKey("AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY");
-Geocode.enableDebug();
 
 const MyMapComponent = compose(
     withStateHandlers(() => ({
@@ -38,11 +35,26 @@ const MyMapComponent = compose(
         const profile = useProfile(webId);
         console.log(props.friend.webId);
         const profileFriend = useProfile(props.friend.webId);
+        const mapRef = useRef(null);
+
+        const fitBounds = useCallback(() => {
+            if (mapRef.current) {
+                const bounds = new window.google.maps.LatLngBounds();
+                bounds.extend({ lat: props.Latitud, lng: props.Longitud });
+                if (props.friend.webId) {
+                    bounds.extend({ lat: props.friend.lat, lng: props.friend.lng });
+                }
+                mapRef.current.fitBounds(bounds);
+            }
+        }, [mapRef, props.friend, props.Latitud, props.Longitud]);
+
+        useEffect(() => {
+            fitBounds();
+        }, [fitBounds]);
 
         return (
             <GoogleMap
-                defaultZoom={props.friend.webId ? 2 : 18}
-                defaultCenter={props.friend.webId ? { lat: (props.Latitud + props.friend.lat) / 2, lng: (props.Longitud + props.friend.lng) / 2 } : { lat: props.Latitud, lng: props.Longitud }}
+                ref={mapRef}
             >
                 <Marker
                     position={{ lat: props.Latitud, lng: props.Longitud }}
@@ -85,27 +97,21 @@ const MyMapComponent = compose(
         );
     });
 
-class MyFancyComponent extends React.PureComponent {
-
-    state = {
-        isMarkerShown: false,
-        mapPosition: {
-            lat: 0,
-            lng: 0,
-        },
-        friend: {
-            webId: this.props.selectedFriend,
-            lat: 0,
-            lng: 0,
-        }
-    };
+function MyFancyComponent({ selectedFriend }) {
+    const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
+    const [friend, setFriend] = useState({
+        webId: selectedFriend,
+        lat: 0,
+        lng: 0,
+    });
 
 
 
-    getFriends = async function () {
+    const getFriends = useCallback(async function () {
+        if (!selectedFriend) return;
 
         const information = {
-            "solidId": this.props.selectedFriend
+            "solidId": selectedFriend
         }
         var respuesta = await fetch("http://localhost:5000/api/user/getById",
             {
@@ -119,67 +125,36 @@ class MyFancyComponent extends React.PureComponent {
         var user = await respuesta.json();
 
         if (user != null) {
-            this.setState({
-                friend: {
-                    webId: this.friend.webId,
-                    lat: user.latitud,
-                    lng: user.loguitud,
-                }
+            setFriend({
+                webId: selectedFriend,
+                lat: user.latitud,
+                lng: user.longitud,
             });
         }
-    }
+    }, [selectedFriend]);
 
-
-    componentDidMount() {
+    useEffect(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
-                this.setState({
-                    mapPosition: {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    }
+                setMapPosition({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
                 });
+                getFriends();
             });
         } else {
             console.error("Geolocation is not supported by this browser!");
         }
-    };
+    }, [setMapPosition, getFriends]);
 
 
-    onChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
-    };
-
-    onMarkerDragEnd = (event) => {
-        let newLat = event.latLng.lat(),
-            newLng = event.latLng.lng();
-
-        Geocode.fromLatLng(newLat, newLng).then(
-            response => {
-                this.setState({
-                    mapPosition: {
-                        lat: newLat,
-                        lng: newLng
-                    },
-                });
-            },
-            error => {
-                console.error(error);
-            }
-        );
-    };
-
-
-    render() {
-        return (
-            <MyMapComponent
-                isMarkerShown={this.state.isMarkerShown}
-                Latitud={this.state.mapPosition.lat}
-                Longitud={this.state.mapPosition.lng}
-                friend={this.state.friend}
-            />
-        )
-    }
+    return (
+        <MyMapComponent
+            Latitud={mapPosition.lat}
+            Longitud={mapPosition.lng}
+            friend={friend}
+        />
+    );
 }
 
 
