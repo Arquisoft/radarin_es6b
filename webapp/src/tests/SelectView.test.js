@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { act } from 'react-dom/test-utils'
 import ReactDOM from 'react-dom'
-import LoginBarView from '../components/views/LoginBarView';
+import SelectView from '../components/views/SelectView';
 
 
 
@@ -21,10 +21,9 @@ afterEach(() => {
 it('Select', () => {
   act(() => {
     ReactDOM.render(<Router>
-      <LoginBarView />
+      <SelectView />
     </Router>, container)
   })
 
   expect(container).toBeTruthy();
-  expect(getByText("Locates")).toBeInTheDocument();
 }) 
