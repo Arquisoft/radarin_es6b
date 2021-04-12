@@ -31,7 +31,7 @@ function AboutView() {
                     image="https://solid.mit.edu/assets/img/solid-logo.svg"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom variant="h5" component="h5">
                         About
           </Typography>
                     <Typography component="p">

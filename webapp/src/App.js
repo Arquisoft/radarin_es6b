@@ -1,8 +1,10 @@
+import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import React, { useEffect } from 'react';
 import Contaniner from './components/utils/Contenedor';
 import { useWebId } from '@solid/react';
+import { saveUser } from './api/api';
 
 function App() {
 
@@ -12,21 +14,8 @@ function App() {
     if (webId) {
       // pedimos la pocalización actual
       navigator.geolocation.getCurrentPosition((pos) => {
-
-        // información a enviar al backend
-        const information = {
-          "solidId": webId,
-          "latitud": pos.coords.latitude,
-          "longitud": pos.coords.longitude
-        }
-        // de momento solo en locaL
-        fetch("http://localhost:5000/api//user/save", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(information)
-        });
+        //salvamos al usuario
+        saveUser(webId, pos.coords.latitude, pos.coords.longitude).catch(err => console.log(err));
       });
     }
   };
@@ -41,8 +30,8 @@ function App() {
   return (
     <div className="App">
       <React.Fragment>
-          <CssBaseline />
-          <Contaniner />
+        <CssBaseline />
+        <Contaniner />
       </React.Fragment>
     </div>
   );

@@ -1,29 +1,17 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import SoldiFriend from './SolidFriend';
-
+import { getUsers } from '../../api/api';
 function FriendsList(props) {
 
     const [friends, setFriends] = useState([]);
 
     var getFriends = useCallback(async function () {
-
-        const information = {
-            "solidId": props.webId,
-        }
-        var respuesta = await fetch("http://localhost:5000/api/user/getUsers",
-            {
-                method: "post",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(information)
-            });
-        var response = await respuesta.json();
-
-        const realFriends = response
-            .filter(posibleFriend => props.solidFriends.includes(posibleFriend.solidId))
-            .map(friend => friend.solidId);
-        setFriends(realFriends);
+        getUsers(props.webId).then(response => {
+            const realFriends = response
+                .filter(posibleFriend => props.solidFriends.includes(posibleFriend.solidId))
+                .map(friend => friend.solidId);
+            setFriends(realFriends);
+        }).catch(err => console.log(err));
     }, [setFriends, props.webId, props.solidFriends]);
 
 

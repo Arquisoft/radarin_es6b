@@ -76,8 +76,6 @@ function MyGoogleMap(props) {
 
         return (
             <div >
-                <h1>Radarin Map</h1>
-
                 <AsyncMap
                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY&libraries=places"
                     loadingElement={

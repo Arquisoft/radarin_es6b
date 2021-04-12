@@ -3,7 +3,7 @@ import { compose, withProps, withStateHandlers } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
-
+import { getUserByWebId } from '../../api/api';
 
 const MyMapComponent = compose(
     withStateHandlers(() => ({
@@ -20,7 +20,7 @@ const MyMapComponent = compose(
     withProps({
         googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY",
         loadingElement: <p>Cargando</p>,
-        containerElement: <div style={{ height: `800px` }} />,
+        containerElement: <div style={{ height: `600px`, width: '800px' }} />,
         mapElement: <div style={{ height: `100%` }} />,
         isMarkerShown: true,
 
@@ -110,27 +110,15 @@ function MyFancyComponent({ selectedFriend }) {
     const getFriends = useCallback(async function () {
         if (!selectedFriend) return;
 
-        const information = {
-            "solidId": selectedFriend
-        }
-        var respuesta = await fetch("http://localhost:5000/api/user/getById",
-            {
-                method: "post",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(information)
-            });
-
-        var user = await respuesta.json();
-
-        if (user != null) {
-            setFriend({
-                webId: selectedFriend,
-                lat: user.latitud,
-                lng: user.longitud,
-            });
-        }
+        getUserByWebId(selectedFriend).then(user => {
+            if (user != null) {
+                setFriend({
+                    webId: selectedFriend,
+                    lat: user.latitud,
+                    lng: user.longitud,
+                });
+            }
+        }).catch(err => console.log(err));
     }, [selectedFriend]);
 
     useEffect(() => {
