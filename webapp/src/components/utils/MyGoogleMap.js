@@ -1,78 +1,74 @@
-import React from 'react';
-import { withGoogleMap, GoogleMap, withScriptjs, Marker } from "react-google-maps";
-import Geocode from "react-geocode";
+import React, { useEffect, useState, useCallback } from 'react';
+import { withGoogleMap, GoogleMap, withScriptjs, Marker, InfoWindow } from "react-google-maps";
+import { useWebId } from '@solid/react';
+import useProfile from './Profile';
 
 
-Geocode.setApiKey("AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY");
-Geocode.enableDebug();
-
-class MyGoogleMap extends React.Component {
-
-    state = {
-        zoom: 18,
-        height: 600,
-        mapPosition: {
-            lat: 0,
-            lng: 0,
-        }
-    }
+function MyGoogleMap(props) {
 
 
-    componentDidMount() {
+    const zoom = 18;
+    const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
+    const [showingInfoWindow, setShowingInfoWindow] = useState(false);
+    const webId = useWebId();
+    const profile = useProfile(webId);
+
+    const getLocate = useCallback(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
-                this.setState({
-                    mapPosition: {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    }
+                setMapPosition({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
                 });
             });
         } else {
             console.error("Geolocation is not supported by this browser!");
         }
+    }, [setMapPosition]);
+
+
+    useEffect(() => {
+        getLocate();
+    }, [getLocate]);
+
+
+    const onMarkerClick = function (marker, e) {
+        setShowingInfoWindow(true);
     };
 
-    onChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
-    };
+    const onClose = function (marker, e) {
+        setShowingInfoWindow(false);
+    }
 
-    onMarkerDragEnd = (event) => {
-        let newLat = event.latLng.lat(),
-            newLng = event.latLng.lng();
 
-        Geocode.fromLatLng(newLat, newLng).then(
-            response => {                    
-                this.setState({
-                    mapPosition: {
-                        lat: newLat,
-                        lng: newLng
-                    },
-                })
-            },
-            error => {
-                console.error(error);
-            }
-        );
-    };
-
-    render() {
         const AsyncMap = withScriptjs(
             withGoogleMap(
                 props => (
-                    <GoogleMap
-                        defaultZoom={this.state.zoom}
-                        defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
-                    >
 
+                    <GoogleMap
+
+                        defaultZoom={zoom}
+                        defaultCenter={{ lat: mapPosition.lat, lng: mapPosition.lng }}
+                    >
                         <Marker
-                            google={this.props.google}
+                            onClick={onMarkerClick}
+                            google={props.google}
                             name={'Current position'}
                             draggable={true}
-                            onDragEnd={this.onMarkerDragEnd}
-                            position={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
-                        />
-                        <Marker />
+                            position={{ lat: mapPosition.lat, lng: mapPosition.lng }}
+                        >
+                            {
+                                showingInfoWindow
+                                &&
+                                <InfoWindow
+                                    onCloseClick={onClose}
+                                >
+                                    <div>
+                                        <h4>Me({`${profile.fullName}`})</h4>
+                                    </div>
+                                </InfoWindow>
+                            }
+                        </Marker>
                     </GoogleMap>
                 )
             )
@@ -95,9 +91,7 @@ class MyGoogleMap extends React.Component {
                     }
                 />
             </div>
-        )
-    }
-
+        );
 }
 
 export default MyGoogleMap;
