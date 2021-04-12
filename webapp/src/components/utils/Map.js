@@ -33,7 +33,6 @@ function Map() {
 
     useEffect(() => {
         if (map) {
-            console.log(navigator.geolocation);
             navigator.geolocation.getCurrentPosition((position)=>{
                 const H = window.H;
                 var imagenIcono = new H.map.Icon("/img/marker-icon.png", { size: { w: 50, h: 50 } });

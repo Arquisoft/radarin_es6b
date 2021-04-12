@@ -1,6 +1,5 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { Locations } from './components/utils/Locations';
 import React, { useEffect } from 'react';
 import Contaniner from './components/utils/Contenedor';
 import { useWebId } from '@solid/react';
@@ -42,10 +41,8 @@ function App() {
   return (
     <div className="App">
       <React.Fragment>
-        <Locations>
           <CssBaseline />
           <Contaniner />
-        </Locations>
       </React.Fragment>
     </div>
   );
