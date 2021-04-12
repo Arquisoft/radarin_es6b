@@ -1,11 +1,9 @@
-import NavComponent from './NavComponent';
 import React from 'react';
-import Map from './Map';
+import Map from '../utils/Map';
 
 function HomeView(){
         return (
             <React.Fragment>
-                <NavComponent />
                 <Map/>
             </React.Fragment>
         );
