@@ -4,6 +4,8 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "reac
 import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
 import FriendsMarksEvaluate from './FriendsMarksEvaluate';
+import LocatesMarksEvaluate from './LocatesMarksEvaluate';
+import {saveLocate} from '../../api/api';
 
 const MyMapComponent = compose(
     withStateHandlers(() => ({
@@ -43,12 +45,25 @@ const MyMapComponent = compose(
             }
         }, [mapRef, props.Latitud, props.Longitud]);
 
+
+        const onMapClick = function (e) {
+            var texto = prompt("Nombre de la localización:");
+            if (texto === null || texto==="") {
+                alert("No se aceptan localizaciones sin un nombre")
+                return;
+            }
+            else {
+                saveLocate(webId, 43, -3.8, texto);
+            }
+        };
+
         useEffect(() => {
             fitBounds();
         }, [fitBounds]);
 
         return (
             <GoogleMap
+                onClick={onMapClick}
                 ref={mapRef}
             >
                 <Marker
@@ -65,7 +80,8 @@ const MyMapComponent = compose(
                         </InfoWindow>
 
                     }
-                    <FriendsMarksEvaluate webId={webId}/>
+                    <FriendsMarksEvaluate webId={webId} />
+                    <LocatesMarksEvaluate webId={webId} />
                 </Marker>
             </GoogleMap>
         );

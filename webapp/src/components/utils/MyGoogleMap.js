@@ -38,7 +38,7 @@ function MyGoogleMap(props) {
 
     const onMapClick = function (map, e) {
         alert("entre")
-        saveLocate(webId, 43.5, -3.5, "Locate");
+        saveLocate(webId, 40.5, -3.7, "Locate2");
     };
 
     const onClose = function (marker, e) {
