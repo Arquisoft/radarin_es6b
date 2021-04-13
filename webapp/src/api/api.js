@@ -1,4 +1,4 @@
-export async function saveUser(webId,latitude,longitude) {
+export async function saveUser(webId, latitude, longitude) {
     const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
     const information = {
         "solidId": webId,
@@ -52,7 +52,7 @@ export async function getLocatesByWebId(id) {
     return await response.json();
 }
 
-export async function saveLocate(webId,latitude,longitude,texto) {
+export async function saveLocate(webId, latitude, longitude, texto) {
     const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
     const information = {
         "solidId": webId,
@@ -71,7 +71,7 @@ export async function saveLocate(webId,latitude,longitude,texto) {
 export async function deleteLocate(id) {
     const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
     const information = {
-        "id":id
+        "id": id
     };
     let response = await fetch(apiEndPoint + '/user/locate/delete', {
         method: 'POST',
@@ -81,10 +81,10 @@ export async function deleteLocate(id) {
     return await response.json();
 }
 
-export async function updateLocate(id,texto) {
+export async function updateLocate(id, texto) {
     const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
     const information = {
-        "id":id,
+        "id": id,
         "texto": texto
     };
     let response = await fetch(apiEndPoint + '/user/locate/update', {
