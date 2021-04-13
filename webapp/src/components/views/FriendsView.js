@@ -4,7 +4,7 @@ import { useWebId } from '@solid/react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import MyGoogleMap from '../utils/GoogleMapFriends';
+import GoogleMapFriends from '../utils/GoogleMapFriends';
 import FriendListEvaluate from '../utils/FriendsListEvaluate';
 
 const useStyles = makeStyles((theme) => ({
@@ -52,7 +52,7 @@ function FriendsView() {
                     <Grid container item xs={12} sm={9} md={6}>
                         <Paper className={classes.paper}>
                             <Typography gutterBottom variant="h2" component="h2" color='inherit'>Map</Typography>
-                            <MyGoogleMap selectedFriend={selectFriend} />
+                            <GoogleMapFriends selectedFriend={selectFriend} />
                         </Paper>
                     </Grid>
                 </Grid>

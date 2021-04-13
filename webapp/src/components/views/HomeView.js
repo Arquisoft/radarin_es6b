@@ -1,5 +1,5 @@
 import React from 'react';
-import Map from '../utils/MyGoogleMap';
+import Map from '../utils/GoogleMapHome';
 import { Typography } from '@material-ui/core/';
 
 function HomeView() {
