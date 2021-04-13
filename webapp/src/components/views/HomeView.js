@@ -1,12 +1,15 @@
 import React from 'react';
-import Map from '../utils/GoogleMapHome';
+import LoadGoogleMap from '../utils/LoadGoogleMap';
 import { Typography } from '@material-ui/core/';
+import {useWebId} from '@solid/react';
 
 function HomeView() {
+    const webId=useWebId();
+
     return (
         <div>
             <Typography gutterBottom variant="h3" component="h3" color='inherit' align="center">Radarin Map</Typography>
-            <Map
+            <LoadGoogleMap webId={webId}
             />
         </div>
     );

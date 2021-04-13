@@ -67,3 +67,30 @@ export async function saveLocate(webId,latitude,longitude,texto) {
     })
     return await response.json();
 }
+
+export async function deleteLocate(id) {
+    const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
+    const information = {
+        "id":id
+    };
+    let response = await fetch(apiEndPoint + '/user/locate/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(information)
+    })
+    return await response.json();
+}
+
+export async function updateLocate(id,texto) {
+    const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
+    const information = {
+        "id":id,
+        "texto": texto
+    };
+    let response = await fetch(apiEndPoint + '/user/locate/update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(information)
+    })
+    return await response.json();
+}

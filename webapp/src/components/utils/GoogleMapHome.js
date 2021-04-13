@@ -3,11 +3,11 @@ import { compose, withProps, withStateHandlers } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
-import FriendsMarksEvaluate from './FriendsMarksEvaluate';
-import LocatesMarksEvaluate from './LocatesMarksEvaluate';
+import FriendMark from './FriendMark';
+import LocateMark from './LocateMark';
 import { saveLocate } from '../../api/api';
 import mapStyle from './MapStyles';
-import LocateMark from './LocateMark';
+
 const mapContainerStyle = {
     width: "100vw",
     height: "100vh"
@@ -45,7 +45,6 @@ const MyMapComponent = compose(
         const webId = useWebId();
         const profile = useProfile(webId);
         const mapRef = useRef(null);
-        const [auxMarks, setAuxMarks]=useState([]);
 
         const fitBounds = useCallback(() => {
             if (mapRef.current) {
@@ -63,13 +62,10 @@ const MyMapComponent = compose(
                 return;
             }
             else if(texto !== null) {
+                //add sevidor
                 saveLocate(webId, event.latLng.lat(), event.latLng.lng(), texto);
-                setAuxMarks(current => [...current, {
-                    latitud: event.latLng.lat(),
-                    longitud: event.latLng.lng(),
-                    texto: texto,
-                    solidId: webId
-                }]);
+                //add local
+                props.addLocalLocate(event.latLng.lat(),event.latLng.lng(),texto,webId);
             }
         };
 
@@ -100,11 +96,16 @@ const MyMapComponent = compose(
                         </InfoWindow>
 
                     }
-                    <FriendsMarksEvaluate webId={webId} />
-                    <LocatesMarksEvaluate webId={webId} />
+
                     {
-                          auxMarks.map((locate, i) => {
-                            return <LocateMark key={`locateAuxMark_${i}`} locate={locate} />;
+                        props.friends.map((friend, i) => {
+                            return <FriendMark key={`friendMark_${i}`} friend={friend} />;
+                        })
+                    }
+
+                    {
+                          props.locates.map((locate, i) => {
+                            return <LocateMark key={`locateMark_${i}`} locate={locate} updateLocalLocate={props.updateLocalLocate} deleteLocalLocate={props.deleteLocalLocate} />;
                         })
                     }
                 </Marker>
@@ -112,7 +113,7 @@ const MyMapComponent = compose(
         );
     });
 
-function MyFancyComponent({ selectedFriend }) {
+function MyFancyComponent({ friends,locates,addLocalLocate, updateLocalLocate, deleteLocalLocate }) {
     const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
     useEffect(() => {
         if (navigator.geolocation) {
@@ -132,6 +133,12 @@ function MyFancyComponent({ selectedFriend }) {
         <MyMapComponent
             Latitud={mapPosition.lat}
             Longitud={mapPosition.lng}
+            friends={friends}
+            locates={locates}
+            addLocalLocate={addLocalLocate}
+            updateLocalLocate={updateLocalLocate}
+            deleteLocalLocate={deleteLocalLocate}
+
         />
     );
 }

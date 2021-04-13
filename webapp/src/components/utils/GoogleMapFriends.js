@@ -4,7 +4,15 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "reac
 import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
 import { getUserByWebId } from '../../api/api';
+import mapStyle from './MapStyles';
+const mapContainerStyle = {
+    width: "100vw",
+    height: "100vh"
+};
 
+const options = {
+    styles: mapStyle,
+};
 const MyMapComponent = compose(
     withStateHandlers(() => ({
         isOpenMy: false,
@@ -54,6 +62,8 @@ const MyMapComponent = compose(
         return (
             <GoogleMap
                 ref={mapRef}
+                mapContainerStyle={mapContainerStyle}
+                options={options}
             >
                 <Marker
                     position={{ lat: props.Latitud, lng: props.Longitud }}

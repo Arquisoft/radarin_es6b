@@ -1,8 +1,19 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import icon from '../img/locatePin.png';
-import {Marker, InfoWindow } from "react-google-maps"
+import { Marker, InfoWindow } from "react-google-maps"
+import Button from "@material-ui/core/Button";
+import {
+    makeStyles
+} from '@material-ui/core';
 
-const Locate = ({ locate }) => {
+const estilos = makeStyles(theme => ({
+
+    button: {
+        display: 'inline'
+    }
+}));
+
+const Locate = ({ locate, updateLocalLocate, deleteLocalLocate }) => {
     const [showMark, setShowMark] = useState(false);
     let iconMarker = new window.google.maps.MarkerImage(
         icon,
@@ -16,6 +27,8 @@ const Locate = ({ locate }) => {
         setShowMark(!showMark);
     }
 
+    const classes = estilos();
+
     return (
         <Marker
             icon={iconMarker}
@@ -26,8 +39,22 @@ const Locate = ({ locate }) => {
                 <InfoWindow
                     onCloseClick={changeShow}
                 >
-                    <div>
-                        <h4>{locate.texto}</h4>
+                    <div className={classes.button}>
+                        <h3>{locate.texto}</h3>
+                        {
+                            updateLocalLocate &&
+                            <div>
+                                <Button variant="contained" color="primary" edge="end" onClick={() => {
+                                    updateLocalLocate(locate._id);
+                                    changeShow();
+                                }}>Update</Button>
+
+                                <Button variant="contained" color="primary" edge="end" onClick={() => {
+                                    deleteLocalLocate(locate._id);
+                                    changeShow();
+                                }}>Delete</Button>
+                            </div>
+                        }
                     </div>
                 </InfoWindow>
             }

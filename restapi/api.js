@@ -89,5 +89,22 @@ router.post("/user/locate/save", async (req, res) => {
     res.send(locate);
 });
 
+router.post("/user/locate/delete", async (req, res) => {
+    const id = req.body.id;
+
+    let result = await Locate.deleteOne({ _id:id });
+
+    res.send(true);
+});
+
+router.post("/user/locate/update", async (req, res) => {
+    const id = req.body.id;
+    const text=req.body.texto;
+
+    Locate.updateOne({_id:id},{texto:text});
+
+    res.send(true);
+});
+
 
 module.exports = router
