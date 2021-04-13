@@ -3,18 +3,18 @@ import { compose, withProps, withStateHandlers } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
-import { getUserByWebId } from '../../api/api';
+
 
 const MyMapComponent = compose(
     withStateHandlers(() => ({
         isOpenMy: false,
-        isOpenFriend: false
+        isOpenLocate: false
     }), {
         onToggleOpenMy: ({ isOpenMy }) => () => ({
             isOpenMy: !isOpenMy,
         }),
-        onToggleOpenFriend: ({ isOpenFriend }) => () => ({
-            isOpenFriend: !isOpenFriend,
+        onToggleOpenLocate: ({ isOpenLocate }) => () => ({
+            isOpenLocate: !isOpenLocate,
         })
     }),
     withProps({
@@ -33,19 +33,18 @@ const MyMapComponent = compose(
     ((props) => {
         const webId = useWebId();
         const profile = useProfile(webId);
-        const profileFriend = useProfile(props.friend.webId);
         const mapRef = useRef(null);
 
         const fitBounds = useCallback(() => {
             if (mapRef.current) {
                 const bounds = new window.google.maps.LatLngBounds();
                 bounds.extend({ lat: props.Latitud, lng: props.Longitud });
-                if (props.friend.webId) {
-                    bounds.extend({ lat: props.friend.lat, lng: props.friend.lng });
+                if (props.locate) {
+                    bounds.extend({ lat: props.locate.latitud, lng: props.locate.longitud });
                 }
                 mapRef.current.fitBounds(bounds);
             }
-        }, [mapRef, props.friend, props.Latitud, props.Longitud]);
+        }, [mapRef, props.locate, props.Latitud, props.Longitud]);
 
         useEffect(() => {
             fitBounds();
@@ -72,19 +71,19 @@ const MyMapComponent = compose(
                 </Marker>
 
                 {
-                    props.friend.webId
+                    props.locate
                     &&
 
                     <Marker
-                        position={{ lat: props.friend.lat, lng: props.friend.lng }}
-                        onClick={props.onToggleOpenFriend}
+                        position={{ lat: props.locate.latitud, lng: props.locate.longitud }}
+                        onClick={props.onToggleOpenLocate}
                     >
-                        {props.isOpenFriend &&
+                        {props.isOpenLocate &&
                             <InfoWindow
-                                onCloseClick={props.onToggleOpenFriend}
+                                onCloseClick={props.onToggleOpenLocate}
                             >
                                 <div>
-                                    <h4>{`${profileFriend.fullName}`}</h4>
+                                    <h4>{props.locate.texto}</h4>
                                 </div>
                             </InfoWindow>
 
@@ -92,33 +91,14 @@ const MyMapComponent = compose(
                     </Marker>
                 }
 
-            </GoogleMap>
-        );
+            </GoogleMap>);
     });
 
-function MyFancyComponent({ selectedFriend }) {
+
+function MyFancyComponent({ selectedLocate }) {
+
     const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
-    const [friend, setFriend] = useState({
-        webId: selectedFriend,
-        lat: 0,
-        lng: 0,
-    });
 
-
-
-    const getFriends = useCallback(async function () {
-        if (!selectedFriend) return;
-
-        getUserByWebId(selectedFriend).then(user => {
-            if (user != null) {
-                setFriend({
-                    webId: selectedFriend,
-                    lat: user.latitud,
-                    lng: user.longitud,
-                });
-            }
-        }).catch(err => console.log(err));
-    }, [selectedFriend]);
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -127,22 +107,22 @@ function MyFancyComponent({ selectedFriend }) {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
                 });
-                getFriends();
             });
         } else {
             console.error("Geolocation is not supported by this browser!");
         }
-    }, [setMapPosition, getFriends]);
-
+    }, [setMapPosition]);
 
     return (
         <MyMapComponent
             Latitud={mapPosition.lat}
             Longitud={mapPosition.lng}
-            friend={friend}
+            locate={selectedLocate}
         />
-    );
+    )
+
 }
+
 
 
 export default MyFancyComponent;

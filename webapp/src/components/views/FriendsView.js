@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 function FriendsView() {
 
     const webId = useWebId();
-    const [selectFriend,setSelectFriend]=useState(null);
+    const [selectFriend, setSelectFriend] = useState(null);
 
 
 
@@ -34,8 +34,8 @@ function FriendsView() {
     return (
         <React.Fragment>
             <div className={classes.root}>
-                <Grid container spacing={3}>
-                    <Grid container item xs={12} justify="center" >
+                <Grid container spacing={3} alignItems="center" justify="center" direction="column">
+                    <Grid container item xs={12} sm={9} md={6} spacing={0} alignItems="center" justify="center" direction="column">
                         <Paper className={classes.paper}>
                             <Typography component="p">
                                 Click on one of your friends to see his last location
@@ -43,13 +43,13 @@ function FriendsView() {
                         </Paper>
                     </Grid>
 
-                    <Grid container item xs={6}>
+                    <Grid container item xs={12} sm={9} md={6}>
                         <Paper className={classes.paper}>
                             <Typography gutterBottom variant="h2" component="h2" color='inherit'>Friends</Typography>
                             <FriendListEvaluate webId={webId} accionSelectFriend={accionSelectFriend} />
                         </Paper>
                     </Grid>
-                    <Grid container item xs={6}>
+                    <Grid container item xs={12} sm={9} md={6}>
                         <Paper className={classes.paper}>
                             <Typography gutterBottom variant="h2" component="h2" color='inherit'>Map</Typography>
                             <MyGoogleMap selectedFriend={selectFriend} />
