@@ -5,8 +5,17 @@ import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
 import FriendsMarksEvaluate from './FriendsMarksEvaluate';
 import LocatesMarksEvaluate from './LocatesMarksEvaluate';
-import {saveLocate} from '../../api/api';
+import { saveLocate } from '../../api/api';
+import mapStyle from './MapStyles';
+import LocateMark from './LocateMark';
+const mapContainerStyle = {
+    width: "100vw",
+    height: "100vh"
+};
 
+const options = {
+    styles: mapStyle,
+};
 const MyMapComponent = compose(
     withStateHandlers(() => ({
         isOpenMy: false,
@@ -36,6 +45,7 @@ const MyMapComponent = compose(
         const webId = useWebId();
         const profile = useProfile(webId);
         const mapRef = useRef(null);
+        const [auxMarks, setAuxMarks]=useState([]);
 
         const fitBounds = useCallback(() => {
             if (mapRef.current) {
@@ -46,14 +56,20 @@ const MyMapComponent = compose(
         }, [mapRef, props.Latitud, props.Longitud]);
 
 
-        const onMapClick = function (e) {
+        const onMapClick = function (event) {
             var texto = prompt("Nombre de la localización:");
-            if (texto === null || texto==="") {
+            if ( texto === "") {
                 alert("No se aceptan localizaciones sin un nombre")
                 return;
             }
-            else {
-                saveLocate(webId, 43, -3.8, texto);
+            else if(texto !== null) {
+                saveLocate(webId, event.latLng.lat(), event.latLng.lng(), texto);
+                setAuxMarks(current => [...current, {
+                    latitud: event.latLng.lat(),
+                    longitud: event.latLng.lng(),
+                    texto: texto,
+                    solidId: webId
+                }]);
             }
         };
 
@@ -63,8 +79,12 @@ const MyMapComponent = compose(
 
         return (
             <GoogleMap
-                onClick={onMapClick}
+                mapContainerStyle={mapContainerStyle}
+                options={options}
                 ref={mapRef}
+                onClick={(event) => {
+                    onMapClick(event);
+                }}
             >
                 <Marker
                     position={{ lat: props.Latitud, lng: props.Longitud }}
@@ -82,6 +102,11 @@ const MyMapComponent = compose(
                     }
                     <FriendsMarksEvaluate webId={webId} />
                     <LocatesMarksEvaluate webId={webId} />
+                    {
+                          auxMarks.map((locate, i) => {
+                            return <LocateMark key={`locateAuxMark_${i}`} locate={locate} />;
+                        })
+                    }
                 </Marker>
             </GoogleMap>
         );

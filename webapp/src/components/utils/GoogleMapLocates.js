@@ -3,6 +3,7 @@ import { compose, withProps, withStateHandlers } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
+import icon from '../img/locatePin.png';
 
 
 const MyMapComponent = compose(
@@ -34,6 +35,13 @@ const MyMapComponent = compose(
         const webId = useWebId();
         const profile = useProfile(webId);
         const mapRef = useRef(null);
+        let iconMarker = new window.google.maps.MarkerImage(
+            icon,
+            null, /* size is determined at runtime */
+            null, /* origin is 0,0 */
+            null, /* anchor is bottom center of the scaled image */
+            new window.google.maps.Size(35, 35)
+        );
 
         const fitBounds = useCallback(() => {
             if (mapRef.current) {
@@ -77,6 +85,7 @@ const MyMapComponent = compose(
                     <Marker
                         position={{ lat: props.locate.latitud, lng: props.locate.longitud }}
                         onClick={props.onToggleOpenLocate}
+                        icon={iconMarker}
                     >
                         {props.isOpenLocate &&
                             <InfoWindow
