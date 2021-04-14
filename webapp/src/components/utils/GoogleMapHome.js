@@ -120,7 +120,7 @@ function MyFancyComponent({ friends,locates,addLocalLocate, updateLocalLocate, d
                 });
             });
         } else {
-            console.error("Geolocation is not supported by this browser!");
+            console.log("Geolocation is not supported by this browser!");
         }
     }, [setMapPosition]);
 

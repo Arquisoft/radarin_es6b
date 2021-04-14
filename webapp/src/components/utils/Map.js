@@ -48,7 +48,7 @@ function Map() {
                 map.setCenter(LocationOfMarker);
 
             } , (error)=>{
-                console.error(error);
+                console.log(error);
             })
             return () =>{
                 map?.dispose();

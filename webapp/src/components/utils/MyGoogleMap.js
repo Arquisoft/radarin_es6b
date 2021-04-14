@@ -22,7 +22,7 @@ function MyGoogleMap(props) {
                 });
             });
         } else {
-            console.error("Geolocation is not supported by this browser!");
+            console.log("Geolocation is not supported by this browser!");
         }
     }, [setMapPosition]);
 

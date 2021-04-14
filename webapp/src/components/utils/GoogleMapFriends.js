@@ -140,7 +140,7 @@ function MyFancyComponent({ selectedFriend }) {
                 getFriends();
             });
         } else {
-            console.error("Geolocation is not supported by this browser!");
+            console.log("Geolocation is not supported by this browser!");
         }
     }, [setMapPosition, getFriends]);
 
