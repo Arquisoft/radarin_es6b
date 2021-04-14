@@ -2,6 +2,7 @@ const express = require("express")
 const User = require("./models/users")
 const Locate = require("./models/locates")
 const router = express.Router()
+const mongo = require('mongodb');
 
 /*
 // Get all users
@@ -52,19 +53,19 @@ router.post("/user/save", async (req, res) => {
 
 router.post("/user/getById", async (req, res) => {
     const id = req.body.solidId;
-    let user = await User.findOne({ solidId:id });
+    let user = await User.findOne({ solidId: id });
     res.send(user);
 });
 
 router.post("/user/getUsers", async (req, res) => {
     const id = req.body.solidId;
-    const myFriends= await User.find({solidId:{$ne:id}});
+    const myFriends = await User.find({ solidId: { $ne: id } });
     res.send(myFriends);
 });
 
 router.post("/user/getLocates", async (req, res) => {
     const id = req.body.solidId;
-    const myLocates= await Locate.find({solidId:id});
+    const myLocates = await Locate.find({ solidId: id });
     res.send(myLocates);
 });
 
@@ -72,9 +73,9 @@ router.post("/user/locate/save", async (req, res) => {
     const solidId = req.body.solidId;
     const lat = req.body.latitud;
     const lon = req.body.longitud;
-    const text=req.body.texto;
+    const text = req.body.texto;
 
-    let locate = await Locate.findOne({ latitud:lat, longitud:lon });
+    let locate = await Locate.findOne({ latitud: lat, longitud: lon });
 
     if (locate == null) {
         locate = new Locate({
@@ -90,20 +91,32 @@ router.post("/user/locate/save", async (req, res) => {
 });
 
 router.post("/user/locate/delete", async (req, res) => {
-    const id = req.body.id;
+    const id = mongo.ObjectID(req.body.id);
+    const locate = await Locate.findById(id);
 
-    let result = await Locate.deleteOne({ _id:id });
-
-    res.send(true);
+    if (locate != null) {
+        locate.deleteOne();
+        res.send("locate delete");
+    }
+    else{
+        res.send("locate no delete");
+    }
 });
 
 router.post("/user/locate/update", async (req, res) => {
-    const id = req.body.id;
-    const text=req.body.texto;
+    const id = mongo.ObjectID(req.body.id);
+    const text = req.body.texto;
 
-    Locate.updateOne({_id:id},{texto:text});
+    const locate = await Locate.findById(id);
 
-    res.send(true);
+    if (locate != null) {
+        locate.texto = text;
+        locate.save();
+        res.send("locate update");
+    }
+    else{
+        res.send("locate no update");
+    }
 });
 
 

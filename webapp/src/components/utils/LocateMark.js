@@ -45,7 +45,7 @@ const Locate = ({ locate, updateLocalLocate, deleteLocalLocate }) => {
                             updateLocalLocate &&
                             <div>
                                 <Button variant="contained" color="primary" edge="end" onClick={() => {
-                                    updateLocalLocate(locate._id);
+                                    updateLocalLocate(locate._id,locate.texto);
                                     changeShow();
                                 }}>Update</Button>
 

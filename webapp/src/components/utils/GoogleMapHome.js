@@ -5,7 +5,6 @@ import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
 import FriendMark from './FriendMark';
 import LocateMark from './LocateMark';
-import { saveLocate } from '../../api/api';
 import mapStyle from './MapStyles';
 
 const mapContainerStyle = {
@@ -62,9 +61,6 @@ const MyMapComponent = compose(
                 return;
             }
             else if(texto !== null) {
-                //add sevidor
-                saveLocate(webId, event.latLng.lat(), event.latLng.lng(), texto);
-                //add local
                 props.addLocalLocate(event.latLng.lat(),event.latLng.lng(),texto,webId);
             }
         };

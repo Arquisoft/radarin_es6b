@@ -16,7 +16,7 @@ const LoginBarView= ({fullName, imageSrc, webId}) => {
         <Button variant="contained" color="primary" edge="end" component={AuthButtonComponent} popup='https://solidcommunity.net/common/popup.html'>
         </Button>
         <LoggedIn>
-            <ProfileImage fullName={fullName} imageSrc={imageSrc} />
+            <ProfileImage fullName={fullName} imageSrc={imageSrc} webId={webId} />
         </LoggedIn>
     </span>;
 };

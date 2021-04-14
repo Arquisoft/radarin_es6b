@@ -12,16 +12,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProfileImage = ({ fullName, imageSrc }) => {
+const ProfileImage = ({ fullName, imageSrc, webId }) => {
   const classes = useStyles();
 
-  return (<Tooltip title={`${fullName}`} aria-label="user" className={classes.flex}>
-    <Chip
-      color="primary"
-      avatar={<Avatar name={fullName} src={`${imageSrc}`} />}
-      label={fullName ? `${fullName}` : 'Usuario'}
-    />
-  </Tooltip>
+  return (
+    <Tooltip title={`${fullName}`} aria-label="user" className={classes.flex}>
+      <a href={webId}>
+        <Chip
+          color="primary"
+          avatar={<Avatar name={fullName} src={`${imageSrc}`} />}
+          label={fullName ? `${fullName}` : 'Usuario'}
+        />
+      </a>
+    </Tooltip>
   );
 };
 export default ProfileImage;
