@@ -39,7 +39,7 @@ function AboutView() {
                     friends, and know their locations as well, as long as you give the application 
                     permission. We can also store and delete personal marks on the map and add a name
                      to them to save the location of other places. User data is stored using data decentralization 
-                     with Solid, also giving permission to use this personal information.
+                     with Solid, also giving permission to use this personal information .
                         </Typography>
                     <Typography component="p" className={classes.parrafoEnLinea}>
                     You can see the documentation of the application by clicking
