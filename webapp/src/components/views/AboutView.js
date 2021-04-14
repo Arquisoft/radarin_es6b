@@ -35,13 +35,11 @@ function AboutView() {
                         About
           </Typography>
                     <Typography component="p">
-                        Radarin is a system to facilitate meetings between friends using new
-                        technologies. The application will be able to access your location if
-                        you voluntarily have it activated. It will allow other users who are
-                        your friends to know when you are nearby. You will be notified when
-                        you have friends nearby so that you can get in touch. The application
-                        will not store personal information but you will be asked for
-                        permission to obtain the information needed.
+                    Radarin is a system that can be used to make your location known to your 
+                    friends, and know their locations as well, as long as you give the application 
+                    permission. We can also store and delete personal marks on the map and add a name
+                     to them to save the location of other places. User data is stored using data decentralization 
+                     with Solid, also giving permission to use this personal information.
                         </Typography>
                     <Typography component="p" className={classes.parrafoEnLinea}>
                     You can see the documentation of the application by clicking
