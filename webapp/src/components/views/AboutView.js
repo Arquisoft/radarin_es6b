@@ -46,7 +46,7 @@ function AboutView() {
                     <Typography component="p" className={classes.parrafoEnLinea}>
                     You can see the documentation of the application by clicking
                     </Typography>
-                    <a href="https://radarines6bwebapp.herokuapp.com/docs/"> here.</a>
+                    <a id="doc" href="https://radarines6bwebapp.herokuapp.com/docs/"> here.</a>
                 </CardContent>
             </Card>
         </Grid>

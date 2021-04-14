@@ -31,7 +31,7 @@ const NavBar = (props) => {
         <AppBar className={classes.appBar}>
             <Toolbar>
                 <div className={classes.title} align="left">
-                    <img src={LogoRadarin} alt="logo-Texto" height="50" />
+                    <img id="img" src={LogoRadarin} alt="logo-Texto" height="50" />
                 </div>
                 <LoggedIn>
                     <TemporaryDrawer />
