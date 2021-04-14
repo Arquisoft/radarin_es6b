@@ -10,38 +10,25 @@ let container
 
 
 beforeEach(() => {
-
   container = document.createElement('div')
-
   document.body.appendChild(container)
-
 })
 
 
 
 afterEach(() => {
-
   document.body.removeChild(container)
-
   container = null
-
 })
 
 
 
 it('NavBar', () => {
-
   act(() => {
-
     ReactDOM.render(<Router>
-
       <NavBar />
-
     </Router>, container)
-
   })
-
-  
 
   expect(container).toBeTruthy()
   expect(container.querySelector('#img')).toBeTruthy();

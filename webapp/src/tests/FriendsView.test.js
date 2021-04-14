@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { act } from 'react-dom/test-utils'
 import ReactDOM from 'react-dom'
 import FriendsView from '../components/views/FriendsView';
-
+import { render } from "@testing-library/react";
 
 
 let container
@@ -27,3 +27,9 @@ it('Friends', () => {
 
   expect(container).toBeTruthy();
 }) 
+
+test("Friends view", async () => {
+  const { getByText } = render(<FriendsView />);
+  expect(getByText("Friends")).toBeInTheDocument();
+  expect(getByText("Map")).toBeInTheDocument();
+})

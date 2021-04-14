@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { act } from 'react-dom/test-utils'
 import ReactDOM from 'react-dom'
 import LocatesView from '../components/views/LocatesView';
+import { render } from "@testing-library/react";
 
 
 
@@ -26,4 +27,11 @@ it('Locates', () => {
   })
 
   expect(container).toBeTruthy();
+ 
 }) 
+
+test("Locates view", async () => {
+  const { getByText } = render(<LocatesView />);
+  expect(getByText("Locates")).toBeInTheDocument();
+  expect(getByText("Map")).toBeInTheDocument();
+})
