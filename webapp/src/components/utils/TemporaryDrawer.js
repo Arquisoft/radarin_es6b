@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function TemporaryDrawer() {
+export default function TemporaryDrawer({changeView}) {
     const classes = useStyles();
     const [state, setState] = React.useState({
         top: false,
@@ -41,7 +41,7 @@ export default function TemporaryDrawer() {
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
-            <Listas />
+            <Listas changeView={changeView} />
         </div>
     );
 
