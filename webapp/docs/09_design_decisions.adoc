@@ -12,7 +12,6 @@ The design decision are:
 | Use of Google Maps API | Plenty of documentation and the most easy API to obtain the location 
 | Use of Git for control system and GitHub | Keep a backup of the code and work at the same time in the project | Some of the members of the group need to get used to work with it
 | Use of Visual Studio Code as developmet environment | Easy for us to use it 
-| For the login the app will redirect you to a Solid pop-up to be able to connect with the PODs | Usabililty and security | Need Solid to log into the app
 |===
 
 === Mobile App Decision

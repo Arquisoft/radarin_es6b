@@ -7,7 +7,6 @@
 
     ** User
     ** Friends
-    ** Location
     ** Map
 
 === User Experience concepts  
