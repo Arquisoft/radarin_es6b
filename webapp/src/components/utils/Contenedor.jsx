@@ -7,7 +7,7 @@ import HomeView from '../views/HomeView';
 import LocatesView from '../views/LocatesView';
 import FriendsView from '../views/FriendsView';
 import AboutView from '../views/AboutView';
-import {useWebId} from '@solid/react';
+import { useWebId } from '@solid/react';
 import NotLoginHome from '../views/NotLoginHome';
 
 
@@ -31,10 +31,10 @@ const Contenedor = () => {
 
     const classes = estilos();
     const webId = useWebId()
-    const views=[<HomeView />,<LocatesView/>,<FriendsView/>, <AboutView />];
-    const [selectedView,setSelectedView]=useState(0);
+    const views = [<HomeView />, <LocatesView />, <FriendsView />, <AboutView />];
+    const [selectedView, setSelectedView] = useState(0);
 
-    const changeView=(num)=>{
+    const changeView = (num) => {
         setSelectedView(num);
     }
 
@@ -45,9 +45,9 @@ const Contenedor = () => {
                 <div className={classes.toolbar}>
                 </div>
                 {webId ?
-                 views[selectedView]
-                :
-                <NotLoginHome />
+                    views[selectedView]
+                    :
+                    <NotLoginHome />
                 }
             </div>
         </div>
