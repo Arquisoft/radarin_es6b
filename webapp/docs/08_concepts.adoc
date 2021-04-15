@@ -7,18 +7,19 @@
 
     ** User
     ** Friends
-    ** Location
     ** Map
 
 === User Experience concepts  
+
 The application is intended to connect friends with each other to share their locations in an intuitive way. In order for the user experience to be as satisfactory as possible, we must take special care that it is friendly and accessible to all users.
 
 It is also important that users familiarize themselves with the use of PODs, since these will be unknown to the vast majority of users. So it is important to introduce them to the world of decentralized information in an appealing way.
 
-As the application uses both the web application and the mobile, make the user feel comfortable and easy to work with the two components.
+As the application uses both the web application and the mobile, make the user feel comfortable and easy to work with the two components. To achieve this, the same page will be used for both computer and mobile, adapting the different views to the dimensions of each device in a modular way.
+
 === Safety and security concepts
 
-It is a main objective of the application that it is safe for the user. To achieve this, user information is stored in POD's in which only the user and those authorized by the user can access their information, following the SOLID principles promoted in this subject. The application will only use the necessary data at the time of obtaining its location after acceptance by the user.
+It is a main objective of the application that it is safe for the user. To achieve this, user information is stored in POD's in which only the user and those authorized by the user can access their information, following the SOLID principles promoted in this subject. The web page will only use the necessary data at the time of obtaining its location after acceptance by the user.
 
 
 
@@ -26,7 +27,7 @@ It is a main objective of the application that it is safe for the user. To achie
 
 * In this project we are going to use:
     
-    ** Model view controller (MVC)
+    ** Modular views
     ** For persistence the SOLID principles will be followed
-    ** React and React Native
+    ** React
     ** Docker
