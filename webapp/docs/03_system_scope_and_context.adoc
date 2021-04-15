@@ -2,7 +2,7 @@
 == System Scope and Context
 
 .Motivation
-The aim of the application is to create a system to facilitate meetings between friends using new technologies. The application will be able to access the location information from the users' mobile application who voluntarily have it activated, and will allow other users, their friends, to know when they are close (notifying them in the mobile application so that they can get in contact).
+The aim of the application is to create a system to facilitate meetings between friends using new technologies. The application will be able to access the location information from the users' mobile navigator who voluntarily have it activated, and will allow other users, their friends, to know when they are close (notifying them in the mobile so that they can get in contact).
 
 .Contents
 This system will be compatible with SOLID.
@@ -12,6 +12,8 @@ Using SOLID technology and SOLID PODs, the system will not store users' personal
 Diagram of two people using the application:
 
 image::03_CasosDeUso.png[Case of use]
+
+The application is the same although it is accessed through the mobile browser, but to better explain the case of use, in the diagram it is separated into two components.
 
 === Business Context
 
@@ -26,12 +28,12 @@ image::03_CasosDeUso.png[Case of use]
 |They receive the location of their friends.
 |They choose who their friends are.
 
-|Application Mobile
+|Mobile
 |They broadcast the users' location.
-|Receive notifications from nearby friend users.
+|Receive notifications from nearby friend users. 
 
-|Application Web
-|Receive and save locations from Aplication Mobile 
+|Web
+|Receive and save locations from Mobile 
 |Manage and visualize locations 
 
 |PODs
@@ -49,4 +51,6 @@ image::03_CasosDeUso.png[Case of use]
 As we mentioned earlier, the application will use *SOLID* for communication.
 For development we will use *React*, an open source JavaScript library, which will make creating user intefaces easier for us.
 We will also use *JavaScript* for application development.
+To launch the application in the cloud we use a tool called *Heroku*, this tool enables us to build, run and operate the application once in the remote repository.
+The locations server is a cloud DBaaS (Database as a Service), more specifically a *MongoDB server*.
 
