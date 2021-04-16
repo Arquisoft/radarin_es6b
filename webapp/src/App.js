@@ -5,7 +5,6 @@ import React, { useEffect } from 'react';
 import Contaniner from './components/utils/Contenedor';
 import { useWebId } from '@solid/react';
 import { saveUser } from './api/api';
-//import Push from 'push.js';
 import push from './components/utils/Notificacion';
 
 function App() {

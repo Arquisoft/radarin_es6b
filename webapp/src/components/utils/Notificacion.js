@@ -9,7 +9,7 @@ function spawnNotification() {
 
     // Comprobamos si ya nos habían dado permiso
     else if (Notification.permission === "granted") {
-        notificacion()
+        notificacion();
     }
 
     // Si no, tendremos que pedir permiso al usuario
@@ -21,8 +21,6 @@ function spawnNotification() {
         }
         });
     }
-
-
 }
 
 function notificacion(){
@@ -30,7 +28,7 @@ function notificacion(){
         body: "Añadir amigo",
         icon: "../img/LogoRadarin.png",
         onClick : function(){ 
-            // Añadir funcionalidad añadir amigo
+            //TODO Añadir funcionalidad añadir amigo
             this.close();
         }
     })
