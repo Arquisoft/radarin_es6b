@@ -27,6 +27,7 @@ function notificacion(){
     Push.create("Posible amgio a tu alrededor",{
         body: "Añadir amigo",
         icon: "../img/logoNotificacion.png",
+        native : true,
         onClick : function(){ 
             //TODO Añadir funcionalidad añadir amigo
             this.close();
