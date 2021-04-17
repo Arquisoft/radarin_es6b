@@ -15,7 +15,9 @@ function MapList(props) {
                 latitud: locate.latitud,
                 longitud: locate.longitud,
                 texto: locate.texto,
-                solidId: locate.solidId
+                solidId: locate.solidId,
+                created_at: locate.created_at,
+                updated_at: locate.updated_at
             }]);
         }).catch(err => console.log(err));
 
@@ -29,8 +31,8 @@ function MapList(props) {
         }
         else if (texto !== null) {
             await updateLocate(id, texto).then(response => {
+                setLocates(locates.map(l => l._id === id ? { ...l, texto } : l));
             }).catch(err => console.log(err));
-            setLocates(locates.map(l => l._id === id ? { ...l, texto } : l));
         }
 
     }

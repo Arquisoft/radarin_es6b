@@ -27,6 +27,18 @@ const Locate = ({ locate, updateLocalLocate, deleteLocalLocate }) => {
         setShowMark(!showMark);
     }
 
+
+    const myDateParse=(myDate)=>{
+        var date = new Date(myDate);  
+        var dd = String(date.getDate()).padStart(2, '0');
+        var mm = String(date.getMonth() + 1).padStart(2, '0');
+        var yyyy = date.getFullYear();
+        var hours=date.getHours();
+        var min=date.getMinutes();
+        return  mm + '/' + dd + '/' + yyyy+ ' at '+hours+':'+min;
+    }
+
+
     const classes = estilos();
 
     return (
@@ -41,11 +53,13 @@ const Locate = ({ locate, updateLocalLocate, deleteLocalLocate }) => {
                 >
                     <div className={classes.button}>
                         <h3>{locate.texto}</h3>
+                        <p>Create in {myDateParse(locate.created_at)}</p>
+                        <p>Last update in {myDateParse(locate.updated_at)}</p>
                         {
                             updateLocalLocate &&
                             <div>
                                 <Button variant="contained" color="primary" edge="end" onClick={() => {
-                                    updateLocalLocate(locate._id,locate.texto);
+                                    updateLocalLocate(locate._id, locate.texto);
                                     changeShow();
                                 }}>Update</Button>
 

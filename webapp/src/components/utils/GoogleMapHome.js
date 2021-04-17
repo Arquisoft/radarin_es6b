@@ -6,6 +6,8 @@ import useProfile from "./Profile";
 import FriendMark from './FriendMark';
 import LocateMark from './LocateMark';
 import mapStyle from './MapStyles';
+import icon from '../img/mark-user.png';
+
 
 const mapContainerStyle = {
     width: "100vw",
@@ -45,6 +47,14 @@ const MyMapComponent = compose(
         const profile = useProfile(webId);
         const mapRef = useRef(null);
 
+        let iconMarker = new window.google.maps.MarkerImage(
+            icon,
+            null, /* size is determined at runtime */
+            null, /* origin is 0,0 */
+            null, /* anchor is bottom center of the scaled image */
+            new window.google.maps.Size(35, 35)
+        );
+
         const fitBounds = useCallback(() => {
             if (mapRef.current) {
                 const bounds = new window.google.maps.LatLngBounds();
@@ -56,18 +66,19 @@ const MyMapComponent = compose(
 
         const onMapClick = function (event) {
             var texto = prompt("Nombre de la localización:");
-            if ( texto === "") {
+            if (texto === "") {
                 alert("No se aceptan localizaciones sin un nombre")
                 return;
             }
-            else if(texto !== null) {
-                props.addLocalLocate(event.latLng.lat(),event.latLng.lng(),texto,webId);
+            else if (texto !== null) {
+                props.addLocalLocate(event.latLng.lat(), event.latLng.lng(), texto, webId);
             }
         };
 
         useEffect(() => {
             fitBounds();
         }, [fitBounds]);
+
 
         return (
             <GoogleMap
@@ -79,6 +90,7 @@ const MyMapComponent = compose(
                 }}
             >
                 <Marker
+                    icon={iconMarker}
                     position={{ lat: props.Latitud, lng: props.Longitud }}
                     onClick={props.onToggleOpenMy}
                 >
@@ -100,7 +112,7 @@ const MyMapComponent = compose(
                     }
 
                     {
-                          props.locates.map((locate, i) => {
+                        props.locates.map((locate, i) => {
                             return <LocateMark key={`locateMark_${i}`} locate={locate} updateLocalLocate={props.updateLocalLocate} deleteLocalLocate={props.deleteLocalLocate} />;
                         })
                     }
@@ -109,7 +121,7 @@ const MyMapComponent = compose(
         );
     });
 
-function MyFancyComponent({ friends,locates,addLocalLocate, updateLocalLocate, deleteLocalLocate }) {
+function MyFancyComponent({ friends, locates, addLocalLocate, updateLocalLocate, deleteLocalLocate }) {
     const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
     useEffect(() => {
         if (navigator.geolocation) {

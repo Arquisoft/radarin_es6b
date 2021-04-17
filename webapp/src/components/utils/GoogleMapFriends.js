@@ -5,6 +5,8 @@ import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
 import { getUserByWebId } from '../../api/api';
 import mapStyle from './MapStyles';
+import icon from '../img/mark-user.png';
+
 const mapContainerStyle = {
     width: "100vw",
     height: "100vh"
@@ -44,6 +46,13 @@ const MyMapComponent = compose(
         const profileFriend = useProfile(props.friend.webId);
         const mapRef = useRef(null);
 
+        let iconMarker = new window.google.maps.MarkerImage(
+            icon,
+            null, /* size is determined at runtime */
+            null, /* origin is 0,0 */
+            null, /* anchor is bottom center of the scaled image */
+            new window.google.maps.Size(35, 35)
+        );
         const fitBounds = useCallback(() => {
             if (mapRef.current) {
                 const bounds = new window.google.maps.LatLngBounds();
@@ -66,6 +75,7 @@ const MyMapComponent = compose(
                 options={options}
             >
                 <Marker
+                    icon={iconMarker}
                     position={{ lat: props.Latitud, lng: props.Longitud }}
                     onClick={props.onToggleOpenMy}
                 >
@@ -86,6 +96,7 @@ const MyMapComponent = compose(
                     &&
 
                     <Marker
+                        icon={iconMarker}
                         position={{ lat: props.friend.lat, lng: props.friend.lng }}
                         onClick={props.onToggleOpenFriend}
                     >

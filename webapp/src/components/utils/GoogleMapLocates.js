@@ -3,8 +3,10 @@ import { compose, withProps, withStateHandlers } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
-import icon from '../img/locatePin.png';
+import iconLocate from '../img/locatePin.png';
 import mapStyle from './MapStyles';
+import iconUser from '../img/mark-user.png';
+
 
 const mapContainerStyle = {
     width: "100vw",
@@ -43,8 +45,15 @@ const MyMapComponent = compose(
         const webId = useWebId();
         const profile = useProfile(webId);
         const mapRef = useRef(null);
-        let iconMarker = new window.google.maps.MarkerImage(
-            icon,
+        let iconMarkerLocate = new window.google.maps.MarkerImage(
+            iconLocate,
+            null, /* size is determined at runtime */
+            null, /* origin is 0,0 */
+            null, /* anchor is bottom center of the scaled image */
+            new window.google.maps.Size(35, 35)
+        );
+        let iconMarkerUser = new window.google.maps.MarkerImage(
+            iconUser,
             null, /* size is determined at runtime */
             null, /* origin is 0,0 */
             null, /* anchor is bottom center of the scaled image */
@@ -73,6 +82,7 @@ const MyMapComponent = compose(
                 options={options}
             >
                 <Marker
+                    icon={iconMarkerUser}
                     position={{ lat: props.Latitud, lng: props.Longitud }}
                     onClick={props.onToggleOpenMy}
                 >
@@ -95,7 +105,7 @@ const MyMapComponent = compose(
                     <Marker
                         position={{ lat: props.locate.latitud, lng: props.locate.longitud }}
                         onClick={props.onToggleOpenLocate}
-                        icon={iconMarker}
+                        icon={iconMarkerLocate}
                     >
                         {props.isOpenLocate &&
                             <InfoWindow

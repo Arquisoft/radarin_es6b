@@ -82,7 +82,7 @@ router.post("/user/locate/save", async (req, res) => {
             latitud: lat,
             longitud: lon,
             solidId: solidId,
-            texto: text
+            texto: text,
         });
     }
 
@@ -112,10 +112,10 @@ router.post("/user/locate/update", async (req, res) => {
     if (locate != null) {
         locate.texto = text;
         locate.save();
-        res.send("locate update");
+        res.send(locate);
     }
     else{
-        res.send("locate no update");
+        res.send(locate);
     }
 });
 
