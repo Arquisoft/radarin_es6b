@@ -1,6 +1,6 @@
 import Push from 'push.js';
 
-function spawnNotification() {
+function spawnNotification(texto) {
 
     // Comprobamos si el navegador soporta las notificaciones
     if (!("Notification" in window)) {
@@ -9,7 +9,7 @@ function spawnNotification() {
 
     // Comprobamos si ya nos habían dado permiso
     else if (Notification.permission === "granted") {
-        notificacion();
+        notificacion(texto);
     }
 
     // Si no, tendremos que pedir permiso al usuario
@@ -17,15 +17,15 @@ function spawnNotification() {
         Notification.requestPermission(function (permission) {
         // Si el usuario acepta, lanzamos la notificación
         if (permission === "granted") {
-            notificacion();
+            notificacion(texto);
         }
         });
     }
 }
 
-function notificacion(){
-    Push.create("Posible amgio a tu alrededor",{
-        body: "Añadir amigo",
+function notificacion(texto){
+    Push.create(texto+" se encuentra cerca de ti",{
+        body: "Amigo cercano",
         icon: "../img/logoNotificacion.png",
         native : true,
         onClick : function(){ 

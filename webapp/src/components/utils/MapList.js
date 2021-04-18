@@ -39,8 +39,8 @@ function MapList(props) {
 
     const deleteLocalLocate = async function (id) {
         await deleteLocate(id).then(response => {
+            setLocates(locates.filter(l => l._id !== id));
         }).catch(err => console.log(err));
-        setLocates(locates.filter(l => l._id !== id));
     }
 
 

@@ -96,10 +96,10 @@ router.post("/user/locate/delete", async (req, res) => {
 
     if (locate != null) {
         locate.deleteOne();
-        res.send("locate delete");
+        res.send(id);
     }
     else{
-        res.send("locate no delete");
+        res.send(id);
     }
 });
 

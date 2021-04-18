@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
-import { compose, withProps, withStateHandlers } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
+import { compose, withProps, withStateHandlers } from "recompose";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow, Circle } from "react-google-maps";
 import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
 import FriendMark from './FriendMark';
@@ -74,6 +74,23 @@ const MyMapComponent = compose(
                 props.addLocalLocate(event.latLng.lat(), event.latLng.lng(), texto, webId);
             }
         };
+        const getDistanceFromLatLonInKm = function (lat2, lon2) {
+            var R = 6371; // Radius of the earth in km
+            var dLat = deg2rad(lat2 - props.Latitud);  // deg2rad below
+            var dLon = deg2rad(lon2 - props.Longitud);
+            var a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(deg2rad(props.Latitud)) * Math.cos(deg2rad(lat2)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2)
+                ;
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c; // Distance in km
+            return d;
+        };
+
+        const deg2rad = function (deg) {
+            return deg * (Math.PI / 180)
+        };
 
         useEffect(() => {
             fitBounds();
@@ -104,19 +121,28 @@ const MyMapComponent = compose(
                         </InfoWindow>
 
                     }
-
-                    {
-                        props.friends.map((friend, i) => {
-                            return <FriendMark key={`friendMark_${i}`} friend={friend} />;
-                        })
-                    }
-
-                    {
-                        props.locates.map((locate, i) => {
-                            return <LocateMark key={`locateMark_${i}`} locate={locate} updateLocalLocate={props.updateLocalLocate} deleteLocalLocate={props.deleteLocalLocate} />;
-                        })
-                    }
                 </Marker>
+                <Circle center={{ lat: props.Latitud, lng: props.Longitud }} radius={50000} options={{
+                    strokeColor: '#0022ff',
+                    fillColor: '#0099ff',
+                    fillOpacity: 0.1
+                }} />
+                {
+                    props.friends.map((friend, i) => {
+                        if (getDistanceFromLatLonInKm(friend.latitud, friend.longitud) <= 50.0) {
+                            return <FriendMark key={`friendMark_${i}`} friend={friend} />;
+                        }
+                        else {
+                            return null;
+                        }
+                    })
+                }
+
+                {
+                    props.locates.map((locate, i) => {
+                        return <LocateMark key={`locateMark_${i}`} locate={locate} updateLocalLocate={props.updateLocalLocate} deleteLocalLocate={props.deleteLocalLocate} />;
+                    })
+                }
             </GoogleMap>
         );
     });
