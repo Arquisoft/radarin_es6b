@@ -8,7 +8,7 @@ import LocateMark from './LocateMark';
 import mapStyle from './MapStyles';
 import icon from '../img/mark-user.png';
 
-
+const radioAccion=50;
 const mapContainerStyle = {
     width: "100vw",
     height: "100vh"
@@ -122,14 +122,17 @@ const MyMapComponent = compose(
 
                     }
                 </Marker>
-                <Circle center={{ lat: props.Latitud, lng: props.Longitud }} radius={50000} options={{
+                <Circle center={{ lat: props.Latitud, lng: props.Longitud }} radius={radioAccion*1000} options={{
                     strokeColor: '#0022ff',
                     fillColor: '#0099ff',
                     fillOpacity: 0.1
+                }}
+                onClick={(event) => {
+                    onMapClick(event);
                 }} />
                 {
                     props.friends.map((friend, i) => {
-                        if (getDistanceFromLatLonInKm(friend.latitud, friend.longitud) <= 50.0) {
+                        if (getDistanceFromLatLonInKm(friend.latitud, friend.longitud) <= radioAccion) {
                             return <FriendMark key={`friendMark_${i}`} friend={friend} />;
                         }
                         else {

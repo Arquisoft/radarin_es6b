@@ -30,9 +30,12 @@ function MapList(props) {
             return;
         }
         else if (texto !== null) {
-            await updateLocate(id, texto).then(response => {
-                setLocates(locates.map(l => l._id === id ? { ...l, texto } : l));
-            }).catch(err => console.log(err));
+            try {
+            const response = await updateLocate(id, texto);
+            setLocates(locates.map(l => l._id === id ? response : l));
+            } catch(err) {
+                console.log(err);
+            }
         }
 
     }

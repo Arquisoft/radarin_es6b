@@ -111,7 +111,7 @@ router.post("/user/locate/update", async (req, res) => {
 
     if (locate != null) {
         locate.texto = text;
-        locate.save();
+        await locate.save();
         res.send(locate);
     }
     else{
