@@ -13,7 +13,7 @@ export const AuthButtonComponent = React.forwardRef((props, ref) =>
 
 const LoginBarView= ({fullName, imageSrc, webId}) => {    
     return <div>
-        <Button variant="contained" color="primary" edge="end" component={AuthButtonComponent} popup='https://solidcommunity.net/common/popup.html'>
+        <Button className="logButton" variant="contained" color="primary" edge="end" component={AuthButtonComponent} popup='https://solidcommunity.net/common/popup.html'>
         </Button>
         <LoggedIn>
             <ProfileImage fullName={fullName} imageSrc={imageSrc} webId={webId} />
