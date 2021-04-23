@@ -1,16 +1,45 @@
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import LoginView from './components/LoginView';
-import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import React, { useEffect } from 'react';
+import Contaniner from './components/utils/Contenedor';
+import { useWebId } from '@solid/react';
+import { saveUser } from './api/api';
+import push from './components/utils/Notificacion';
 
-class App extends React.Component {
-  render() {
-    return (
-        <React.Fragment>
-            <LoginView/>
-        </React.Fragment>
-    );
-  }
+function App() {
+
+  const webId = useWebId();
+
+  function saveLocateUser() {
+    if (webId) {
+      // pedimos la pocalización actual
+      navigator.geolocation.getCurrentPosition((pos) => {
+        
+        //prueba push
+        push();
+        
+        //salvamos al usuario
+        saveUser(webId, pos.coords.latitude, pos.coords.longitude).catch(err => console.log(err));
+      });
+    }
+  };
+
+
+  useEffect(() => {
+    // Guardamos la localización cada 20 segundos
+    setInterval(saveLocateUser, 20000);
+  });
+
+
+  return (
+    <div className="App">
+      <React.Fragment>
+        <CssBaseline />
+        <Contaniner />
+      </React.Fragment>
+    </div>
+  );
 }
 
 export default App;

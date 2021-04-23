@@ -34,7 +34,8 @@ image:register.png["Runtime view of the option to sign up"]
 
 === Add friend
 
-* The user enters the name of the user to add.
+* The user see another user near him on the map and click on his marker.
+* The user click on "add user".
 * The pod checks if the name exists.
 * Friend is added.
 
@@ -43,7 +44,8 @@ image:add_friend.png["Runtime view of adding friends"]
 
 === Delete friend
 
-* The user enters the name of the user to delete.
+* The user see another user near him on the map and click on his marker.
+* The user click on "delete user".
 * The pod checks if the name exists.
 * The friend is removed.
 

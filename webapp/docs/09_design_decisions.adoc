@@ -12,5 +12,27 @@ The design decision are:
 | Use of Google Maps API | Plenty of documentation and the most easy API to obtain the location 
 | Use of Git for control system and GitHub | Keep a backup of the code and work at the same time in the project | Some of the members of the group need to get used to work with it
 | Use of Visual Studio Code as developmet environment | Easy for us to use it 
-| For the login the app will redirect you to a Solid pop-up to be able to connect with the PODs | Usabililty and security | Need Solid to log into the app
 |===
+
+=== Mobile App Decision
+
+At the beginning of the course we had decided to create a mobile app using React Native, we started its development with the react native client, which gave us a lot of dependency problems, we could not add almost any component because it gave us incompatibility of versions in some dependencies.
+
+So, after looking for more documentation we decided to switch to react native expo, from the beginning it went quite well, we advanced a lot in a very short time. We already had a functional map in which we obtained and visualized our position, a navigation menu and a functional test of sending notifications.
+
+The problem came when we tried to login with inrupt using its components, it didn't work. We searched the SOLID forums and found a post with exactly our same problem, but far from finding the solution we saw an answer that the authentication component of inrupt was not tested in react native. We tried to look for more examples and documentation but nothing worked.
+
+Finally we had a team meeting in which it was decided to dispense with the mobile app since we could spend the rest of the course testing solutions to this problem and continue where we were. This was the best decision since the web app was already based on a modular base so its adaptation to mobile screens was going to be easier.
+
+To find a trace to this problem go to the following link: https://github.com/Arquisoft/radarin_es6b/issues/26 
+
+
+All the code of the mobile app is still in the general "movil" branch: https://github.com/Arquisoft/radarin_es6b/tree/movil 
+
+and different tests in the sub-branches of:
+
+    - fernando_movil: https://github.com/Arquisoft/radarin_es6b/tree/fernando_movil
+
+    - cande: https://github.com/Arquisoft/radarin_es6b/tree/cande
+
+    - UO270656: https://github.com/Arquisoft/radarin_es6b/tree/UO270656 
