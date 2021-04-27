@@ -1,0 +1,10 @@
+{
+  "simulation": "LocalLogin",
+  "simulationId": "locallogin",
+  "start": 1619555713321,
+  "description": "primera prueba",
+  "scenarios": ["LocalLogin"],
+  "assertions": [
+
+  ]
+}
