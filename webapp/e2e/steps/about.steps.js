@@ -12,16 +12,18 @@ defineFeature(feature, test => {
   beforeAll(async () => {
     await global.page.goto('http://localhost:3000')
   })
-  test("The user is unregistered in the site and wants to register", ({given, when, then}) => {
+  test("The user is registered in the site and wants to go to the about view", ({given, when, then}) => {
 		
 
-    given("An unregistered user", () => {
+    given("A registered user", () => {
         
     });
     
-    when("I click on log in", async () => {
+    when("I click on about screen", async () => {
         await expect(page).toMatch("Welcome to Radarin_es6b")
-        await expect(page).toClick("button", { text: "Submit" })
+       // await expect(page).toClick("button", { id="botonNav" })
+        await expect(page).toClick("button", { id:"botonNav" })
+        await expect(page).toMatch("About")
         /*await expect(page).toFillForm('form[name="register"]', {
             username: username,
             email: email,
@@ -30,7 +32,7 @@ defineFeature(feature, test => {
         await expect(page).toMatch("Welcome to ASW")*/
     });
     
-    then("A welcome message should be shown in the screen", async () => {
+    then("The screen of the about", async () => {
 
     });
 });
