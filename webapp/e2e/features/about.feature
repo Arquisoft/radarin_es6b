@@ -1,4 +1,4 @@
-Feature: Log in
+Feature: About
 
 Scenario: The user is unregistered in the site and wants to register
   Given An unregistered user

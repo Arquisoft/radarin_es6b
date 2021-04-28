@@ -1,5 +1,5 @@
 const { defineFeature, loadFeature } = require('jest-cucumber');
-const feature = loadFeature('./features/login.feature');
+const feature = loadFeature('./features/about.feature');
 
 defineFeature(feature, test => {
 
