@@ -1,21 +1,25 @@
-const puppeteer=require("puppeteer");
-let browser=null;
-let page=null;
+const {defineFeature, loadFeature}=require("jest-cucumber");
+const feature = loadFeature("../e2e/features/login.feature");
+const puppeteer = require("puppeteer");
+let browser = null;
+let page = null;
 
+
+defineFeature((feature), (test) => {
 test("We want to login into radarin", ({given, when, then})=> {
     let popup;
 
     given("The login page", async()=> {
         //se crear un navegador
         browser= await puppeteer.launch({
-            headless:false, defaultViewPort:null
+            headless:false, ignoreDefaultArgs: ["--disable-extensions"],defaultViewPort:null
         });
         //abrimos una nueva pagina
         page=await browser.newPage();
-        await page.goto("http://localhost:3000");
+        await page.goto("http://localhost:3000", {waitUntil: "load", timeout: 0});
     });
 
-    when(" We click Log In and enter our information", async()=>{
+    when("We click Log In and enter our information", async()=>{
         const newPagePromise = new Promise((x) =>  browser.once(("targetcreated"), (target) => x(target.page())));	
         await expect(page).toClick("button", { className: "logButton" });
       
@@ -34,4 +38,5 @@ test("We want to login into radarin", ({given, when, then})=> {
     then("I expect to be on HomeView of radarin", async ()=> {
         await expect(page).toMatch("", {waitUntil: "load", timeout:0});
     });
+});
 });
