@@ -1,6 +1,6 @@
-Feature: Log in
+Feature: Login into radarin
 
-Scenario: The user is unregistered in the site and wants to register
-  Given An unregistered user
-  When I click on log in
-  Then A welcome message should be shown in the screen
+Scenario: We want to login into radarin
+  Given The login page
+  When We click Log In and enter our information
+  Then I expect to be on HomeView of radarin

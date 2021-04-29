@@ -1,39 +1,42 @@
-const { defineFeature, loadFeature } = require('jest-cucumber');
-const feature = loadFeature('./features/login.feature');
+const {defineFeature, loadFeature}=require("jest-cucumber");
+const feature = loadFeature("../e2e/features/login.feature");
+const puppeteer = require("puppeteer");
+let browser = null;
+let page = null;
 
-defineFeature(feature, test => {
 
-  function wait(time) {
-    return new Promise(function (resolve) {
-      setTimeout(resolve, time);
+defineFeature((feature), (test) => {
+test("We want to login into radarin", ({given, when, then})=> {
+    let popup;
+
+    given("The login page", async()=> {
+        //se crear un navegador
+        browser= await puppeteer.launch({
+            headless:false, ignoreDefaultArgs: ["--disable-extensions"],defaultViewPort:null
+        });
+        //abrimos una nueva pagina
+        page=await browser.newPage();
+        await page.goto("http://localhost:3000", {waitUntil: "load", timeout: 0});
     });
-  }
 
-  beforeAll(async () => {
-    await global.page.goto('http://localhost:3000')
-  })
-  test("The user is unregistered in the site and wants to register", ({given, when, then}) => {
-		
+    when("We click Log In and enter our information", async()=>{
+        const newPagePromise = new Promise((x) =>  browser.once(("targetcreated"), (target) => x(target.page())));	
+        await expect(page).toClick("button", { className: "logButton" });
+      
+        popup = await newPagePromise;
+        await expect(popup).toMatchElement("button", { text: "Solid Community", waitUntil: "load", timeout: 0, visible: true});
+        await expect(popup).toClick("button", { text: "Solid Community" });
+        await popup.waitForNavigation({waitUntil: "load", timeout: 0});
 
-    given("An unregistered user", () => {
-        
+
+        await popup.type("[name='username']", "Radarin6b", {visible: true});
+      await popup.type("[name='password']", "Radarin_es6b", {visible: true});
+      await expect(popup).toClick("button", { text: "Log In" });
+
     });
-    
-    when("I click on log in", async () => {
-        //await expect(page).toMatch("Welcome to Radarin_es6b")
-        //await expect(page).toClick("button", { text: "Submit" })
-        /*await expect(page).toFillForm('form[name="register"]', {
-            username: username,
-            email: email,
-        })
-        await expect(page).toClick("button", { text: "Submit" })
-        await expect(page).toMatch("Welcome to ASW")*/
-    });
-    
-    then("A welcome message should be shown in the screen", async () => {
 
+    then("I expect to be on HomeView of radarin", async ()=> {
+        await expect(page).toMatch("Mapa", {waitUntil: "load", timeout:0});
     });
 });
-
-});  
-  
+});
