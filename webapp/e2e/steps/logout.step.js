@@ -1,15 +1,15 @@
 const {defineFeature, loadFeature}=require("jest-cucumber");
-const feature = loadFeature("../e2e/features/login.feature");
+const feature = loadFeature("../e2e/features/logout.feature");
 const puppeteer = require("puppeteer");
 let browser = null;
 let page = null;
 
 
 defineFeature((feature), (test) => {
-test("We want to login into radarin", ({given, when, then})=> {
+test("The user wants to logout", ({given, when, then})=> {
     let popup;
 
-    given("The login page", async()=> {
+    given("The user register in the application", async()=> {
         //se crear un navegador
         browser= await puppeteer.launch({
             headless:false, ignoreDefaultArgs: ["--disable-extensions"],defaultViewPort:null
@@ -17,9 +17,7 @@ test("We want to login into radarin", ({given, when, then})=> {
         //abrimos una nueva pagina
         page=await browser.newPage();
         await page.goto("http://localhost:3000", {waitUntil: "load", timeout: 0});
-    });
 
-    when("We click Log In and enter our information", async()=>{
         const newPagePromise = new Promise((x) =>  browser.once(("targetcreated"), (target) => x(target.page())));	
         await expect(page).toClick("button", { className: "logButton" });
       
@@ -33,11 +31,16 @@ test("We want to login into radarin", ({given, when, then})=> {
         await popup.type("[name='password']", "Radarin_es6b", {visible: true});
         await expect(popup).toClick("button", { text: "Log In" });
 
+        await expect(page).toMatch("Mapa", {waitUntil: "load", timeout:0});
     });
 
-    then("I expect to be on HomeView of radarin", async ()=> {
-        //await expect(page).toMatch("Radarin Map", {waitUntil: "load", timeout:0});
-        await expect(page).toMatch("Mapa", {waitUntil: "load", timeout:0});
+    when("The user click the logout button", async()=>{
+        await expect(page).toClick("button", { className: "logButton" });
+
+    });
+
+    then("The user should be in the notloginhome view", async ()=> {
+        await expect(page).toMatch("Welcome to Radarin_es6b", {waitUntil: "load", timeout:0});
     });
 });
 });
