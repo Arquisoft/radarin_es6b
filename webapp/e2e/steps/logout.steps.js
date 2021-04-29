@@ -4,13 +4,13 @@ const puppeteer = require("puppeteer");
 let browser = null;
 let page = null;
 
-defineFeature(feature, test => {
+defineFeature((feature), (test) => {
   test("The user is registered in the site and wants to unregistered", ({given, when, then}) => {
 		let popup;
 
     given("A registered user", async() => {
           //se crear un navegador
-      browser= await puppeteer.launch({
+       browser= await puppeteer.launch({
       headless:false, ignoreDefaultArgs: ["--disable-extensions"],defaultViewPort:null
       });
           //abrimos una nueva pagina
@@ -28,24 +28,21 @@ defineFeature(feature, test => {
         await popup.type("[name='username']", "Radarin6b", {visible: true});
       await popup.type("[name='password']", "Radarin_es6b", {visible: true});
       await expect(popup).toClick("button", { text: "Log In" });
-      await expect(page).toMatch("Mapa", {waitUntil: "load", timeout:0});
+      await expect(page).toMatch("Mapa", {waitUntil: "load", timeout:0}); 
     });
     
     when("I click on log out", async () => {
 
-        await expect(page).toClick('[id="menu"]');
-
-        await expect(page).toClick('[id="buttonAbout"]');
+        
     });
     
     then("The screen of log in", async () => {
-        const newPagePromise = new Promise((x) =>  browser.once(("targetcreated"), (target) => x(target.page())));	
+         const newPagePromise = new Promise((x) =>  browser.once(("targetcreated"), (target) => x(target.page())));	
         await expect(page).toClick("button", { className: "logButton" });
       
         popup = await newPagePromise;
-        await expect(popup).toMatchElement("button", { text: "Solid Community", waitUntil: "load", timeout: 0, visible: true});
-        await expect(popup).toClick("button", { text: "Solid Community" });
-        await popup.waitForNavigation({waitUntil: "load", timeout: 0});
+        await expect(page).toClick("button", { className: "logButton" });
+      
   
     });
 });
