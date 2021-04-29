@@ -1,17 +1,14 @@
 const {defineFeature, loadFeature}=require("jest-cucumber");
-const feature = loadFeature("../e2e/features/login.feature");
+const feature = loadFeature("../e2e/features/about.feature");
 const puppeteer = require("puppeteer");
 let browser = null;
 let page = null;
 
 defineFeature(feature, test => {
-  let popup;
-
   test("The user is registered in the site and wants to go to the about view", ({given, when, then}) => {
-		
+		let popup;
 
-    given("A registered user", () => {
-      let popup;
+    given("A registered user", async() => {
           //se crear un navegador
       browser= await puppeteer.launch({
       headless:false, ignoreDefaultArgs: ["--disable-extensions"],defaultViewPort:null
@@ -35,21 +32,14 @@ defineFeature(feature, test => {
     });
     
     when("I click on about screen", async () => {
-        await expect(page).toMatch("Welcome to Radarin_es6b")
-        //await expect(page).toClick("button", { id:"botonNav" })
-        await expect(page).toClick("button")
 
-        await expect(page).toMatch("About")
-        /*await expect(page).toFillForm('form[name="register"]', {
-            username: username,
-            email: email,
-        })
-        await expect(page).toClick("button", { text: "Submit" })
-        await expect(page).toMatch("Welcome to ASW")*/
+        await expect(page).toClick('[id="menu"]');
+
+        await expect(page).toClick('[id="buttonAbout"]');
     });
     
     then("The screen of the about", async () => {
-
+      await expect(page).toMatch("About")
     });
 });
 

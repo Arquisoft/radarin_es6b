@@ -34,7 +34,7 @@ const Listas=({changeView})=>{
                     <ListItemText primary="Friends" />
                 </ListItem>
                 <Divider />
-                <ListItem button component="a" onClick={()=>{changeView(3)}}>
+                <ListItem button id="buttonAbout" component="a" onClick={()=>{changeView(3)}}>
                     <ListItemIcon>
                         <InfoIcon/>
                     </ListItemIcon>
