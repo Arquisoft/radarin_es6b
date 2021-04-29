@@ -36,7 +36,8 @@ test("We want to login into radarin", ({given, when, then})=> {
     });
 
     then("I expect to be on HomeView of radarin", async ()=> {
-        await expect(page).toMatch("", {waitUntil: "load", timeout:0});
+        //await expect(page).toMatch("Radarin Map", {waitUntil: "load", timeout:0});
+        await expect(page).toMatch("Mapa", {waitUntil: "load", timeout:0});
     });
 });
 });

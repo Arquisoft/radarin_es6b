@@ -48,7 +48,7 @@ export default function TemporaryDrawer({changeView}) {
     return (
         <div>
             <React.Fragment key={'left'}>
-                <Button color="inherit" onClick={toggleDrawer('left', true)}><MenuIcon /></Button>
+                <Button className= "menu" id="menu" color="inherit" onClick={toggleDrawer('left', true)}><MenuIcon /></Button>
                 <Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
                     {list('left')}
                 </Drawer>
