@@ -27,7 +27,7 @@ const Listas=({changeView})=>{
                     </ListItemIcon>
                     <ListItemText primary="Locates" />
                 </ListItem>
-                <ListItem button component="a" onClick={()=>{changeView(2)}}>
+                <ListItem button id="friends"  component="a" onClick={()=>{changeView(2)}}>
                     <ListItemIcon>
                         <PeopleIcon/>
                     </ListItemIcon>
