@@ -18,42 +18,6 @@
   "links": [],
   "panels": [
     {
-      "alert": {
-        "alertRuleTags": {},
-        "conditions": [
-          {
-            "evaluator": {
-              "params": [
-                100
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "and"
-            },
-            "query": {
-              "params": [
-                "A",
-                "5m",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          }
-        ],
-        "executionErrorState": "alerting",
-        "for": "5m",
-        "frequency": "1m",
-        "handler": 1,
-        "message": "prueba de alerta",
-        "name": "Rate (R): Number of requests per minute alert",
-        "noDataState": "no_data",
-        "notifications": []
-      },
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -112,16 +76,7 @@
           "refId": "A"
         }
       ],
-      "thresholds": [
-        {
-          "colorMode": "critical",
-          "fill": true,
-          "line": true,
-          "op": "gt",
-          "value": 100,
-          "visible": true
-        }
-      ],
+      "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
@@ -171,7 +126,7 @@
           {
             "evaluator": {
               "params": [
-                0
+                0.5
               ],
               "type": "gt"
             },
@@ -187,7 +142,7 @@
             },
             "reducer": {
               "params": [],
-              "type": "avg"
+              "type": "count"
             },
             "type": "query"
           }
@@ -199,7 +154,11 @@
         "message": "Ha ocurrido una petición errónea en la restapi",
         "name": "Errors (E): The number of failed requests alert",
         "noDataState": "no_data",
-        "notifications": []
+        "notifications": [
+          {
+            "uid": "Wodcy-9Mz"
+          }
+        ]
       },
       "aliasColors": {},
       "bars": false,
@@ -253,7 +212,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(increase(http_request_duration_seconds_count{code=~\"5.*\"}[1m]))",
+          "expr": "sum(increase(http_request_duration_seconds_count{code!=\"200\"}[1m]))",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -265,7 +224,7 @@
           "fill": true,
           "line": true,
           "op": "gt",
-          "value": 0,
+          "value": 0.5,
           "visible": true
         }
       ],
@@ -444,7 +403,7 @@
     ]
   },
   "timezone": "",
-  "title": "Example Service Dashboard",
+  "title": "RestApi Dashboard",
   "uid": "1DYaynomMk",
-  "version": 1
+  "version": 3
 }

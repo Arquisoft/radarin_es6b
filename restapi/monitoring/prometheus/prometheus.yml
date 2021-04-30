@@ -7,6 +7,6 @@ scrape_configs:
     static_configs:
       - targets: ["restapi:5000"]
 
-  - job_name: "mongodb"
+  - job_name: "prometheus"
     static_configs:
-      - targets: ["localhost:9216"]
+      - targets: ["localhost:9090"]
