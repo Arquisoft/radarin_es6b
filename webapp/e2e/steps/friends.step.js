@@ -57,11 +57,9 @@ defineFeature(feature, test => {
 
     then('The user should see his friends', async () => {      
       await expect(page).toMatch('Friends');
-
-      //No encuentra estos amigos porque el servidor no esta arrancado
-      //await expect(page).toMatch('Adrian');
-      //await expect(page).toMatch('Pablo');
-      //await expect(page).toMatch('Candela');
+      
+      await expect(page).toMatch('Adrián');
+      
       
     });
   });
