@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 
-
 const schema = mongoose.Schema({
     latitud: {
         type: Number,
@@ -13,6 +12,10 @@ const schema = mongoose.Schema({
     solidId: {
         type: String,
         required: true
+    },
+    rol: {
+        type: String,
+        default: "Standard user"
     }
 })
 

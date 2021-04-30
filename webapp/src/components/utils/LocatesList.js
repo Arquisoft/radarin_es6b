@@ -1,35 +1,33 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { getLocatesByWebId } from '../../api/api';
-import {useWebId} from "@solid/react";
+import React from 'react';
 import Locate from './Locate';
-function LocatesList(props) {
+import Typography from '@material-ui/core/Typography';
 
-    const [locates, setLocates] = useState([]);
-    const webId= useWebId();
-
-    var getLocates = useCallback(async function () {
-
-        getLocatesByWebId(webId).then(response => {
-            setLocates(response);
-        }).catch(err => console.log(err));
-    }, [setLocates, webId]);
+function LocatesList({ accionSelectLocate, locates }) {
 
 
-    useEffect(() => {
-        getLocates();
-    }, [getLocates]);
+    if (locates) {
+        if (locates.length > 0) {
+            return (<div style={{ display: 'inline-block', overflow: 'auto', width: '800px', height: '600px' }}>
+                {
+                    locates.map((locate, i) => {
+                        return <Locate key={`locate_${i}`} locate={locate} accionSelectLocate={accionSelectLocate} />;
+                    })
+                }
+            </div>);
+        }
+        else {
+            return (
+                <div style={{ display: 'inline-block', overflow: 'auto', width: '800px', height: '600px' }}>
+                    <Typography component="p">
+                        You don't have any location yet
+            </Typography>
+                </div>);
 
-
-
-
-    return (
-        <div style={{ display: 'inline-block', overflow: 'auto', width: '800px', height: '600px' }}>
-            {
-                locates.map((locate, i) => {
-                    return <Locate key={`locate_${i}`} locate={locate} accionSelectLocate={props.accionSelectLocate} />;
-                })
-            }
-        </div>);
+        }
+    }
+    else {
+        return null;
+    }
 
 }
 

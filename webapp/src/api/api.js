@@ -68,10 +68,11 @@ export async function saveLocate(webId, latitude, longitude, texto) {
     return await response.json();
 }
 
-export async function deleteLocate(id) {
+export async function deleteLocate(id, solidId) {
     const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
     const information = {
-        "id": id
+        "id": id,
+        "solidId": solidId
     };
     let response = await fetch(apiEndPoint + '/user/locate/delete', {
         method: 'POST',
@@ -93,4 +94,33 @@ export async function updateLocate(id, texto) {
         body: JSON.stringify(information)
     })
     return await response.json();
+}
+
+export async function deleteUser(id, userId) {
+    const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
+    const information = {
+        "id": id,
+        "userId": userId
+    };
+    let response = await fetch(apiEndPoint + '/user/delete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(information)
+    })
+    return await response.json();
+}
+
+export async function getStandardUsers() {
+    const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
+
+    let response = await fetch(apiEndPoint + '/user/getStandardUsers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    })
+    return await response.json();
+}
+
+export function getEventsURL(){
+    const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
+    return apiEndPoint + "/events"
 }

@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
     },
 }));
-function FriendsView() {
+function FriendsView({users}) {
 
     const webId = useWebId();
     const [selectFriend, setSelectFriend] = useState(null);
@@ -46,7 +46,7 @@ function FriendsView() {
                     <Grid container item xs={12} sm={9} md={6}>
                         <Paper className={classes.paper}>
                             <Typography gutterBottom variant="h2" component="h2" color='inherit'>Friends</Typography>
-                            <FriendListEvaluate webId={webId} accionSelectFriend={accionSelectFriend} />
+                            <FriendListEvaluate webId={webId} users={users} accionSelectFriend={accionSelectFriend} />
                         </Paper>
                     </Grid>
                     <Grid container item xs={12} sm={9} md={6}>

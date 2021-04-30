@@ -29,7 +29,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div id="divPrincipal" className="App">
       <React.Fragment>
         <CssBaseline />
         <Contaniner />
