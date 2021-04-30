@@ -1,12 +1,20 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { compose, withProps, withStateHandlers } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow, Polyline } from "react-google-maps"
 import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
 import iconLocate from '../img/locatePin.png';
 import mapStyle from './MapStyles';
 import iconUser from '../img/mark-user.png';
+import {
+    makeStyles
+} from '@material-ui/core';
 
+const estilos = makeStyles(theme => ({
+    error: {
+        color: '#FF0000',
+    }
+}));
 
 const mapContainerStyle = {
     width: "100vw",
@@ -119,6 +127,21 @@ const MyMapComponent = compose(
                         }
                     </Marker>
                 }
+                 {
+                    props.locate
+                    &&
+                    <Polyline
+                        path={[{ lat: props.Latitud, lng: props.Longitud  },
+                            { lat: props.locate.latitud, lng: props.locate.longitud }
+                        ]}
+                        geodesic={true}
+                        options={{
+                            strokeColor: "#ff2527",
+                            strokeOpacity: 1,
+                            strokeWeight: 2,
+                        }}
+                    />
+                }
 
             </GoogleMap>);
     });
@@ -127,7 +150,8 @@ const MyMapComponent = compose(
 function MyFancyComponent({ selectedLocate }) {
 
     const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
-
+    const [permisos, setPermisos] = useState(false);
+    const classes = estilos();
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -136,19 +160,29 @@ function MyFancyComponent({ selectedLocate }) {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
                 });
+                setPermisos(true);
             });
         } else {
             console.log("Geolocation is not supported by this browser!");
+            setPermisos(false);
         }
     }, [setMapPosition]);
 
-    return (
-        <MyMapComponent
-            Latitud={mapPosition.lat}
-            Longitud={mapPosition.lng}
-            locate={selectedLocate}
-        />
-    )
+    if (permisos) {
+
+        return (
+            <MyMapComponent
+                Latitud={mapPosition.lat}
+                Longitud={mapPosition.lng}
+                locate={selectedLocate}
+            />
+        );
+    }
+    else {
+        return (<div>
+            <h1 className={classes.error}>Geolocation is not supported by this browser!</h1>
+        </div>);
+    }
 
 }
 

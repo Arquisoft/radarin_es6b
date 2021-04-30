@@ -10,9 +10,8 @@ import AboutView from '../views/AboutView';
 import UserMagangerView from '../views/UserMagangerView';
 import { useWebId } from '@solid/react';
 import NotLoginHome from '../views/NotLoginHome';
-import { getUserByWebId } from '../../api/api';
 import roles from './UserRols';
-import { getStandardUsers, getEventsURL, getLocatesByWebId } from '../../api/api';
+import { getUserByWebId, getStandardUsers, getEventsURL, getLocatesByWebId } from '../../api/api';
 
 const estilos = makeStyles(theme => ({
 
@@ -171,6 +170,7 @@ const Contenedor = () => {
                     }
                     else if (text === "change Locate list") {
                         if (parsedData.webId) {
+                            console.log("locate cambio")
                             getLocatesByWebId(parsedData.webId).then(response => {
                                 setLocates(response);
                             }).catch(err => console.log(err));

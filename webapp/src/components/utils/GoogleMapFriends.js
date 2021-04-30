@@ -1,11 +1,20 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { compose, withProps, withStateHandlers } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow, Polyline } from "react-google-maps"
 import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
 import { getUserByWebId } from '../../api/api';
 import mapStyle from './MapStyles';
 import icon from '../img/mark-user.png';
+import {
+    makeStyles
+} from '@material-ui/core';
+
+const estilos = makeStyles(theme => ({
+    error: {
+        color: '#FF0000',
+    }
+}));
 
 const mapContainerStyle = {
     width: "100vw",
@@ -112,6 +121,21 @@ const MyMapComponent = compose(
                         }
                     </Marker>
                 }
+                {
+                    props.friend.webId
+                    &&
+                    <Polyline
+                        path={[{ lat: props.Latitud, lng: props.Longitud  },
+                            { lat: props.friend.lat, lng: props.friend.lng }
+                        ]}
+                        geodesic={true}
+                        options={{
+                            strokeColor: "#ff2527",
+                            strokeOpacity: 1,
+                            strokeWeight: 2,
+                        }}
+                    />
+                }
 
             </GoogleMap>
         );
@@ -124,6 +148,8 @@ function MyFancyComponent({ selectedFriend }) {
         lat: 0,
         lng: 0,
     });
+    const [permisos, setPermisos] = useState(false);
+    const classes = estilos();
 
 
 
@@ -148,21 +174,30 @@ function MyFancyComponent({ selectedFriend }) {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
                 });
+                setPermisos(true);
+
                 getFriends();
             });
         } else {
             console.log("Geolocation is not supported by this browser!");
+            setPermisos(false);
         }
     }, [setMapPosition, getFriends]);
 
-
-    return (
-        <MyMapComponent
-            Latitud={mapPosition.lat}
-            Longitud={mapPosition.lng}
-            friend={friend}
-        />
-    );
+    if (permisos) {
+        return (
+            <MyMapComponent
+                Latitud={mapPosition.lat}
+                Longitud={mapPosition.lng}
+                friend={friend}
+            />
+        );
+    }
+    else {
+        return (<div>
+            <h1 className={classes.error}>Geolocation is not supported by this browser!</h1>
+        </div>);
+    }
 }
 
 
