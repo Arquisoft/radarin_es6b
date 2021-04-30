@@ -33,14 +33,12 @@ defineFeature((feature), (test) => {
     
     when("I click on log out", async () => {
 
-      const newPagePromise = new Promise((x) =>  browser.once(("targetcreated"), (target) => x(target.page())));	
-      await expect(page).toClick("button", { className: "logButton" });
-      await expect(page).toMatch("Mapa", {waitUntil: "load", timeout:0});
+      await expect(page).toClick("button", { text: "Log out" });
     });
     
     then("The screen of log in", async () => {
          
-      await expect(page).toMatch("Radarin6b", {waitUntil: "load", timeout:0});
+      await expect(page).toMatch("Welcome to Radarin_es6b", {waitUntil: "load", timeout:0});
   
     });
 });
