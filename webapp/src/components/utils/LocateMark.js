@@ -35,7 +35,9 @@ const Locate = ({ locate, updateLocalLocate, deleteLocalLocate }) => {
         var yyyy = date.getFullYear();
         var hours=date.getHours();
         var min=date.getMinutes();
-        return  mm + '/' + dd + '/' + yyyy+ ' at '+hours+':'+min;
+        var sec=date.getSeconds();
+
+        return  mm + '/' + dd + '/' + yyyy+ ' at '+hours+':'+min+':'+sec;
     }
 
 
