@@ -41,14 +41,14 @@ function sendEventsToAll(newEvent) {
 }
 
 async function ChangeUsers(request, respsonse) {
-    const newEvent = {text:"change User list"};
+    const newEvent = { text: "change User list" };
     events.push(newEvent);
     respsonse.json(newEvent);
     return sendEventsToAll(newEvent);
 }
 
-async function ChangeLocates(request, respsonse,solidId) {
-    const newEvent = {text:"change Locate list", webId:solidId};
+async function ChangeLocates(request, respsonse, solidId) {
+    const newEvent = { text: "change Locate list", webId: solidId };
     events.push(newEvent);
     respsonse.json(newEvent);
     return sendEventsToAll(newEvent);
@@ -71,7 +71,7 @@ router.post("/user/save", async (req, res) => {
 
     await user.save();
 
-    ChangeUsers(req,res);
+    ChangeUsers(req, res);
 
 });
 
@@ -111,7 +111,7 @@ router.post("/user/locate/save", async (req, res) => {
     }
 
     await locate.save();
-    ChangeLocates(req, res,solidId);
+    ChangeLocates(req, res, solidId);
 });
 
 router.post("/user/locate/delete", async (req, res) => {
@@ -120,8 +120,8 @@ router.post("/user/locate/delete", async (req, res) => {
     const solidId = req.body.solidId;
 
     if (locate != null) {
-        locate.deleteOne();
-        ChangeLocates(req, res,solidId);
+        await locate.deleteOne();
+        ChangeLocates(req, res, solidId);
     }
     else {
         res.send(id);
@@ -137,7 +137,7 @@ router.post("/user/locate/update", async (req, res) => {
     if (locate != null) {
         locate.texto = text;
         await locate.save();
-        ChangeLocates(req, res,locate.solidId);
+        ChangeLocates(req, res, locate.solidId);
     }
     else {
         res.send(locate);
@@ -161,9 +161,9 @@ router.post("/user/delete", async (req, res) => {
                     locate.deleteOne();
                 });
 
-                userDelete.deleteOne();
+                await userDelete.deleteOne();
 
-                ChangeUsers(req,res);
+                ChangeUsers(req, res);
             }
             else {
                 res.send(solidUserDelete);
@@ -176,11 +176,25 @@ router.post("/user/delete", async (req, res) => {
 });
 
 router.post("/user/getStandardUsers", async (req, res) => {
-    const clients = await User.find({ rol: "Standard user" });
+    const clients = await User.find();
     res.send(clients);
 });
 
+router.post("/user/changeRol", async (req, res) => {
+    const id = req.body.solidId;
+    const rolUser = req.body.rol;
 
+    let user = await User.findOne({ solidId: id });
+    if (user) {
+        user.rol=rolUser;
+        await user.save();
+
+        ChangeUsers(req, res);
+    }
+    else {
+        res.send(rol);
+    }
+});
 
 
 

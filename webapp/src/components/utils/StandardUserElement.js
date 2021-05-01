@@ -6,7 +6,7 @@ import { Paper } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from "@material-ui/core/Button";
-
+import UserRols from './UserRols';
 
 const useStyles = makeStyles((theme) => ({
     mainPaper: {
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: '10px'
     }
 }));
-const StandardUserElement = ({ user, webId, deleteOneUser }) => {
+const StandardUserElement = ({ user, webId, deleteOneUser, userToAdmin }) => {
     const profile = useProfile(user.solidId);
 
     const classes = useStyles();
@@ -55,31 +55,19 @@ const StandardUserElement = ({ user, webId, deleteOneUser }) => {
         <div className={classes.root}>
             <Paper className={classes.mainPaper} color="primary">
                 <Grid container spacing={3}>
-                    {window.screen.width >= 800 ?
-                        <div className={classes.espacios}>
-                            <Grid item xs={2}>
-                                <a href={user.solidId} ><Avatar className={classes.medio} name={profile.fullName} src={`${profile.imageSrc}`} /></a>
-                            </Grid>
-                        </div>
-                        :
-                        null
-                    }
+                    <div className={classes.espacios}>
+                        <Grid item xs={2}>
+                            <a href={user.solidId} ><Avatar className={classes.medio} name={profile.fullName} src={`${profile.imageSrc}`} /></a>
+                        </Grid>
+                    </div>
+
                     <div className={classes.espacios}>
                         <Grid item xs={6}>
                             <div>
-                                {
-                                    window.screen.width >= 800 ?
-                                        <a href={user.solidId} > <Chip className={classes.margin}
-                                            color="primary"
-                                            label={`${profile.fullName}`}
-                                        /></a>
-                                        :
-                                        <a href={user.solidId} ><Chip className={classes.margin}
-                                            color="primary"
-                                            avatar={<Avatar name={profile.fullName} src={`${profile.imageSrc}`} />}
-                                            label={`${profile.fullName}`}
-                                        /> </a>
-                                }
+                                <a href={user.solidId} > <Chip className={classes.margin}
+                                    color="primary"
+                                    label={`${profile.fullName}`}
+                                /></a>
                             </div>
                             <div>
                                 <Chip className={classes.margin}
@@ -93,17 +81,28 @@ const StandardUserElement = ({ user, webId, deleteOneUser }) => {
                                     label={"Longitud: " + user.longitud}
                                 />
                             </div>
-                        </Grid>
-                    </div>
-                    <div className={classes.espacios}>
-                        <Grid item xs={4}>
-                            <div>
-                                <Button className={classes.margin} variant="contained" color="primary" edge="end"
-                                    onClick={() => {
-                                        deleteOneUser(webId, user.solidId);
-                                    }}
-                                >Delete</Button>
-                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><Button className={classes.margin} variant="contained" color="primary" edge="end"
+                                            onClick={() => {
+                                                deleteOneUser(webId, user.solidId);
+                                            }}
+                                        >Delete</Button></td>
+                                        <td><Button className={classes.margin} variant="contained" color="primary" edge="end"
+                                            onClick={() => {
+                                                userToAdmin(user.solidId, UserRols.ADMIN);
+                                            }}
+                                        >Make Admin</Button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </Grid>
                     </div>
                 </Grid>

@@ -4,7 +4,7 @@ import StandardUserElement from './StandardUserElement';
 import { useWebId } from '@solid/react';
 import Typography from '@material-ui/core/Typography';
 
-function UsersList({ users }) {
+function UsersList({ users,userToAdmin }) {
 
     const webId = useWebId();
 
@@ -17,13 +17,15 @@ function UsersList({ users }) {
         }
     }
 
+
+
     if (users) {
         if (users.length > 0) {
             return (
                 <div style={{ display: 'inline-block', overflow: 'auto', height: '600px' }}>
                     {
                         users.map((user, i) => {
-                            return <StandardUserElement key={`user${i}`} user={user} webId={webId} deleteOneUser={deleteOneUser} />;
+                            return <StandardUserElement key={`user${i}`} user={user} webId={webId} deleteOneUser={deleteOneUser} userToAdmin={userToAdmin} />;
                         })
                     }
                 </div>

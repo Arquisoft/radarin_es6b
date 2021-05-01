@@ -11,7 +11,7 @@ import UserMagangerView from '../views/UserMagangerView';
 import { useWebId } from '@solid/react';
 import NotLoginHome from '../views/NotLoginHome';
 import roles from './UserRols';
-import { getUserByWebId, getStandardUsers, getEventsURL, getLocatesByWebId } from '../../api/api';
+import { getStandardUsers, getEventsURL, getLocatesByWebId } from '../../api/api';
 
 const estilos = makeStyles(theme => ({
 
@@ -60,32 +60,27 @@ const Contenedor = () => {
         setSelectedView(num);
     }
 
-    var isUserAdmin = useCallback(async function () {
+    const changeTypeOfUser = (valor) => {
+        setIsAdmin(valor);
+    }
+
+    var getUsers = useCallback(async function () {
         if (webId) {
-            getUserByWebId(webId).then(user => {
-                if (user != null) {
-                    if (user.rol === roles.ADMIN) {
+            getStandardUsers().then(response => {
+                const withoutCurrent = response.filter(user => user.solidId !== webId && user.rol === roles.STANDAR);
+                const withCurrent = response.filter(user => user.rol === roles.STANDAR);
+                const current = (response.filter(user => user.solidId === webId));
+                if (current[0]) {
+                    const setCurrentUser = current[0];
+                    if (setCurrentUser.rol === roles.ADMIN) {
                         setIsAdmin(true);
                     }
                     else {
                         setIsAdmin(false);
                     }
                 }
-                else {
-                    setIsAdmin(false);
-                }
-            }).catch(err => console.log(err));
-        }
-        else {
-            setIsAdmin(false);
-        }
-    }, [webId]);
 
-    var getUsers = useCallback(async function () {
-        if (webId) {
-            getStandardUsers().then(response => {
-                const withoutCurrent = response.filter(user => user.solidId !== webId);
-                setUsers(response);
+                setUsers(withCurrent);
                 setUsersWithoutCurrent(withoutCurrent);
             }).catch(err => console.log(err));
         }
@@ -104,7 +99,7 @@ const Contenedor = () => {
         switch (selectedView) {
             case 0:
                 if (isAdmin) {
-                    view = <UserMagangerView users={users} />;
+                    view = <UserMagangerView users={users} webId={webId} changeTypeOfUser={changeTypeOfUser} />;
                 }
                 else {
                     view = <HomeView users={usersWithoutCurrent} locates={locates} />;
@@ -140,10 +135,10 @@ const Contenedor = () => {
 
             default:
                 if (isAdmin) {
-                    view = <UserMagangerView users={users} />;
+                    view = <UserMagangerView users={users} webId={webId} />;
                 }
                 else {
-                    view = <HomeView users={usersWithoutCurrent} locates={locates} />;
+                    view = <HomeView users={usersWithoutCurrent} locates={locates} changeTypeOfUser={changeTypeOfUser} />;
                 }
                 break;
         }
@@ -162,15 +157,27 @@ const Contenedor = () => {
                 if (text) {
                     if (text === "change User list") {
                         getStandardUsers().then(response => {
-                            const withoutCurrent = response.filter(user => user.solidId !== webId)
-                            setUsers(response);
+
+                            const withoutCurrent = response.filter(user => user.solidId !== webId && user.rol === roles.STANDAR);
+                            const withCurrent = response.filter(user => user.rol === roles.STANDAR);
+                            const current = (response.filter(user => user.solidId === webId));
+                            if (current[0]) {
+                                const setCurrentUser = current[0];
+                                if (setCurrentUser.rol === roles.ADMIN) {
+                                    setIsAdmin(true);
+                                }
+                                else {
+                                    setIsAdmin(false);
+                                }
+                            }
+
+                            setUsers(withCurrent);
                             setUsersWithoutCurrent(withoutCurrent);
                         }).catch(err => console.log(err));
 
                     }
                     else if (text === "change Locate list") {
                         if (parsedData.webId) {
-                            console.log("locate cambio")
                             getLocatesByWebId(parsedData.webId).then(response => {
                                 setLocates(response);
                             }).catch(err => console.log(err));
@@ -189,10 +196,8 @@ const Contenedor = () => {
         //get locates
         getLocatesOfUser();
 
-        //Check type of user
-        isUserAdmin();
 
-    }, [isUserAdmin, getUsers, getLocatesOfUser, listening, webId]);
+    }, [getUsers, getLocatesOfUser, listening, webId]);
 
     if (webId) {
         return (
@@ -202,7 +207,7 @@ const Contenedor = () => {
                     <div className={classes.toolbar}>
                     </div>
                     {
-                       (users && locates)? getSelectedView():null
+                        (users && locates) ? getSelectedView() : null
                     }
 
                 </div>

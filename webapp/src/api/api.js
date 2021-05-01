@@ -120,7 +120,21 @@ export async function getStandardUsers() {
     return await response.json();
 }
 
-export function getEventsURL(){
+export async function changeRol(id,rol) {
+    const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
+    const information = {
+        "solidId": id,
+        "rol": rol
+    };
+    let response = await fetch(apiEndPoint + '/user/changeRol', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(information)
+    });
+    return await response.json();
+}
+
+export function getEventsURL() {
     const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
     return apiEndPoint + "/events"
 }
