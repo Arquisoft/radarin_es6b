@@ -34,4 +34,4 @@ function notificacion(){
     }).catch(err=>console.log(err));
 }
 
-export default spawnNotification;
+export default spawnNotification; 
