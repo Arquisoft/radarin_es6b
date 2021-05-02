@@ -8,10 +8,11 @@ import LocatesView from '../views/LocatesView';
 import FriendsView from '../views/FriendsView';
 import AboutView from '../views/AboutView';
 import UserMagangerView from '../views/UserMagangerView';
-import { useWebId } from '@solid/react';
 import NotLoginHome from '../views/NotLoginHome';
 import roles from './UserRols';
 import { getStandardUsers, getEventsURL, getLocatesByWebId } from '../../api/api';
+import { BeatLoader } from 'react-spinners';
+import FriendsNotifications from './FriendsNotifications';
 
 const estilos = makeStyles(theme => ({
 
@@ -22,18 +23,20 @@ const estilos = makeStyles(theme => ({
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
+    },
+    spinner: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
     }
 }));
 
 
 
 
-const Contenedor = () => {
+const Contenedor = ({ webId }) => {
 
     const classes = estilos();
-
-    // webId of current user
-    const webId = useWebId();
 
 
 
@@ -41,7 +44,7 @@ const Contenedor = () => {
     const [selectedView, setSelectedView] = useState(0);
 
     //Type of the user
-    const [isAdmin, setIsAdmin] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(null);
 
     //Listening servlet events
     const [listening, setListening] = useState(false);
@@ -207,13 +210,12 @@ const Contenedor = () => {
                     <div className={classes.toolbar}>
                     </div>
                     {
-                        (users && locates) ? getSelectedView() : null
+                        (isAdmin!==null) ? getSelectedView() : <BeatLoader loading></BeatLoader>
                     }
-
+                    <FriendsNotifications users={usersWithoutCurrent} webId={webId}/>
                 </div>
             </div>
         );
-
     } else {
         return (
             <div className={classes.root}>

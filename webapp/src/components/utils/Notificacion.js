@@ -24,8 +24,8 @@ function spawnNotification(texto) {
 }
 
 function notificacion(texto){
-    Push.create(texto+" se encuentra cerca de ti",{
-        body: "Amigo cercano",
+    Push.create(texto+" is close to you",{
+        body: "Close friend",
         icon: "../img/logoNotificacion.png",
         native : true,
         onClick : function(){ 

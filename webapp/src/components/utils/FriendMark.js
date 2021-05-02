@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState} from "react";
 import useProfile from "./Profile";
 import { Marker, InfoWindow } from "react-google-maps"
 import icon from '../img/mark-user.png';
-import push from './Notificacion';
 import {
+    Avatar,
     makeStyles
 } from '@material-ui/core';
+import Button from "@material-ui/core/Button";
 
 const estilos = makeStyles(theme => ({
 
@@ -17,13 +18,17 @@ const estilos = makeStyles(theme => ({
     },
     oflineColor: {
         color: '#FF0000',
-    }
+    },
+    large: {
+        marginLeft: '40%',
+        width: theme.spacing(8),
+        height: theme.spacing(8),
+    },
 }));
 
 const FriendMark = ({ friend }) => {
     const profileFriend = useProfile(friend.solidId);
     const [showMark, setShowMark] = useState(false);
-    const [isSend, setIsSend] = useState(false);
     let iconMarker = new window.google.maps.MarkerImage(
         icon,
         null, /* size is determined at runtime */
@@ -37,17 +42,6 @@ const FriendMark = ({ friend }) => {
     const changeShow = () => {
         setShowMark(!showMark);
     }
-
-    const sendNotification = useCallback(function () {
-        if (`${profileFriend.fullName}` !== 'undefined' && !isSend) {
-            push(`${profileFriend.fullName}`);
-            setIsSend(true);
-        }
-    }, [profileFriend.fullName, isSend]);
-
-    useEffect(() => {
-        sendNotification();
-    }, [sendNotification]);
 
     const classes = estilos();
 
@@ -66,7 +60,6 @@ const FriendMark = ({ friend }) => {
         var date = new Date(myDate);
         var now = Date.now();
         var diffTime = Math.abs(now - date);
-        console.log(diffTime);
         return diffTime;
     };
 
@@ -77,18 +70,22 @@ const FriendMark = ({ friend }) => {
             if (diff < 20000) {
                 return (
                     <div className={classes.button}>
+                        <Avatar className={classes.large} name={profileFriend.fullName} src={`${profileFriend.imageSrc}`} />
                         <h6 className={classes.onlineColor}>ONLINE</h6>
                         <h4>{`${profileFriend.fullName}`}</h4>
                         <p>Last login in {myDateParse(friend.updated_at)}</p>
+                        <a href={profileFriend.webId}><Button variant="contained" color="primary" edge="end" >Solid profile</Button></a>
                     </div>
                 );
             }
             else {
                 return (
                     <div className={classes.button}>
+                        <Avatar className={classes.large} name={profileFriend.fullName} src={`${profileFriend.imageSrc}`} />
                         <h6 className={classes.oflineColor}>OFLINE</h6>
                         <h4>{`${profileFriend.fullName}`}</h4>
                         <p>Last login in {myDateParse(friend.updated_at)}</p>
+                        <a href={profileFriend.webId}><Button variant="contained" color="primary" edge="end" >Solid profile</Button></a>
                     </div>
                 );
             }

@@ -8,13 +8,24 @@ import LocateMark from './LocateMark';
 import mapStyle from './MapStyles';
 import icon from '../img/mark-user.png';
 import {
+    Avatar,
     makeStyles
 } from '@material-ui/core';
+import { BeatLoader } from 'react-spinners';
+import Button from "@material-ui/core/Button";
 
 const estilos = makeStyles(theme => ({
     error: {
         color: '#FF0000',
     }
+}));
+
+const estilosMapa = makeStyles(theme => ({
+    large: {
+        marginLeft: '40%',
+        width: theme.spacing(8),
+        height: theme.spacing(8),
+    },
 }));
 
 const radioAccion = 50;
@@ -40,7 +51,7 @@ const MyMapComponent = compose(
     }),
     withProps({
         googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY",
-        loadingElement: <p>Cargando</p>,
+        loadingElement: <BeatLoader loading></BeatLoader>,
         containerElement: <div style={{ height: `750px`, width: '100%' }} />,
         mapElement: <div style={{ height: `100%` }} />,
         isMarkerShown: true,
@@ -55,6 +66,7 @@ const MyMapComponent = compose(
         const webId = useWebId();
         const profile = useProfile(webId);
         const mapRef = useRef(null);
+        const classes= estilosMapa();
 
         let iconMarker = new window.google.maps.MarkerImage(
             icon,
@@ -125,7 +137,9 @@ const MyMapComponent = compose(
                             onCloseClick={props.onToggleOpenMy}
                         >
                             <div>
-                                <h4>Me({`${profile.fullName}`})</h4>
+                                <Avatar className={classes.large} name={profile.fullName} src={`${profile.imageSrc}`} />
+                                <h4>{`${profile.fullName}`}</h4>
+                                <a href={profile.webId}><Button variant="contained" color="primary" edge="end" >My Solid profile</Button></a>
                             </div>
                         </InfoWindow>
 
@@ -161,7 +175,7 @@ const MyMapComponent = compose(
 
 function MyFancyComponent({ friends, locates, addLocalLocate, updateLocalLocate, deleteLocalLocate }) {
     const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
-    const [permisos, setPermisos] = useState(false);
+    const [permisos, setPermisos] = useState(null);
     const classes = estilos();
 
     useEffect(() => {
@@ -180,23 +194,28 @@ function MyFancyComponent({ friends, locates, addLocalLocate, updateLocalLocate,
     }, [setMapPosition]);
 
 
-    if (permisos) {
-        return (
-            <MyMapComponent
-                Latitud={mapPosition.lat}
-                Longitud={mapPosition.lng}
-                friends={friends}
-                locates={locates}
-                addLocalLocate={addLocalLocate}
-                updateLocalLocate={updateLocalLocate}
-                deleteLocalLocate={deleteLocalLocate}
-            />
-        );
+    if (permisos !== null) {
+        if (permisos) {
+            return (
+                <MyMapComponent
+                    Latitud={mapPosition.lat}
+                    Longitud={mapPosition.lng}
+                    friends={friends}
+                    locates={locates}
+                    addLocalLocate={addLocalLocate}
+                    updateLocalLocate={updateLocalLocate}
+                    deleteLocalLocate={deleteLocalLocate}
+                />
+            );
+        }
+        else {
+            return (<div>
+                <h1 className={classes.error}>Geolocation is not supported by this browser!</h1>
+            </div>);
+        }
     }
     else {
-        return (<div>
-            <h1 className={classes.error}>Geolocation is not supported by this browser!</h1>
-        </div>);
+        return <BeatLoader loading></BeatLoader>;
     }
 }
 

@@ -9,8 +9,7 @@ function FriendsList(props) {
     var getFriends = useCallback(function () {
         if (props.users) {
             const realFriends = props.users
-                .filter(posibleFriend => props.solidFriends.includes(posibleFriend.solidId))
-                .map(friend => friend.solidId);
+                .filter(posibleFriend => props.solidFriends.includes(posibleFriend.solidId));
             setFriends(realFriends);
         }
     }, [setFriends, props.users, props.solidFriends]);
@@ -26,8 +25,8 @@ function FriendsList(props) {
             return (
                 <div style={{ display: 'inline-block', overflow: 'auto', width: '800px', height: '600px' }}>
                     {
-                        friends.map((friendWebId, i) => {
-                            return <SoldiFriend key={`friend_${i}`} webId={props.webId} friendWebId={friendWebId} accionSelectFriend={props.accionSelectFriend} />;
+                        friends.map((friend, i) => {
+                            return <SoldiFriend key={`friend_${i}`} webId={props.webId} friend={friend} accionSelectFriend={props.accionSelectFriend} />;
                         })
                     }
                 </div>

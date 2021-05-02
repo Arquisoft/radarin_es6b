@@ -7,8 +7,10 @@ import iconLocate from '../img/locatePin.png';
 import mapStyle from './MapStyles';
 import iconUser from '../img/mark-user.png';
 import {
-    makeStyles
+    makeStyles, Avatar
 } from '@material-ui/core';
+import { BeatLoader } from 'react-spinners';
+import Button from "@material-ui/core/Button";
 
 const estilos = makeStyles(theme => ({
     error: {
@@ -16,6 +18,13 @@ const estilos = makeStyles(theme => ({
     }
 }));
 
+const estilosMapa = makeStyles(theme => ({
+    large: {
+        marginLeft: '40%',
+        width: theme.spacing(8),
+        height: theme.spacing(8),
+    },
+}));
 const mapContainerStyle = {
     width: "100vw",
     height: "100vh"
@@ -38,7 +47,7 @@ const MyMapComponent = compose(
     }),
     withProps({
         googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY",
-        loadingElement: <p>Cargando</p>,
+        loadingElement: <BeatLoader loading></BeatLoader>,
         containerElement: <div style={{ height: `600px`, width: '800px' }} />,
         mapElement: <div style={{ height: `100%` }} />,
         isMarkerShown: true,
@@ -53,6 +62,7 @@ const MyMapComponent = compose(
         const webId = useWebId();
         const profile = useProfile(webId);
         const mapRef = useRef(null);
+        const classes=estilosMapa();
         let iconMarkerLocate = new window.google.maps.MarkerImage(
             iconLocate,
             null, /* size is determined at runtime */
@@ -99,7 +109,9 @@ const MyMapComponent = compose(
                             onCloseClick={props.onToggleOpenMy}
                         >
                             <div>
-                                <h4>Me({`${profile.fullName}`})</h4>
+                                <Avatar className={classes.large} name={profile.fullName} src={`${profile.imageSrc}`} />
+                                <h4>{`${profile.fullName}`}</h4>
+                                <a href={profile.webId}><Button variant="contained" color="primary" edge="end" >My Solid profile</Button></a>
                             </div>
                         </InfoWindow>
 
@@ -127,12 +139,12 @@ const MyMapComponent = compose(
                         }
                     </Marker>
                 }
-                 {
+                {
                     props.locate
                     &&
                     <Polyline
-                        path={[{ lat: props.Latitud, lng: props.Longitud  },
-                            { lat: props.locate.latitud, lng: props.locate.longitud }
+                        path={[{ lat: props.Latitud, lng: props.Longitud },
+                        { lat: props.locate.latitud, lng: props.locate.longitud }
                         ]}
                         geodesic={true}
                         options={{

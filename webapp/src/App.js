@@ -9,7 +9,7 @@ import { saveUser } from './api/api';
 function App() {
 
   const webId = useWebId();
-
+  
   function saveLocateUser() {
     if (webId) {
       // pedimos la pocalización actual
@@ -32,7 +32,7 @@ function App() {
     <div id="divPrincipal" className="App">
       <React.Fragment>
         <CssBaseline />
-        <Contaniner />
+        <Contaniner webId={webId} />
       </React.Fragment>
     </div>
   );
