@@ -62,7 +62,7 @@ const MyMapComponent = compose(
         const webId = useWebId();
         const profile = useProfile(webId);
         const mapRef = useRef(null);
-        const classes=estilosMapa();
+        const classes = estilosMapa();
         let iconMarkerLocate = new window.google.maps.MarkerImage(
             iconLocate,
             null, /* size is determined at runtime */
@@ -88,6 +88,19 @@ const MyMapComponent = compose(
                 mapRef.current.fitBounds(bounds);
             }
         }, [mapRef, props.locate, props.Latitud, props.Longitud]);
+
+        const myDateParse=(myDate)=>{
+            var date = new Date(myDate);  
+            var dd = String(date.getDate()).padStart(2, '0');
+            var mm = String(date.getMonth() + 1).padStart(2, '0');
+            var yyyy = date.getFullYear();
+            var hours=date.getHours();
+            var min=date.getMinutes();
+            var sec=date.getSeconds();
+    
+            return  mm + '/' + dd + '/' + yyyy+ ' at '+hours+':'+min+':'+sec;
+        };
+
 
         useEffect(() => {
             fitBounds();
@@ -133,6 +146,8 @@ const MyMapComponent = compose(
                             >
                                 <div>
                                     <h4>{props.locate.texto}</h4>
+                                    <p>Create in {myDateParse(props.locate.created_at)}</p>
+                                    <p>Last update in {myDateParse(props.locate.updated_at)}</p>
                                 </div>
                             </InfoWindow>
 

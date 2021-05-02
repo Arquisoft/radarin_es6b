@@ -12,7 +12,7 @@ import NotLoginHome from '../views/NotLoginHome';
 import roles from './UserRols';
 import { getStandardUsers, getEventsURL, getLocatesByWebId } from '../../api/api';
 import { BeatLoader } from 'react-spinners';
-import FriendsNotifications from './FriendsNotifications';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const estilos = makeStyles(theme => ({
 
@@ -40,8 +40,6 @@ const Contenedor = ({ webId }) => {
 
 
 
-    //Selected view
-    const [selectedView, setSelectedView] = useState(0);
 
     //Type of the user
     const [isAdmin, setIsAdmin] = useState(null);
@@ -58,10 +56,6 @@ const Contenedor = ({ webId }) => {
     const [locates, setLocates] = useState([]);
 
 
-
-    const changeView = (num) => {
-        setSelectedView(num);
-    }
 
     const changeTypeOfUser = (valor) => {
         setIsAdmin(valor);
@@ -96,58 +90,6 @@ const Contenedor = ({ webId }) => {
             }).catch(err => console.log(err));
         }
     }, [setLocates, webId]);
-
-    const getSelectedView = function () {
-        var view = null;
-        switch (selectedView) {
-            case 0:
-                if (isAdmin) {
-                    view = <UserMagangerView users={users} webId={webId} changeTypeOfUser={changeTypeOfUser} />;
-                }
-                else {
-                    view = <HomeView users={usersWithoutCurrent} locates={locates} />;
-                }
-                break;
-
-            case 1:
-                if (isAdmin) {
-                    view = <AboutView />;
-                }
-                else {
-                    view = <LocatesView locates={locates} />;
-                }
-                break;
-
-            case 2:
-                if (isAdmin) {
-                    view = null;
-                }
-                else {
-                    view = <FriendsView users={usersWithoutCurrent} />;
-                }
-                break;
-
-            case 3:
-                if (isAdmin) {
-                    view = null;
-                }
-                else {
-                    view = <AboutView />;
-                }
-                break;
-
-            default:
-                if (isAdmin) {
-                    view = <UserMagangerView users={users} webId={webId} />;
-                }
-                else {
-                    view = <HomeView users={usersWithoutCurrent} locates={locates} changeTypeOfUser={changeTypeOfUser} />;
-                }
-                break;
-        }
-
-        return view;
-    };
 
 
     useEffect(() => {
@@ -198,28 +140,44 @@ const Contenedor = ({ webId }) => {
 
         //get locates
         getLocatesOfUser();
-
-
+        
     }, [getUsers, getLocatesOfUser, listening, webId]);
 
     if (webId) {
         return (
             <div className={classes.root}>
-                <NavBar changeView={changeView} isAdmin={isAdmin} />
-                <div className={classes.content}>
-                    <div className={classes.toolbar}>
+                <Router>
+                    <NavBar isAdmin={isAdmin} />
+                    <div className={classes.content}>
+                        <div className={classes.toolbar}>
+                        </div>
+
+                        {
+                            (isAdmin !== null) ?
+                                (isAdmin ?
+                                    <Switch>
+                                        <Route path="/" exact ><UserMagangerView users={users} webId={webId} changeTypeOfUser={changeTypeOfUser} /></Route>
+                                        <Route path="/about" exact ><AboutView /></Route>
+                                    </Switch>
+                                    :
+                                    <Switch>
+                                        <Route path="/" exact ><HomeView webId={webId} users={usersWithoutCurrent} locates={locates} /></Route>
+                                        <Route path="/friends" exact ><FriendsView users={usersWithoutCurrent} /></Route>
+                                        <Route path="/locates" exact ><LocatesView locates={locates} /></Route>
+                                        <Route path="/about" exact ><AboutView /></Route>
+                                    </Switch>
+                                )
+                                :
+                                <BeatLoader loading></BeatLoader>
+                        }
                     </div>
-                    {
-                        (isAdmin!==null) ? getSelectedView() : <BeatLoader loading></BeatLoader>
-                    }
-                    <FriendsNotifications users={usersWithoutCurrent} webId={webId}/>
-                </div>
+                </Router>
             </div>
         );
     } else {
         return (
             <div className={classes.root}>
-                <NavBar changeView={changeView} isAdmin={isAdmin} />
+                <NavBar isAdmin={isAdmin} />
                 <div className={classes.content}>
                     <div className={classes.toolbar}>
                     </div>

@@ -1,9 +1,7 @@
 import React from 'react';
 import LoadGoogleMap from '../utils/LoadGoogleMap';
-import {useWebId} from '@solid/react';
 
-function HomeView({users, locates}) {
-    const webId=useWebId();
+function HomeView({webId, users, locates}) {
 
     return (
         <div>

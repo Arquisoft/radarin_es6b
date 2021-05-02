@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function TemporaryDrawer({ changeView, isAdmin }) {
+export default function TemporaryDrawer({isAdmin }) {
     const classes = useStyles();
     const [state, setState] = React.useState({
         top: false,
@@ -43,9 +43,9 @@ export default function TemporaryDrawer({ changeView, isAdmin }) {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             { isAdmin ?
-                <ListasAdmin changeView={changeView} />
+                <ListasAdmin />
                 :
-                <ListasStandar changeView={changeView} />
+                <ListasStandar />
             }
         </div>
     );
