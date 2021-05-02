@@ -140,7 +140,7 @@ const Contenedor = ({ webId }) => {
 
         //get locates
         getLocatesOfUser();
-        
+
     }, [getUsers, getLocatesOfUser, listening, webId]);
 
     if (webId) {
@@ -162,9 +162,9 @@ const Contenedor = ({ webId }) => {
                                     :
                                     <Switch>
                                         <Route path="/" exact ><HomeView webId={webId} users={usersWithoutCurrent} locates={locates} /></Route>
-                                        <Route path="/friends" exact ><FriendsView users={usersWithoutCurrent} /></Route>
+                                        <Route path="/friends" exact  ><FriendsView users={usersWithoutCurrent} /></Route>
                                         <Route path="/locates" exact ><LocatesView locates={locates} /></Route>
-                                        <Route path="/about" exact ><AboutView /></Route>
+                                        <Route path="/about" exact><AboutView /></Route>
                                     </Switch>
                                 )
                                 :
@@ -177,12 +177,16 @@ const Contenedor = ({ webId }) => {
     } else {
         return (
             <div className={classes.root}>
-                <NavBar isAdmin={isAdmin} />
-                <div className={classes.content}>
-                    <div className={classes.toolbar}>
+                <Router>
+                    <NavBar isAdmin={isAdmin} />
+                    <div className={classes.content}>
+                        <div className={classes.toolbar}>
+                        </div>
+                        <Switch>
+                            <Route path="/" exact ><NotLoginHome /></Route>
+                        </Switch>
                     </div>
-                    <NotLoginHome />
-                </div>
+                </Router>
             </div>
         );
     }
