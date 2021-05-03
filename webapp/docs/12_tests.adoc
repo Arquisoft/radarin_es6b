@@ -18,9 +18,9 @@ In addition, we have also verifies that in each view appears what has to appear.
 
 === BDD and acceptance tests
 
-We have developed 4 user acceptance tests based in navigation through the application
+We have developed 4 user acceptance tests based in navigation through the application.
 
-* In the first one we check if the user can login properly
+* In the first one we check if the user can login properly.
 
         Feature: Login into radarin
 
@@ -29,7 +29,7 @@ We have developed 4 user acceptance tests based in navigation through the applic
             When We click Log In and enter our information
             Then I expect to be on HomeView of radarin
 
-* The second one cheks if the user can logout correctly
+* The second one cheks if the user can logout correctly.
 
         Feature: Logout of radarin
 
@@ -38,7 +38,7 @@ We have developed 4 user acceptance tests based in navigation through the applic
             When I click on log out
             Then The screen of log in
 
-* The third one checks if the user can visualize her friends
+* The third one checks if the user can visualize her friends.
 
         Feature: See the friends list
 
@@ -47,7 +47,7 @@ We have developed 4 user acceptance tests based in navigation through the applic
             When The user click the menu and select friends
             Then The user should see his friends
 
-* The last one checks if the user can access to the about
+* The last one checks if the user can access to the about.
 
         Feature: About
 
@@ -63,5 +63,6 @@ By performing these 4 tests indirectly, we are also testing whether the user can
 
 To simulate the different petitions to the application we have used Gatling. The cases that we have develop are:
 
-* Login with 1 user
-* Login with 15 users
+* Login with 1 and 15 users.
+
+* Navigation through the application (go to the friends, locate and about view) with 1, 15, 50 and 100 users.
