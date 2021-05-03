@@ -5,6 +5,8 @@ import React, { useEffect } from 'react';
 import Contaniner from './components/utils/Contenedor';
 import { useWebId } from '@solid/react';
 import { saveUser } from './api/api';
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 
 function App() {
 
@@ -24,6 +26,7 @@ function App() {
 
   useEffect(() => {
     // Guardamos la localización cada 20 segundos
+    push("Amigo 1");
     setInterval(saveLocateUser, 20000);
   });
 
@@ -31,6 +34,7 @@ function App() {
   return (
     <div id="divPrincipal" className="App">
       <React.Fragment>
+        <ReactNotification/>
         <CssBaseline />
         <Contaniner webId={webId} />
       </React.Fragment>
