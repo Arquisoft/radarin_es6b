@@ -9,7 +9,7 @@ import { Paper } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     margin: {
-        marginTop: '5px',
+        marginTop: '10px',
         marginBottom: '10px',
         marginLeft: '10px',
         marginRight: '10px'
@@ -37,13 +37,13 @@ const Locate = ({ locate, accionSelectLocate, deleteLocalLocate, updateLocalLoca
                     label={locate.texto}
                     onClick={() => accionSelectLocate(locate)}
                 />
-                <Button className={classes.margin} variant="contained" color="primary" edge="end"
+                <Button className={classes.margin} size='small' variant="contained" color="primary" edge="end"
                     onClick={() => {
                         deleteLocalLocate(locate._id, locate.solidId);
                     }}
                 >Delete</Button>
 
-                <Button className={classes.margin} variant="contained" color="primary" edge="end" onClick={() => {
+                <Button className={classes.margin} size='small' variant="contained" color="primary" edge="end" onClick={() => {
                     updateLocalLocate(locate);
                 }}>Update</Button>
             </Paper>

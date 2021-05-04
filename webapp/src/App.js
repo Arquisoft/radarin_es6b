@@ -9,7 +9,7 @@ import { saveUser } from './api/api';
 function App() {
 
   const webId = useWebId();
-  
+
   function saveLocateUser() {
     if (webId) {
       // pedimos la pocalización actual
@@ -21,6 +21,7 @@ function App() {
     }
   };
 
+  saveLocateUser();
 
   useEffect(() => {
     // Guardamos la localización cada 20 segundos

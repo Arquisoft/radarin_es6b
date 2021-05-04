@@ -65,7 +65,7 @@ function LocatesList({ width, accionSelectLocate, locates, selectedLocate }) {
         else{
             if (locates.length > 0) {
 
-                return (<div style={{ display: 'inline-block', overflow: 'auto', width: (width-50), height: '600px' }}>
+                return (<div style={{ display: 'inline-block', overflow: 'auto', width: (width), height: '600px' }}>
                     {
                         locates.map((locate, i) => {
                             return <Locate key={`locate_${i}`} locate={locate} accionSelectLocate={accionSelectLocate} deleteLocalLocate={deleteLocalLocate} updateLocalLocate={updateLocalLocate} />;

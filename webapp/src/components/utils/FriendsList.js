@@ -56,7 +56,7 @@ function FriendsList(props) {
         else {
             if (friends.length > 0) {
                 return (
-                    <div style={{ display: 'inline-block', overflow: 'auto', width: (props.width-50), height: '600px' }}>
+                    <div style={{ display: 'inline-block', overflow: 'auto', width: (props.width), height: '600px' }}>
                         {
                             friends.map((friend, i) => {
                                 return <SoldiFriend key={`friend_${i}`} webId={props.webId} friend={friend} accionSelectFriend={props.accionSelectFriend} />;
