@@ -6,3 +6,9 @@ scrape_configs:
   - job_name: "example-nodejs-app"
     static_configs:
       - targets: ["restapi:5000"]
+      - targets: ["restapi:5000","localhost:3000"]
+
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
