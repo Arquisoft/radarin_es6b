@@ -261,7 +261,7 @@ const NotLoginHome = () => {
                             <Typography component="p">
                                 Go to the documentation:
                     </Typography>
-                            <a href="https://radarines6bwebapp.herokuapp.com/docs/"><Button className={classes.finalButton} variant="contained" size="small" color="primary" edge="end" >Documentation <DocumentationIcon className={classes.play} /></Button></a>
+                            <a id="doc" href="https://radarines6bwebapp.herokuapp.com/docs/"><Button className={classes.finalButton} variant="contained" size="small" color="primary" edge="end" >Documentation <DocumentationIcon className={classes.play} /></Button></a>
 
                         </CardContent>
                     </Card>

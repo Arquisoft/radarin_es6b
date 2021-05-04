@@ -57,8 +57,10 @@ function FriendsView({ users }) {
                 </Paper>
             </Grid>
             <Grid container item xs={12} sm={9} md={6} spacing={0}>
-
-                    <GoogleMapFriends selectedFriend={selectFriend} />
+                <Typography variant="h2" component="h2">
+                    Map
+                            </Typography>
+                <GoogleMapFriends selectedFriend={selectFriend} />
             </Grid>
         </Grid>
     );

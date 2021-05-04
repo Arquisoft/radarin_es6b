@@ -54,6 +54,9 @@ function LocatesView({ locates, webId }) {
                 </Paper>
             </Grid>
             <Grid container item xs={12} sm={9} md={6} spacing={0}>
+            <Typography variant="h2" component="h2">
+                    Map
+                            </Typography>
                 <GoogleMapLocates selectedLocate={selectLocate} />
             </Grid>
 

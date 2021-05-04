@@ -66,7 +66,7 @@ const MyMapComponent = compose(
         const webId = useWebId();
         const profile = useProfile(webId);
         const mapRef = useRef(null);
-        const classes= estilosMapa();
+        const classes = estilosMapa();
 
         let iconMarker = new window.google.maps.MarkerImage(
             icon,
@@ -175,7 +175,7 @@ const MyMapComponent = compose(
 
 function MyFancyComponent({ friends, locates, addLocalLocate, updateLocalLocate, deleteLocalLocate }) {
     const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
-    const [permisos, setPermisos] = useState(null);
+    const [permisos, setPermisos] = useState(false);
     const classes = estilos();
 
     useEffect(() => {
@@ -191,7 +191,7 @@ function MyFancyComponent({ friends, locates, addLocalLocate, updateLocalLocate,
             console.log("Geolocation is not supported by this browser!");
             setPermisos(false);
         }
-    }, [setMapPosition]);
+    }, [setMapPosition, permisos]);
 
 
     if (permisos !== null) {
