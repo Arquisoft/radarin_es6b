@@ -12,11 +12,5 @@ module.exports = async () => {
         launchTimeout: 60000,
         debug:true,
         port: 5000,
-    }, 
-    {
-        command: 'BROWSER=none npm start',
-        launchTimeout: 60000,
-        debug: true,
-        port: 3000
-    }]) 
+    }
 }
