@@ -33,8 +33,6 @@ const mapContainerStyle = {
 const options = {
     styles: mapStyle,
 };
-
-//https://github.com/tomchentw/react-google-maps/issues/323
 const MyMapComponent = compose(
     withStateHandlers(() => ({
         isOpenMy: false,
@@ -50,21 +48,8 @@ const MyMapComponent = compose(
     withProps({
         googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY",
         loadingElement: <BeatLoader loading></BeatLoader>,
-        containerElement: <div
-            style={{
-                height: 600,
-                width: '100%',
-                display: 'flex',
-                flexFlow: 'row nowrap',
-                justifyContent: 'center',
-                padding: 0
-            }}
-        ></div>,
-        mapElement: <div
-            style={{
-                width: "100%",
-                 marginLeft: 0
-            }} />,
+        containerElement: <div style={{ height: `600px`, width: '800px' }} />,
+        mapElement: <div style={{ height: `100%` }} />,
         isMarkerShown: true,
 
     }),
@@ -104,16 +89,16 @@ const MyMapComponent = compose(
             }
         }, [mapRef, props.locate, props.Latitud, props.Longitud]);
 
-        const myDateParse = (myDate) => {
-            var date = new Date(myDate);
+        const myDateParse=(myDate)=>{
+            var date = new Date(myDate);  
             var dd = String(date.getDate()).padStart(2, '0');
             var mm = String(date.getMonth() + 1).padStart(2, '0');
             var yyyy = date.getFullYear();
-            var hours = date.getHours();
-            var min = date.getMinutes();
-            var sec = date.getSeconds();
-
-            return mm + '/' + dd + '/' + yyyy + ' at ' + hours + ':' + min + ':' + sec;
+            var hours=date.getHours();
+            var min=date.getMinutes();
+            var sec=date.getSeconds();
+    
+            return  mm + '/' + dd + '/' + yyyy+ ' at '+hours+':'+min+':'+sec;
         };
 
 
@@ -189,7 +174,7 @@ const MyMapComponent = compose(
     });
 
 
-function MyFancyComponent({selectedLocate }) {
+function MyFancyComponent({ selectedLocate }) {
 
     const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
     const [permisos, setPermisos] = useState(false);

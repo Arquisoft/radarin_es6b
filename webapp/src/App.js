@@ -5,12 +5,11 @@ import React, { useEffect } from 'react';
 import Contaniner from './components/utils/Contenedor';
 import { useWebId } from '@solid/react';
 import { saveUser } from './api/api';
-import ReactNotification from "react-notifications-component";
 
 function App() {
 
   const webId = useWebId();
-
+  
   function saveLocateUser() {
     if (webId) {
       // pedimos la pocalización actual
@@ -22,7 +21,6 @@ function App() {
     }
   };
 
-  saveLocateUser();
 
   useEffect(() => {
     // Guardamos la localización cada 20 segundos
@@ -33,7 +31,6 @@ function App() {
   return (
     <div id="divPrincipal" className="App">
       <React.Fragment>
-        <ReactNotification/>
         <CssBaseline />
         <Contaniner webId={webId} />
       </React.Fragment>

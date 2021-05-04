@@ -5,7 +5,7 @@ const FriendListNotifications = ({ users, solidFriends }) => {
     const [friendsToSend, setFriendsToSend] = useState([]);
 
 
-    var getFriendsToSend = useCallback(function () {
+    var getFriends = useCallback(function () {
         if (users) {
             const realFriends = users
                 .filter(posibleFriend => solidFriends.includes(posibleFriend.solidId)).map(friend => {
@@ -13,12 +13,12 @@ const FriendListNotifications = ({ users, solidFriends }) => {
                 });
             setFriendsToSend(realFriends);
         }
-    }, [users, solidFriends, friendsToSend]);
+    }, [setFriendsToSend, users, solidFriends, friendsToSend]);
 
 
     useEffect(() => {
-        getFriendsToSend();
-    }, [getFriendsToSend]);
+        getFriends();
+    }, [getFriends]);
 
     if (friendsToSend.length > 0) {
         return (

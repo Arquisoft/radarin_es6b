@@ -51,7 +51,7 @@ const NavBar = (props) => {
                 <div className={classes.title} align="left">
                     <img id="img" src={logo} alt="logo" height="50" />
                     {
-                        width > 900 ? <img id="img" src={LogoRadarin} alt="logo-Texto" height="50" /> : null
+                        width > 800 ? <img id="img" src={LogoRadarin} alt="logo-Texto" height="50" /> : null
                     }
                 </div>
                 <LoggedIn>

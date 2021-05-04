@@ -28,14 +28,14 @@ const Listas=({changeView})=>{
                     </ListItemIcon>
                     <ListItemText primary="Locates" />
                 </ListItem>
-                <ListItem button id={"friends"}component={Link} to="/friends" >
+                <ListItem button component={Link} to="/friends" >
                     <ListItemIcon>
                         <PeopleIcon/>
                     </ListItemIcon>
                     <ListItemText primary="Friends" />
                 </ListItem>
                 <Divider />
-                <ListItem button id={"buttonAbout"} component={Link} to="/about" >
+                <ListItem button component={Link} to="/about" >
                     <ListItemIcon>
                         <InfoIcon/>
                     </ListItemIcon>

@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState } from 'react';
 import { Typography } from '@material-ui/core/';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -16,24 +16,9 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
     },
 }));
-
-function useWindowSize() {
-    const [size, setSize] = useState([0, 0]);
-    useLayoutEffect(() => {
-        function updateSize() {
-            setSize([window.innerWidth, window.innerHeight]);
-        }
-        window.addEventListener('resize', updateSize);
-        updateSize();
-        return () => window.removeEventListener('resize', updateSize);
-    }, []);
-    return size;
-}
-
 function LocatesView({ locates, webId }) {
 
     const [selectLocate, setSelectLocate] = useState(null);
-    const [width] = useWindowSize();
 
     const accionSelectLocate = (id) => {
         setSelectLocate(id);
@@ -43,23 +28,33 @@ function LocatesView({ locates, webId }) {
     const classes = useStyles();
 
     return (
-        <Grid container spacing={2} >
-            <Grid container item xs={12} sm={9} md={6} spacing={0}>
-                <Paper className={classes.paper}>
-                    <Typography gutterBottom variant="h2" component="h2" color='inherit'>Locates</Typography>
-                    <Typography component="p">
-                        Click on one of your locates to see in the map
+        <React.Fragment>
+            <div className={classes.root}>
+                <Grid container spacing={3} alignItems="center" justify="center" direction="column">
+                    <Grid container item xs={12} sm={9} md={6} spacing={0} alignItems="center" justify="center" direction="column">
+                        <Paper className={classes.paper}>
+                            <Typography component="p">
+                                Click on one of your locates to see in the map
                             </Typography>
-                    <LocatesList width={width} locates={locates} webId={webId} accionSelectLocate={accionSelectLocate} selectedLocate={selectLocate} />
-                </Paper>
-            </Grid>
-            <Grid container item xs={12} sm={9} md={6} spacing={0}>
-                <GoogleMapLocates selectedLocate={selectLocate} />
-            </Grid>
+                        </Paper>
+                    </Grid>
 
-        </Grid >
+                    <Grid container item xs={12} sm={9} md={6}>
+                        <Paper className={classes.paper}>
+                            <Typography gutterBottom variant="h2" component="h2" color='inherit'>Locates</Typography>
+                            <LocatesList locates={locates} webId={webId} accionSelectLocate={accionSelectLocate} selectedLocate={selectLocate} />
+                        </Paper>
+                    </Grid>
+                    <Grid container item xs={12} sm={9} md={6}>
+                        <Paper className={classes.paper}>
+                            <Typography gutterBottom variant="h2" component="h2" color='inherit'>Map</Typography>
+                            <GoogleMapLocates selectedLocate={selectLocate} />
+                        </Paper>
+                    </Grid>
+                </Grid>
 
-
+            </div>
+        </React.Fragment >
     );
 }
 

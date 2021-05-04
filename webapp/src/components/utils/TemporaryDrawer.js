@@ -53,7 +53,7 @@ export default function TemporaryDrawer({isAdmin }) {
     return (
         <div>
             <React.Fragment key={'left'}>
-                <Button id="menu" color="inherit" onClick={toggleDrawer('left', true)}><MenuIcon /></Button>
+                <Button id="menuOpciones" color="inherit" onClick={toggleDrawer('left', true)}><MenuIcon /></Button>
                 <Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
                     {list('left')}
                 </Drawer>
