@@ -7,6 +7,8 @@ class CustomEnvironment extends NodeEnvironemnt {
     async setup(){
         await super.setup()
         this.global.browser = await puppeteer.launch({
+            gnoreHTTPSErrors:true,
+            defaultViewport:null,
             headless: true,
             //slowMo: 20
         })
