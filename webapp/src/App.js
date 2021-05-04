@@ -5,8 +5,8 @@ import React, { useEffect } from 'react';
 import Contaniner from './components/utils/Contenedor';
 import { useWebId } from '@solid/react';
 import { saveUser } from './api/api';
-//import push from './components/utils/Notificacion';
-import firebase from './api/firebase';
+import push from './components/utils/Notificacion';
+//import firebase from './api/firebase';
 
 function App() { 
 
@@ -18,7 +18,7 @@ function App() {
       navigator.geolocation.getCurrentPosition((pos) => {
         
         //prueba push
-        //new push(title,message);
+        push();
         
         //salvamos al usuario
         saveUser(webId, pos.coords.latitude, pos.coords.longitude).catch(err => console.log(err));
@@ -31,14 +31,14 @@ function App() {
     // Guardamos la localización cada 20 segundos
     setInterval(saveLocateUser, 20000);
 
-    //firebase
+    /* //firebase
     const msg = firebase.messaging();
     msg.requestPermission().then(()=>{
       return msg.getToken();
 
     }).then((data)=>{
       console.warn("token",data);
-    })
+    }) */
   });
 
 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="14797fac-96e8-4f59-b967-beb227149e7c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/webapp/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/src/api/firebase.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/api/firebase.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/src/components/utils/Notificacion.js" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/components/utils/Notificacion.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/src/components/utils/firebase-messaging-sw.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1rzNyo0BSilutdg99GnEKS6nm5V" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="14797fac-96e8-4f59-b967-beb227149e7c" name="Default Changelist" comment="" />
+      <created>1619975214204</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1619975214204</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="551" y="169" width="1200" height="800" key="AVDManager" timestamp="1620082934780">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="551" y="169" width="1200" height="800" key="AVDManager/0.0.1920.1040/-1920.0.1920.1200@0.0.1920.1040" timestamp="1620082934780" />
+    <state x="807" y="267" key="run.anything.popup" timestamp="1619975345660">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="807" y="267" key="run.anything.popup/0.0.1920.1040/-1920.0.1920.1200@0.0.1920.1040" timestamp="1619975345660" />
+  </component>
+</project>

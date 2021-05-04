@@ -1,3 +1,14 @@
+
+
+
+
+
+
+
+
+
+
+
 import Push from 'push.js';
 
 function spawnNotification() {
