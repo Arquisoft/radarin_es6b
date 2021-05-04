@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     margin: {
         marginTop: '5px',
         marginBottom: '10px',
-        marginLeft: '80px',
+        marginLeft: '10px',
         marginRight: '10px'
     },
     mainPaper: {

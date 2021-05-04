@@ -54,8 +54,21 @@ const MyMapComponent = compose(
     withProps({
         googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY",
         loadingElement: <BeatLoader loading></BeatLoader>,
-        containerElement: <div style={{ height: `600px`, width: '800px' }} />,
-        mapElement: <div style={{ height: `100%` }} />,
+        containerElement: <div
+            style={{
+                height: 600,
+                width: '100%',
+                display: 'flex',
+                flexFlow: 'row nowrap',
+                justifyContent: 'center',
+                padding: 0
+            }}
+        ></div>,
+        mapElement: <div
+            style={{
+                width: "100%",
+                marginLeft: 0
+            }} />,
         isMarkerShown: true,
 
     }),
@@ -232,7 +245,7 @@ function MyFancyComponent({ selectedFriend }) {
                 Latitud={mapPosition.lat}
                 Longitud={mapPosition.lng}
                 friend={selectedFriend}
-                friendWebId={selectedFriend? selectedFriend.solidId: ""}
+                friendWebId={selectedFriend ? selectedFriend.solidId : ""}
             />
         );
     }
