@@ -27,7 +27,6 @@ function App() {
 
   useEffect(() => {
     // Guardamos la localización cada 20 segundos
-    push("Amigo 1");
     setInterval(saveLocateUser, 20000);
   });
 
