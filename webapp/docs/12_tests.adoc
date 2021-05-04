@@ -1,0 +1,68 @@
+[[section-tests]]
+== Tests
+
+We have developed three different types os tests in order to avoid the biggest ammount of issues.
+
+=== TDD and continuous integration
+
+We have done 7 tests to be sure that our app render correctly regardless of the size of the screen. 
+In addition, we have also verifies that in each view appears what has to appear.
+
+* AboutView.test.js
+* FriendsView.test.js
+* HomeView.test.js
+* LocatesView.test.js
+* LoginBarView.test.js
+* SelectView.test.js
+* NavComponent.test.js
+
+=== BDD and acceptance tests
+
+We have developed 4 user acceptance tests based in navigation through the application.
+
+* In the first one we check if the user can login properly.
+
+        Feature: Login into radarin
+
+        Scenario: We want to login into radarin
+            Given The login page
+            When We click Log In and enter our information
+            Then I expect to be on HomeView of radarin
+
+* The second one cheks if the user can logout correctly.
+
+        Feature: Logout of radarin
+
+        Scenario: The user is registered in the site and wants to unregistered
+            Given A registered user
+            When I click on log out
+            Then The screen of log in
+
+* The third one checks if the user can visualize her friends.
+
+        Feature: See the friends list
+
+        Scenario: The user unregistered wants to see the list friends
+            Given The user register in the application
+            When The user click the menu and select friends
+            Then The user should see his friends
+
+* The last one checks if the user can access to the about.
+
+        Feature: About
+
+        Scenario: The user is registered in the site and wants to go to the about view
+            Given A registered user
+            When I click on about screen
+            Then The screen of the about
+
+
+By performing these 4 tests indirectly, we are also testing whether the user can easily access the navigation bar, the menu and its views. 
+
+=== Load tests
+
+To simulate the different petitions to the application we have used Gatling. The cases that we have develop are:
+
+* Login with 1 and 15 users.
+
+* Navigation through the application (go to the friends, locate and about view) with 1, 15, 50 and 100 users.
