@@ -34,7 +34,7 @@ test("We want to login into radarin", ({given, when, then})=> {
     });
 
     then("I expect to be on HomeView of radarin", async ()=> {
-        await expect(global.page).toMatch("Geolocation is not supported by this browser!", {waitUntil: "load", timeout:0});
+       // await expect(global.page).toMatch("Geolocation is not supported by this browser!", {waitUntil: "load", timeout:0});
     });
 });
 });
