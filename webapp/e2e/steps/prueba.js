@@ -1,8 +1,6 @@
 const {defineFeature, loadFeature}=require("jest-cucumber");
-const feature = loadFeature("../e2e/features/login.feature");
+const feature = loadFeature("../e2e/features/prueba.feature");
 const puppeteer = require("puppeteer");
-let browser = null;
-let page = null;
 
 
 defineFeature((feature), (test) => {
@@ -10,13 +8,12 @@ test("We want to login into radarin", ({given, when, then})=> {
     let popup;
 
     given("The login page", async()=> {
-        
         await global.page.goto("http://localhost:3000", {waitUntil: "load", timeout: 0});
     });
 
     when("We click Log In and enter our information", async()=>{
-        const newPagePromise = new Promise((x) =>  global.browser.once(("targetcreated"), (target) => x(target.page())));	
-        await expect(global.page).toClick("button", { className: "logButton" });
+        const newPagePromise = new Promise((x) =>  browser.once(("targetcreated"), (target) => x(target.page())));	
+        await expect(page).toClick("button", { className: "logButton" });
       
         popup = await newPagePromise;
         await expect(popup).toMatchElement("button", { text: "Solid Community", waitUntil: "load", timeout: 0, visible: true});
@@ -31,7 +28,7 @@ test("We want to login into radarin", ({given, when, then})=> {
     });
 
     then("I expect to be on HomeView of radarin", async ()=> {
-        //await expect(global.page).toMatch("Mapa", {waitUntil: "load", timeout:0});
+        await expect(page).toMatch("Mapa", {waitUntil: "load", timeout:0});
     });
 });
 });
