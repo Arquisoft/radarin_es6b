@@ -12,7 +12,9 @@ import NotLoginHome from '../views/NotLoginHome';
 import roles from './UserRols';
 import { getStandardUsers, getEventsURL, getLocatesByWebId } from '../../api/api';
 import { BeatLoader } from 'react-spinners';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { LoggedIn, LoggedOut } from '@solid/react';
+import Notifications from './FriendsNotifications';
 
 const estilos = makeStyles(theme => ({
 
@@ -143,53 +145,62 @@ const Contenedor = ({ webId }) => {
 
     }, [getUsers, getLocatesOfUser, listening, webId]);
 
-    if (webId) {
-        return (
-            <div className={classes.root}>
-                <Router>
-                    <NavBar isAdmin={isAdmin} />
-                    <div className={classes.content}>
-                        <div className={classes.toolbar}>
-                        </div>
 
-                        {
-                            (isAdmin !== null) ?
-                                (isAdmin ?
-                                    <Switch>
-                                        <Route path="/" exact ><UserMagangerView users={users} webId={webId} changeTypeOfUser={changeTypeOfUser} /></Route>
-                                        <Route path="/about" exact ><AboutView /></Route>
-                                    </Switch>
-                                    :
-                                    <Switch>
-                                        <Route path="/" exact ><HomeView webId={webId} users={usersWithoutCurrent} locates={locates} /></Route>
-                                        <Route path="/friends" exact  ><FriendsView users={usersWithoutCurrent} /></Route>
-                                        <Route path="/locates" exact ><LocatesView locates={locates} /></Route>
-                                        <Route path="/about" exact><AboutView /></Route>
-                                    </Switch>
-                                )
-                                :
-                                <BeatLoader loading></BeatLoader>
-                        }
+    return (<div className={classes.root}>
+        <LoggedIn>
+            {
+                false ? <Notifications users={usersWithoutCurrent} webId={webId} /> : null}
+            {
+                (isAdmin !== null) ?
+                    (isAdmin ?
+                        <Router>
+                            <NavBar isAdmin={isAdmin} />
+                            <div className={classes.content}>
+                                <div className={classes.toolbar}>
+                                </div>
+                                <Switch>
+                                    <Route path="/" exact ><UserMagangerView users={users} webId={webId} changeTypeOfUser={changeTypeOfUser} /></Route>
+                                    <Route path="/about" exact><AboutView /></Route>
+                                    <Route path="/*"><Redirect to="/" /></Route>
+                                </Switch>
+                            </div>
+                        </Router>
+                        :
+
+
+                        <Router>
+                            <NavBar isAdmin={isAdmin} />
+                            <div className={classes.content}>
+                                <div className={classes.toolbar}>
+                                </div>
+                                <Switch>
+                                    <Route path="/" exact ><HomeView webId={webId} users={usersWithoutCurrent} locates={locates} /></Route>
+                                    <Route path="/friends" exact><FriendsView users={usersWithoutCurrent} /></Route>
+                                    <Route path="/locates" exact ><LocatesView locates={locates} /></Route>
+                                    <Route path="/about" exact ><AboutView /></Route>
+                                    <Route path="/*"><Redirect to="/" /></Route>
+                                </Switch>
+                            </div>
+                        </Router>
+                    )
+                    :
+                    <BeatLoader loading></BeatLoader>
+            }
+        </LoggedIn>
+        <LoggedOut>
+            <Router>
+                <NavBar isAdmin={isAdmin} />
+                <div className={classes.content}>
+                    <div className={classes.toolbar}>
                     </div>
-                </Router>
-            </div>
-        );
-    } else {
-        return (
-            <div className={classes.root}>
-                <Router>
-                    <NavBar isAdmin={isAdmin} />
-                    <div className={classes.content}>
-                        <div className={classes.toolbar}>
-                        </div>
-                        <Switch>
-                            <Route path="/" exact ><NotLoginHome /></Route>
-                        </Switch>
-                    </div>
-                </Router>
-            </div>
-        );
-    }
+                    <Switch>
+                        <Route path="/" exact><NotLoginHome /></Route>
+                        <Route path="/*"><Redirect to="/" /></Route>
+                    </Switch>
+                </div>
+            </Router>
+        </LoggedOut>
+    </div>);
 
 };
 
