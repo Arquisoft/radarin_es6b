@@ -20,11 +20,11 @@ module.exports = async () => {
         port: 3000
     } */
     {
-        command: 'npm start',
+        command: 'BROWSER=none npm start',
         launchTimeout: 60000,
         debug: true,
         port: 3000
     }
 ])  
 }
-© 2021 GitHub, Inc.
+
