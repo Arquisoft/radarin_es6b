@@ -1,7 +1,7 @@
 module.exports = {
     testEnvironment: './custom-environment.js',
     testMatch: ["**/steps/*.js"],
-    testTimeout: 1000000,
+    testTimeout: 500000,
     globalSetup: './global-setup.js',
     globalTeardown: './global-teardown.js',
     setupFilesAfterEnv: ["expect-puppeteer"]
