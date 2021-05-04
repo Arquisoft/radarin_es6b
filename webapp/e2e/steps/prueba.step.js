@@ -1,21 +1,22 @@
 const {defineFeature, loadFeature}=require("jest-cucumber");
 const feature = loadFeature("../e2e/features/login.feature");
 const puppeteer = require("puppeteer");
-let browser = null;
-let page = null;
 
 
 defineFeature((feature), (test) => {
-test("We want to login into radarin", ({given, when, then})=> {
+    beforeEach(async () => {
+        await page.goto('http://localhost:3000', { waitUntil: 'networkidle0'});
+      })
+
+      afterEach(async () => {
+        // reset to clear any previous logged in session
+        await resetBrowserContext();
+      });
+    test("We want to login into radarin", ({given, when, then})=> {
     let popup;
 
     given("The login page", async()=> {
-        //se crear un navegador
-        browser= await puppeteer.launch({
-            headless:false, ignoreDefaultArgs: ["--disable-extensions"],defaultViewPort:null
-        });
-        //abrimos una nueva pagina
-        page=await browser.newPage();
+        
         await page.goto("http://localhost:3000", {waitUntil: "load", timeout: 0});
     });
 
