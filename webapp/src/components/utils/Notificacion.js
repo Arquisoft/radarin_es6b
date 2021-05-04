@@ -1,5 +1,4 @@
 import Push from 'push.js';
-import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import { store } from 'react-notifications-component';
 
@@ -12,7 +11,7 @@ function spawnNotification(texto) {
         if (navegador.match(/Android/i)) { 
                 detector=1; //Si es un móvil, cambio el valor del detector
         }
-        if (detector==1) { //si es un móvil redirecciono la página.
+        if (detector===1) { //si es un móvil redirecciono la página.
             notificacionMobile(texto);
         }else {
              notificacion(texto);
@@ -30,7 +29,7 @@ function spawnNotification(texto) {
                 detector=1; //Si es un móvil, cambio el valor del detector
             }
         });
-        if (detector==1) { //si es un móvil redirecciono la página.
+        if (detector===1) { //si es un móvil redirecciono la página.
             notificacionMobile(texto);
         }else {
              notificacion(texto);
@@ -51,7 +50,7 @@ function spawnNotification(texto) {
                         detector=1; //Si es un móvil, cambio el valor del detector
                     }
                 });
-                if (detector==1) { //si es un móvil redirecciono la página.
+                if (detector===1) { //si es un móvil redirecciono la página.
                     notificacionMobile(texto);
                 }else {
                     notificacion(texto);
