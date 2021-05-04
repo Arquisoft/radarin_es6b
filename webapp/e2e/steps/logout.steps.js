@@ -10,7 +10,7 @@ defineFeature((feature), (test) => {
 
     given("A registered user", async() => {
           //se crear un navegador
-          const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+          const browser = await puppeteer.launch({headless:true, args: ['--no-sandbox', '--disable-setuid-sandbox']});
           //abrimos una nueva pagina
       page=await browser.newPage();
       await page.goto("http://localhost:3000", {waitUntil: "load", timeout: 0});
