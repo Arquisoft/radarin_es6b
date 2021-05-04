@@ -1,18 +1,18 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import SoldiFriend from './SolidFriend';
-import { getUsers } from '../../api/api';
+import Typography from '@material-ui/core/Typography';
+
 function FriendsList(props) {
 
     const [friends, setFriends] = useState([]);
 
-    var getFriends = useCallback(async function () {
-        getUsers(props.webId).then(response => {
-            const realFriends = response
-                .filter(posibleFriend => props.solidFriends.includes(posibleFriend.solidId))
-                .map(friend => friend.solidId);
+    var getFriends = useCallback(function () {
+        if (props.users) {
+            const realFriends = props.users
+                .filter(posibleFriend => props.solidFriends.includes(posibleFriend.solidId));
             setFriends(realFriends);
-        }).catch(err => console.log(err));
-    }, [setFriends, props.webId, props.solidFriends]);
+        }
+    }, [setFriends, props.users, props.solidFriends]);
 
 
     useEffect(() => {
@@ -20,17 +20,31 @@ function FriendsList(props) {
     }, [getFriends]);
 
 
+    if (friends) {
+        if (friends.length > 0) {
+            return (
+                <div style={{ display: 'inline-block', overflow: 'auto', width: '800px', height: '600px' }}>
+                    {
+                        friends.map((friend, i) => {
+                            return <SoldiFriend key={`friend_${i}`} webId={props.webId} friend={friend} accionSelectFriend={props.accionSelectFriend} />;
+                        })
+                    }
+                </div>
+            );
+        }
+        else {
+            return (
+                <div style={{ display: 'inline-block', overflow: 'auto', width: '800px', height: '600px' }}>
+                    <Typography component="p">
+                        You still do not have any friends who fail using the application
+            </Typography>
+                </div>);
 
-
-    return (
-        <div style={{ display: 'inline-block', overflow: 'auto', width: '800px', height: '600px' }}>
-            {
-                friends.map((friendWebId, i) => {
-                    return <SoldiFriend key={`friend_${i}`} webId={props.webId} friendWebId={friendWebId} accionSelectFriend={props.accionSelectFriend} />;
-                })
-            }
-        </div>
-    );
+        }
+    }
+    else{
+        return null;
+    }
 }
 
 export default FriendsList;

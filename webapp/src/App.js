@@ -5,20 +5,19 @@ import React, { useEffect } from 'react';
 import Contaniner from './components/utils/Contenedor';
 import { useWebId } from '@solid/react';
 import { saveUser } from './api/api';
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 import push from './components/utils/Notificacion';
 
 function App() {
 
   const webId = useWebId();
-
+  
   function saveLocateUser() {
     if (webId) {
       // pedimos la pocalización actual
       navigator.geolocation.getCurrentPosition((pos) => {
-        
-        //prueba push
-        push();
-        
+
         //salvamos al usuario
         saveUser(webId, pos.coords.latitude, pos.coords.longitude).catch(err => console.log(err));
       });
@@ -33,10 +32,11 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div id="divPrincipal" className="App">
       <React.Fragment>
+        <ReactNotification/>
         <CssBaseline />
-        <Contaniner />
+        <Contaniner webId={webId} />
       </React.Fragment>
     </div>
   );

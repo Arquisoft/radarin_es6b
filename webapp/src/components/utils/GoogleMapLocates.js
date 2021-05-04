@@ -1,11 +1,30 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { compose, withProps, withStateHandlers } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow, Polyline } from "react-google-maps"
 import { useWebId } from '@solid/react';
 import useProfile from "./Profile";
-import icon from '../img/locatePin.png';
+import iconLocate from '../img/locatePin.png';
 import mapStyle from './MapStyles';
+import iconUser from '../img/mark-user.png';
+import {
+    makeStyles, Avatar
+} from '@material-ui/core';
+import { BeatLoader } from 'react-spinners';
+import Button from "@material-ui/core/Button";
 
+const estilos = makeStyles(theme => ({
+    error: {
+        color: '#FF0000',
+    }
+}));
+
+const estilosMapa = makeStyles(theme => ({
+    large: {
+        marginLeft: '40%',
+        width: theme.spacing(8),
+        height: theme.spacing(8),
+    },
+}));
 const mapContainerStyle = {
     width: "100vw",
     height: "100vh"
@@ -28,7 +47,7 @@ const MyMapComponent = compose(
     }),
     withProps({
         googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAzKr-9NRgqHcrPjJyKiSDXPcRQbWRqkdY",
-        loadingElement: <p>Cargando</p>,
+        loadingElement: <BeatLoader loading></BeatLoader>,
         containerElement: <div style={{ height: `600px`, width: '800px' }} />,
         mapElement: <div style={{ height: `100%` }} />,
         isMarkerShown: true,
@@ -43,8 +62,16 @@ const MyMapComponent = compose(
         const webId = useWebId();
         const profile = useProfile(webId);
         const mapRef = useRef(null);
-        let iconMarker = new window.google.maps.MarkerImage(
-            icon,
+        const classes = estilosMapa();
+        let iconMarkerLocate = new window.google.maps.MarkerImage(
+            iconLocate,
+            null, /* size is determined at runtime */
+            null, /* origin is 0,0 */
+            null, /* anchor is bottom center of the scaled image */
+            new window.google.maps.Size(35, 35)
+        );
+        let iconMarkerUser = new window.google.maps.MarkerImage(
+            iconUser,
             null, /* size is determined at runtime */
             null, /* origin is 0,0 */
             null, /* anchor is bottom center of the scaled image */
@@ -62,6 +89,19 @@ const MyMapComponent = compose(
             }
         }, [mapRef, props.locate, props.Latitud, props.Longitud]);
 
+        const myDateParse=(myDate)=>{
+            var date = new Date(myDate);  
+            var dd = String(date.getDate()).padStart(2, '0');
+            var mm = String(date.getMonth() + 1).padStart(2, '0');
+            var yyyy = date.getFullYear();
+            var hours=date.getHours();
+            var min=date.getMinutes();
+            var sec=date.getSeconds();
+    
+            return  mm + '/' + dd + '/' + yyyy+ ' at '+hours+':'+min+':'+sec;
+        };
+
+
         useEffect(() => {
             fitBounds();
         }, [fitBounds]);
@@ -73,6 +113,7 @@ const MyMapComponent = compose(
                 options={options}
             >
                 <Marker
+                    icon={iconMarkerUser}
                     position={{ lat: props.Latitud, lng: props.Longitud }}
                     onClick={props.onToggleOpenMy}
                 >
@@ -81,7 +122,9 @@ const MyMapComponent = compose(
                             onCloseClick={props.onToggleOpenMy}
                         >
                             <div>
-                                <h4>Me({`${profile.fullName}`})</h4>
+                                <Avatar className={classes.large} name={profile.fullName} src={`${profile.imageSrc}`} />
+                                <h4>{`${profile.fullName}`}</h4>
+                                <a href={profile.webId}><Button variant="contained" color="primary" edge="end" >My Solid profile</Button></a>
                             </div>
                         </InfoWindow>
 
@@ -95,7 +138,7 @@ const MyMapComponent = compose(
                     <Marker
                         position={{ lat: props.locate.latitud, lng: props.locate.longitud }}
                         onClick={props.onToggleOpenLocate}
-                        icon={iconMarker}
+                        icon={iconMarkerLocate}
                     >
                         {props.isOpenLocate &&
                             <InfoWindow
@@ -103,11 +146,28 @@ const MyMapComponent = compose(
                             >
                                 <div>
                                     <h4>{props.locate.texto}</h4>
+                                    <p>Create in {myDateParse(props.locate.created_at)}</p>
+                                    <p>Last update in {myDateParse(props.locate.updated_at)}</p>
                                 </div>
                             </InfoWindow>
 
                         }
                     </Marker>
+                }
+                {
+                    props.locate
+                    &&
+                    <Polyline
+                        path={[{ lat: props.Latitud, lng: props.Longitud },
+                        { lat: props.locate.latitud, lng: props.locate.longitud }
+                        ]}
+                        geodesic={true}
+                        options={{
+                            strokeColor: "#ff2527",
+                            strokeOpacity: 1,
+                            strokeWeight: 2,
+                        }}
+                    />
                 }
 
             </GoogleMap>);
@@ -117,7 +177,8 @@ const MyMapComponent = compose(
 function MyFancyComponent({ selectedLocate }) {
 
     const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
-
+    const [permisos, setPermisos] = useState(false);
+    const classes = estilos();
 
     useEffect(() => {
         if (navigator.geolocation) {
@@ -126,19 +187,29 @@ function MyFancyComponent({ selectedLocate }) {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude,
                 });
+                setPermisos(true);
             });
         } else {
             console.log("Geolocation is not supported by this browser!");
+            setPermisos(false);
         }
     }, [setMapPosition]);
 
-    return (
-        <MyMapComponent
-            Latitud={mapPosition.lat}
-            Longitud={mapPosition.lng}
-            locate={selectedLocate}
-        />
-    )
+    if (permisos) {
+
+        return (
+            <MyMapComponent
+                Latitud={mapPosition.lat}
+                Longitud={mapPosition.lng}
+                locate={selectedLocate}
+            />
+        );
+    }
+    else {
+        return (<div>
+            <h1 className={classes.error}>Geolocation is not supported by this browser!</h1>
+        </div>);
+    }
 
 }
 

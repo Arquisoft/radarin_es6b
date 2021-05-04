@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
     },
 }));
-function LocatesView() {
+function LocatesView({ locates, webId }) {
 
     const [selectLocate, setSelectLocate] = useState(null);
 
@@ -42,7 +42,7 @@ function LocatesView() {
                     <Grid container item xs={12} sm={9} md={6}>
                         <Paper className={classes.paper}>
                             <Typography gutterBottom variant="h2" component="h2" color='inherit'>Locates</Typography>
-                            <LocatesList accionSelectLocate={accionSelectLocate} />
+                            <LocatesList locates={locates} webId={webId} accionSelectLocate={accionSelectLocate} selectedLocate={selectLocate} />
                         </Paper>
                     </Grid>
                     <Grid container item xs={12} sm={9} md={6}>

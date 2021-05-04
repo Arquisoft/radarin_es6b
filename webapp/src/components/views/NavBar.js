@@ -55,7 +55,7 @@ const NavBar = (props) => {
                     }
                 </div>
                 <LoggedIn>
-                    <TemporaryDrawer changeView={props.changeView} />
+                    <TemporaryDrawer isAdmin={props.isAdmin} />
                 </LoggedIn>
                 <GetProfile />
             </Toolbar>

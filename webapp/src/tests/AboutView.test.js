@@ -36,13 +36,11 @@ it('About', () => {
   expect(container.querySelector('#doc')).toBeTruthy();
   expect(container).toBeTruthy();
 
-  
- 
 
 })
 
 test("About view", async () => {
   const { getByText } = render(<AboutView />);
-  const logo= screen.getByRole('img');
-  expect(logo).toHaveAttribute('alt', 'Solid Logo');
+
+  expect(getByText("About")).toBeInTheDocument();
 })

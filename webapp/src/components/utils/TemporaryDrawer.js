@@ -3,7 +3,8 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
-import Listas from './Listas';
+import ListasStandar from './ListasStandar';
+import ListasAdmin from './ListasAdmin';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles({
@@ -15,7 +16,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function TemporaryDrawer({changeView}) {
+export default function TemporaryDrawer({isAdmin }) {
     const classes = useStyles();
     const [state, setState] = React.useState({
         top: false,
@@ -41,14 +42,18 @@ export default function TemporaryDrawer({changeView}) {
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
-            <Listas changeView={changeView} />
+            { isAdmin ?
+                <ListasAdmin />
+                :
+                <ListasStandar />
+            }
         </div>
     );
 
     return (
         <div>
             <React.Fragment key={'left'}>
-                <Button color="inherit" onClick={toggleDrawer('left', true)}><MenuIcon /></Button>
+                <Button id="menuOpciones" color="inherit" onClick={toggleDrawer('left', true)}><MenuIcon /></Button>
                 <Drawer anchor={'left'} open={state['left']} onClose={toggleDrawer('left', false)}>
                     {list('left')}
                 </Drawer>

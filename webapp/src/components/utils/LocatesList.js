@@ -1,35 +1,55 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { getLocatesByWebId } from '../../api/api';
-import {useWebId} from "@solid/react";
+import React from 'react';
 import Locate from './Locate';
-function LocatesList(props) {
+import Typography from '@material-ui/core/Typography';
+import { deleteLocate, updateLocate } from '../../api/api';
+function LocatesList({ accionSelectLocate, locates, selectedLocate }) {
 
-    const [locates, setLocates] = useState([]);
-    const webId= useWebId();
+    const deleteLocalLocate = async function (id, solidId) {
+        if (selectedLocate && selectedLocate._id === id) {
+            accionSelectLocate(null);
+        }
+        await deleteLocate(id, solidId);
+    }
 
-    var getLocates = useCallback(async function () {
-
-        getLocatesByWebId(webId).then(response => {
-            setLocates(response);
-        }).catch(err => console.log(err));
-    }, [setLocates, webId]);
-
-
-    useEffect(() => {
-        getLocates();
-    }, [getLocates]);
-
-
-
-
-    return (
-        <div style={{ display: 'inline-block', overflow: 'auto', width: '800px', height: '600px' }}>
-            {
-                locates.map((locate, i) => {
-                    return <Locate key={`locate_${i}`} locate={locate} accionSelectLocate={props.accionSelectLocate} />;
-                })
+    const updateLocalLocate = async function (locate) {
+        var id = locate._id;
+        var textoAnterior = locate.texto;
+        var texto = prompt("Nuevo nombre de la localización:", textoAnterior);
+        if (texto === "") {
+            alert("No se puede actualizar una localizacion sin un nombre")
+            return;
+        }
+        else if (texto !== null) {
+            await updateLocate(id, texto);
+            if (selectedLocate && selectedLocate._id === locate._id) {
+                accionSelectLocate(null);
             }
-        </div>);
+        }
+    }
+
+    if (locates) {
+        if (locates.length > 0) {
+            return (<div style={{ display: 'inline-block', overflow: 'auto', width: '800px', height: '600px' }}>
+                {
+                    locates.map((locate, i) => {
+                        return <Locate key={`locate_${i}`} locate={locate} accionSelectLocate={accionSelectLocate} deleteLocalLocate={deleteLocalLocate} updateLocalLocate={updateLocalLocate} />;
+                    })
+                }
+            </div>);
+        }
+        else {
+            return (
+                <div style={{ display: 'inline-block', overflow: 'auto', width: '800px', height: '600px' }}>
+                    <Typography component="p">
+                        You don't have any location yet
+            </Typography>
+                </div>);
+
+        }
+    }
+    else {
+        return null;
+    }
 
 }
 
