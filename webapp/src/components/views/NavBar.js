@@ -1,10 +1,10 @@
 import React,{useState,useLayoutEffect} from 'react';
 import { AppBar, Toolbar, makeStyles } from '@material-ui/core/';
-import GetProfile from '../utils/GetProfile'
+import GetProfile from '../utils/solid/GetProfile'
 import { LoggedIn } from '@solid/react';
 import LogoRadarin from '../img/LogoRadarin.png';
 import logo from '../img/logo.svg';
-import TemporaryDrawer from '../utils/TemporaryDrawer';
+import TemporaryDrawer from '../utils/navbar/TemporaryDrawer';
 
 const useStyles = makeStyles((theme) => ({
     root: {

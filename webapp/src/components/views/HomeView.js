@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadGoogleMap from '../utils/LoadGoogleMap';
+import LoadGoogleMap from '../utils/maps/LoadGoogleMap';
 
 function HomeView({webId, users, locates}) {
 

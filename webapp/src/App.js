@@ -2,7 +2,7 @@ import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import React, { useEffect, useCallback, useState } from 'react';
-import Contaniner from './components/utils/Contenedor';
+import Contaniner from './components/utils/navbar/Contenedor';
 import { useWebId } from '@solid/react';
 import { saveUser } from './api/api';
 

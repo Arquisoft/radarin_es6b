@@ -2,7 +2,7 @@ import React from 'react';
 import Button from "@material-ui/core/Button";
 
 import { AuthButton, LoggedIn } from '@solid/react';
-import ProfileImage from '../utils/ProfileImage';
+import ProfileImage from '../utils/solid/ProfileImage';
 
 export const AuthButtonComponent = React.forwardRef((props, ref) =>
    

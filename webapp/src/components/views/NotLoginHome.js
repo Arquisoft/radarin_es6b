@@ -9,7 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import TeamMember from '../utils/TeamMember';
+import TeamMember from '../utils/team/TeamMember';
 import LogoRadarin from '../img/LogoRadarin.png';
 import logo from '../img/logo.png';
 import documentation from '../img/documentation.png';

@@ -4,8 +4,8 @@ import { useWebId } from '@solid/react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import GoogleMapFriends from '../utils/GoogleMapFriends';
-import FriendListEvaluate from '../utils/FriendsListEvaluate';
+import GoogleMapFriends from '../utils/maps/GoogleMapFriends';
+import FriendListEvaluate from '../utils/user/friends/FriendsListEvaluate';
 
 const useStyles = makeStyles((theme) => ({
     root: {
