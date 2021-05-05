@@ -103,9 +103,9 @@ const NotLoginHome = () => {
             githubURL: "https://github.com/UO270656"
         }];
 
-    return <Grid container spacing={3}>
+    return <Grid id="grid1" container spacing={3}>
         <Grid container item xs={12} >
-            <Card>
+            <Card id="card1">
                 <CardMedia
                     component="img"
                     height="70"
@@ -123,12 +123,12 @@ const NotLoginHome = () => {
                         will not store personal information but you will be asked for
                         permission to obtain the information needed.
                         </Typography>
-                    <Button className={classes.finalButton} variant="contained" color="primary" edge="end" >View the trailer <PlayArrowIcon className={classes.play} /></Button>
+                    <Button id="but1"className={classes.finalButton} variant="contained" color="primary" edge="end" >View the trailer <PlayArrowIcon className={classes.play} /></Button>
                 </CardContent>
             </Card>
         </Grid>
 
-        <Grid container item xs={12} sm={9} md={6} spacing={0}>
+        <Grid id="grid2" container item xs={12} sm={9} md={6} spacing={0}>
             <Card>
                 <CardMedia
                     component="img"
@@ -148,7 +148,7 @@ const NotLoginHome = () => {
                             aims to radically change the way Web applications work today,
                             resulting in true data ownership as well as improved privacy.
                     </Typography>
-                        <a href="https://solid.mit.edu/"><Button className={classes.finalButton} variant="contained" size="small" color="primary" edge="end" >Learn more <RedirectIcon className={classes.play} /></Button></a>
+                        <a href="https://solid.mit.edu/"><Button id="but2" className={classes.finalButton} variant="contained" size="small" color="primary" edge="end" >Learn more <RedirectIcon className={classes.play} /></Button></a>
 
                     </Paper>
                     <Paper className={classes.insidePape}>
@@ -159,20 +159,20 @@ const NotLoginHome = () => {
                             You can create your own solid account at the following link:
                     </Typography>
 
-                        <a href="https://solidcommunity.net/register"><Button className={classes.finalButton} variant="contained" size="small" color="primary" edge="end" >Get a profile <RedirectIcon className={classes.play} /></Button></a>
+                        <a href="https://solidcommunity.net/register"><Button id="but2" className={classes.finalButton} variant="contained" size="small" color="primary" edge="end" >Get a profile <RedirectIcon className={classes.play} /></Button></a>
 
                     </Paper>
                 </CardContent>
             </Card>
         </Grid>
-        <Grid container item xs={12} sm={9} md={6} spacing={0}>
+        <Grid id="grid3" container item xs={12} sm={9} md={6} spacing={0}>
             <Paper>
                 <Typography gutterBottom variant="h3" component="h3">
                     About Radarin
                     </Typography>
                 <Grid container justify="center" spacing={4}>
                     <Grid item xs={6}>
-                        <img alt="logo-radain" src={logo} width={100} height={100} />
+                        <img id="img1" alt="logo-radain" src={logo} width={100} height={100} />
                         <CardContent>
 
                             <Typography component="p">
@@ -212,7 +212,7 @@ const NotLoginHome = () => {
         </Grid>
 
 
-        <Grid container item xs={12}>
+        <Grid id="grid4" container item xs={12}>
             <Grid container justify="center" spacing={3}>
                 <Grid item>
                     <Card>
@@ -228,7 +228,7 @@ const NotLoginHome = () => {
                             <Typography component="p">
                                 Go to the solid proyect:
                     </Typography>
-                            <a href="https://solidproject.org"><Button className={classes.finalButton} variant="contained" size="small" color="primary" edge="end" >Solid Page <RedirectIcon className={classes.play} /></Button></a>
+                            <a href="https://solidproject.org"><Button id="but3"className={classes.finalButton} variant="contained" size="small" color="primary" edge="end" >Solid Page <RedirectIcon className={classes.play} /></Button></a>
                         </CardContent>
                     </Card>
                 </Grid>
@@ -249,7 +249,7 @@ const NotLoginHome = () => {
                                 Go to the github proyect:
                     </Typography>
 
-                            <a href="https://github.com/Arquisoft/radarin_es6b"><Button className={classes.finalButton} variant="contained" size="small" color="primary" edge="end" >Github proyect <GitHubIcon className={classes.play} /></Button></a>
+                            <a href="https://github.com/Arquisoft/radarin_es6b"><Button id="but4"className={classes.finalButton} variant="contained" size="small" color="primary" edge="end" >Github proyect <GitHubIcon className={classes.play} /></Button></a>
 
                         </CardContent>
                     </Card>
@@ -269,9 +269,9 @@ const NotLoginHome = () => {
             </Grid>
         </Grid>
 
-        <Grid container item xs={12}>
+        <Grid id="grid5"container item xs={12}>
             <Grid container justify="center" spacing={1}>
-                <Card>
+                <Card id="card2">
                     <Typography gutterBottom variant="h3" component="h3">
                         Engeniaring team
                     </Typography>
