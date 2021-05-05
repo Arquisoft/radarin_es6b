@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
-    titulo:{
+    titulo: {
         textAlign: 'center',
         margin: '0 auto',
     }
@@ -50,8 +50,8 @@ function FriendsView({ users }) {
 
     return (
 
-        <Grid container spacing={2} >
-            <Grid container item xs={12} sm={9} md={6} spacing={0}>
+        <Grid container spacing={3} alignItems="center" justify="center" direction="column">
+            <Grid container item xs={12} alignItems="center" justify="center" direction="column">
                 <Paper className={classes.paper}>
                     <Typography gutterBottom variant="h2" component="h2" color='inherit'>Friends</Typography>
                     <Typography component="p">
@@ -60,7 +60,7 @@ function FriendsView({ users }) {
                     <FriendListEvaluate webId={webId} width={width} users={users} accionSelectFriend={accionSelectFriend} />
                 </Paper>
             </Grid>
-            <Grid container item xs={12} sm={9} md={6} spacing={0}>
+            <Grid container item xs={12}>
                 <Typography variant="h2" component="h2" className={classes.titulo}>
                     Map
                             </Typography>

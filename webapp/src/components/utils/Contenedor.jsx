@@ -126,9 +126,11 @@ const Contenedor = ({ webId }) => {
                     }
                     else if (text === "change Locate list") {
                         if (parsedData.webId) {
-                            getLocatesByWebId(parsedData.webId).then(response => {
-                                setLocates(response);
-                            }).catch(err => console.log(err));
+                            if (parsedData.webId === webId) {
+                                getLocatesByWebId(parsedData.webId).then(response => {
+                                    setLocates(response);
+                                }).catch(err => console.log(err));
+                            }
                         }
 
                     }
