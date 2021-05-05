@@ -10,7 +10,7 @@ import AboutView from '../../views/AboutView';
 import UserMagangerView from '../../views/UserMagangerView';
 import NotLoginHome from '../../views/NotLoginHome';
 import roles from '../user/roles/UserRols';
-import { getStandardUsers, getEventsURL, getLocatesByWebId } from '../../../api/api';
+import { getStandardUsers, getEventsURL, getLocates } from '../../../api/api';
 import { BeatLoader } from 'react-spinners';
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { LoggedIn, LoggedOut } from '@solid/react';
@@ -88,7 +88,7 @@ const Contenedor = ({ webId }) => {
 
     var getLocatesOfUser = useCallback(async function () {
         if (webId) {
-            getLocatesByWebId(webId).then(response => {
+            getLocates().then(response => {
                 setLocates(response);
             }).catch(err => console.log(err));
         }
@@ -126,11 +126,9 @@ const Contenedor = ({ webId }) => {
                     }
                     else if (text === "change Locate list") {
                         if (parsedData.webId) {
-                            if (parsedData.webId === webId) {
-                                getLocatesByWebId(parsedData.webId).then(response => {
-                                    setLocates(response);
-                                }).catch(err => console.log(err));
-                            }
+                            getLocates().then(response => {
+                                setLocates(response);
+                            }).catch(err => console.log(err));
                         }
 
                     }
@@ -177,9 +175,9 @@ const Contenedor = ({ webId }) => {
                                 <div className={classes.toolbar}>
                                 </div>
                                 <Switch>
-                                    <Route path="/" exact ><HomeView webId={webId} users={usersWithoutCurrent} locates={locates} /></Route>
+                                    <Route path="/" exact ><HomeView webId={webId} users={usersWithoutCurrent} locates={locates.filter(locate=> locate.solidId===webId)} /></Route>
                                     <Route path="/friends" exact><FriendsView users={usersWithoutCurrent} /></Route>
-                                    <Route path="/locates" exact ><LocatesView locates={locates} /></Route>
+                                    <Route path="/locates" exact ><LocatesView locates={locates.filter(locate=> locate.solidId===webId)} /></Route>
                                     <Route path="/about" exact ><AboutView /></Route>
                                     <Route path="/*"><Redirect to="/" /></Route>
                                 </Switch>

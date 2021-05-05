@@ -88,8 +88,7 @@ router.post("/user/getUsers", async (req, res) => {
 });
 
 router.post("/user/getLocates", async (req, res) => {
-    const id = req.body.solidId;
-    const myLocates = await Locate.find({ solidId: id });
+    const myLocates = await Locate.find();
     res.send(myLocates);
 });
 

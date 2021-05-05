@@ -39,10 +39,9 @@ export async function getUsers(webId) {
     return await response.json();
 }
 
-export async function getLocatesByWebId(id) {
+export async function getLocates() {
     const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
     const information = {
-        "solidId": id,
     };
     let response = await fetch(apiEndPoint + '/user/getLocates', {
         method: 'POST',
