@@ -5,6 +5,12 @@
 
 image::10_QualityTree.png[Quality Tree]
 
+.Legend
+
+ - Circle: Usefullness
+ - Hexagon: Quality Requirements
+ - Cloud: Specific scenario
+
 === Quality Scenarios
 
 .Quality Requirements Table 
