@@ -1,8 +1,8 @@
 Feature: Nav display
   Any user before being logged in
-  should see the nav menu when 
-  the button is clicked
+  should see log button
+  the log in is shown
 
-  Scenario: User opens nav
+  Scenario: User opens log in
     When I click the button
-    Then I expect to see the nav menu
+    Then I expect to see the log in

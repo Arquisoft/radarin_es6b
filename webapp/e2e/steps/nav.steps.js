@@ -7,13 +7,13 @@ defineFeature(feature, test => {
         await global.page.goto("https://radarines6bwebapp.herokuapp.com/");
     });
 
-    test("User opens nav", ({ when, then }) => {
+    test("User opens log in", ({ when, then }) => {
 
         when("I click the button",  async () => {
             await expect(page).toClick("button", { class: "MuiButtonBase-root MuiButton-root MuiButton-contained logButton MuiButton-containedPrimary" })
         });
 
-        then("I expect to see the nav menu", async () => {
+        then("I expect to see the log in", async () => {
            await expect(page).toMatch("Log in");
            ;
         });
