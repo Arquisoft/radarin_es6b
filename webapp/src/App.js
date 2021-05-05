@@ -1,7 +1,7 @@
 import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import Contaniner from './components/utils/Contenedor';
 import { useWebId } from '@solid/react';
 import { saveUser } from './api/api';
@@ -10,7 +10,7 @@ function App() {
 
   const webId = useWebId();
 
-  function saveLocateUser() {
+  const saveLocateUser= useCallback(function() {
     if (webId) {
       // pedimos la pocalización actual
       navigator.geolocation.getCurrentPosition((pos) => {
@@ -19,7 +19,7 @@ function App() {
         saveUser(webId, pos.coords.latitude, pos.coords.longitude).catch(err => console.log(err));
       });
     }
-  };
+  },[webId]);
 
 
   useEffect(() => {
