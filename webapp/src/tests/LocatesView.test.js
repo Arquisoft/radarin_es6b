@@ -4,6 +4,8 @@ import { act } from 'react-dom/test-utils'
 import ReactDOM from 'react-dom'
 import LocatesView from '../components/views/LocatesView';
 import { render } from "@testing-library/react";
+import GoogleMapLocates from '../components/utils/maps/GoogleMapLocates';
+import LocatesList from '../components/utils/locate/LocatesList';
 
 
 
@@ -31,6 +33,8 @@ it('Locates', () => {
 }) 
 
 test("Locates view", async () => {
+  render(<GoogleMapLocates /> );
+  render(<LocatesList /> );
   const { getByText } = render(<LocatesView />);
   expect(getByText("Locates")).toBeInTheDocument();
   expect(getByText("Map")).toBeInTheDocument();

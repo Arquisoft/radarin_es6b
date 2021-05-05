@@ -5,6 +5,7 @@ import { act } from 'react-dom/test-utils';
 import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from 'react-router-dom';
 import { fireEvent } from "@testing-library/react";
+import LoadGoogleMap from '../components/utils/maps/LoadGoogleMap';
 
 
 let container
@@ -32,6 +33,7 @@ it('HomeView', () => {
   
 });
 test("Home view", async () => {
+  render(<LoadGoogleMap /> );
   const { getByText } = render(<HomeView />);
   //expect(getByText("Radarin Map")).toBeInTheDocument();
 })

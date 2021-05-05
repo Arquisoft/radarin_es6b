@@ -32,17 +32,17 @@ function UserManagerView({ users, webId, changeTypeOfUser }) {
 
     return (
         <React.Fragment>
-            <div className={classes.root}>
-                <Grid container spacing={3} alignItems="center" justify="center" direction="column">
+            <div id="div1"className={classes.root}>
+                <Grid id="grid1" container spacing={3} alignItems="center" justify="center" direction="column">
                     <Grid container item xs={12} sm={9} md={6} spacing={0} justify="center"
                         alignItems="stretch"
                         direction="column">
-                        <Card>
+                        <Card id="card1">
                             <CardContent>
                                 <Typography gutterBottom variant="h6" component="h6">
                                     To stop being an administrator click here
                              </Typography>
-                                <Button className={classes.margin} variant="contained" color="primary" edge="end"
+                                <Button id="but1" className={classes.margin} variant="contained" color="primary" edge="end"
                                     onClick={() => {
                                         userToAdmin(webId, UserRols.STANDAR);
                                     }}
@@ -53,7 +53,7 @@ function UserManagerView({ users, webId, changeTypeOfUser }) {
                     <Grid container item xs={12} sm={9} md={6} spacing={0} justify="center"
                         alignItems="stretch"
                         direction="column">
-                        <Card>
+                        <Card id="card2">
                             <CardContent>
                                 <Typography gutterBottom variant="h2" component="h2">
                                     Users list

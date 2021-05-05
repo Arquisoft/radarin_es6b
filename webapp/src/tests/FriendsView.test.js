@@ -4,7 +4,8 @@ import { act } from 'react-dom/test-utils'
 import ReactDOM from 'react-dom'
 import FriendsView from '../components/views/FriendsView';
 import { render } from "@testing-library/react";
-
+import FriendListEvaluate from '../components/utils/user/friends/FriendsListEvaluate';
+import GoogleMapFriends from '../components/utils/maps/GoogleMapFriends';
 
 let container
 
@@ -29,6 +30,8 @@ it('Friends', () => {
 }) 
 
 test("Friends view", async () => {
+  render(<FriendListEvaluate /> );
+  render(<GoogleMapFriends /> );
   const { getByText } = render(<FriendsView />);
   expect(getByText("Friends")).toBeInTheDocument();
   expect(getByText("Map")).toBeInTheDocument();

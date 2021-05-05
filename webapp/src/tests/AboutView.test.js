@@ -4,6 +4,7 @@ import AboutView from "../components/views/AboutView";
 import { act } from 'react-dom/test-utils';
 import { render,fireEvent, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from 'react-router-dom';
+import TeamMember from '../components/utils/team/TeamMember';
 
 let container
 
@@ -53,7 +54,7 @@ it('About', () => {
 
 test("About view", async () => {
   const { getByText } = render(<AboutView />);
-
+  render(<TeamMember /> );
   const element = screen.getByText("Engeniaring team");
         expect(element).toBeInTheDocument();
   const element1 = screen.getByText("Radarin is an application to get your ubication and see who of your solid friend's is near to you. You can also create locates to save your favourite places.");
