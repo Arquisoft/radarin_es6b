@@ -52,8 +52,7 @@ const Contenedor = ({ webId }) => {
 
     //standar user list (include the current user)
     const [users, setUsers] = useState([]);
-
-    const [usersWithoutCurrent, setUsersWithoutCurrent] = useState([]);
+    const [standarUsers, setStandarUsers]= useState([]);
 
     //Locates of current user
     const [locates, setLocates] = useState([]);
@@ -64,27 +63,6 @@ const Contenedor = ({ webId }) => {
         setIsAdmin(valor);
     }
 
-    var getUsers = useCallback(async function () {
-        if (webId) {
-            getStandardUsers().then(response => {
-                const withoutCurrent = response.filter(user => user.solidId !== webId && user.rol === roles.STANDAR);
-                const withCurrent = response.filter(user => user.rol === roles.STANDAR);
-                const current = (response.filter(user => user.solidId === webId));
-                if (current[0]) {
-                    const setCurrentUser = current[0];
-                    if (setCurrentUser.rol === roles.ADMIN) {
-                        setIsAdmin(true);
-                    }
-                    else {
-                        setIsAdmin(false);
-                    }
-                }
-
-                setUsers(withCurrent);
-                setUsersWithoutCurrent(withoutCurrent);
-            }).catch(err => console.log(err));
-        }
-    }, [setUsers, webId]);
 
     var getLocatesOfUser = useCallback(async function () {
         if (webId) {
@@ -94,6 +72,20 @@ const Contenedor = ({ webId }) => {
         }
     }, [setLocates, webId]);
 
+    var checkRol = useCallback(async function () {
+        if (users && users.length > 0) {
+            const current = users.filter(user => user.solidId === webId);
+            const currentUser = current[0];
+            if (currentUser) {
+                if (currentUser.rol === roles.ADMIN) {
+                    setIsAdmin(true);
+                }
+                else {
+                    setIsAdmin(false);
+                }
+            }
+        }
+    }, [setIsAdmin, users, webId]);
 
     useEffect(() => {
         if (!listening) {
@@ -105,24 +97,10 @@ const Contenedor = ({ webId }) => {
                 if (text) {
                     if (text === "change User list") {
                         getStandardUsers().then(response => {
-
-                            const withoutCurrent = response.filter(user => user.solidId !== webId && user.rol === roles.STANDAR);
-                            const withCurrent = response.filter(user => user.rol === roles.STANDAR);
-                            const current = (response.filter(user => user.solidId === webId));
-                            if (current[0]) {
-                                const setCurrentUser = current[0];
-                                if (setCurrentUser.rol === roles.ADMIN) {
-                                    setIsAdmin(true);
-                                }
-                                else {
-                                    setIsAdmin(false);
-                                }
-                            }
-
-                            setUsers(withCurrent);
-                            setUsersWithoutCurrent(withoutCurrent);
+                            const standar = response.filter(user => user.rol === roles.STANDAR);
+                            setUsers(response);
+                            setStandarUsers(standar);
                         }).catch(err => console.log(err));
-
                     }
                     else if (text === "change Locate list") {
                         if (parsedData.webId) {
@@ -137,14 +115,12 @@ const Contenedor = ({ webId }) => {
 
             setListening(true);
         }
-
-        //Get standar standard
-        getUsers();
-
         //get locates
         getLocatesOfUser();
 
-    }, [getUsers, getLocatesOfUser, listening, webId]);
+        checkRol();
+
+    }, [getLocatesOfUser, checkRol, listening]);
 
 
     return (<div className={classes.root}>
@@ -158,7 +134,7 @@ const Contenedor = ({ webId }) => {
                                 <div className={classes.toolbar}>
                                 </div>
                                 <Switch>
-                                    <Route path="/" exact ><UserMagangerView users={users} webId={webId} changeTypeOfUser={changeTypeOfUser} /></Route>
+                                    <Route path="/" exact ><UserMagangerView users={standarUsers} webId={webId} changeTypeOfUser={changeTypeOfUser} /></Route>
                                     <Route path="/about" exact><AboutView /></Route>
                                     <Route path="/*"><Redirect to="/" /></Route>
                                 </Switch>
@@ -169,15 +145,15 @@ const Contenedor = ({ webId }) => {
 
                         <Router>
                             <NavBar isAdmin={isAdmin} />
-                            <Notifications users={usersWithoutCurrent} webId={webId} />
+                            <Notifications users={standarUsers.filter(user => user.solidId !== webId)} webId={webId} />
                             <ReactNotification />
                             <div className={classes.content}>
                                 <div className={classes.toolbar}>
                                 </div>
                                 <Switch>
-                                    <Route path="/" exact ><HomeView webId={webId} users={usersWithoutCurrent} locates={locates.filter(locate=> locate.solidId===webId)} /></Route>
-                                    <Route path="/friends" exact><FriendsView users={usersWithoutCurrent} /></Route>
-                                    <Route path="/locates" exact ><LocatesView locates={locates.filter(locate=> locate.solidId===webId)} /></Route>
+                                    <Route path="/" exact ><HomeView webId={webId} users={standarUsers.filter(user => user.solidId !== webId)} locates={locates.filter(locate => locate.solidId === webId)} /></Route>
+                                    <Route path="/friends" exact><FriendsView users={standarUsers.filter(user => user.solidId !== webId)} /></Route>
+                                    <Route path="/locates" exact ><LocatesView locates={locates.filter(locate => locate.solidId === webId)} /></Route>
                                     <Route path="/about" exact ><AboutView /></Route>
                                     <Route path="/*"><Redirect to="/" /></Route>
                                 </Switch>
