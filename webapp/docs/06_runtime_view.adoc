@@ -35,8 +35,18 @@ image:register.png["Runtime view of the option to sign up"]
 === Show friends
 
 * User request to see his friends.
-* The pod sends the list with her friends.
+* The pod sends the list with his friends.
+* The server returns the users of the application.
 * The app only shows the friends who have ever used the application
 
 image:show_friends.png["Runtime view to visualize friends"]
 
+
+=== Show locates
+
+* User request to see his friends locates and also his marks in map.
+* The pod sends the solid profile to the app.
+* The server returns users locations.
+* The marks added to the map and the users locations are shown to the user.
+
+image:show_locates.png["Runtime view to visualize locates"]
