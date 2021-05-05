@@ -32,7 +32,7 @@ it('About', () => {
     enlace.dispatchEvent(new MouseEvent('click', { bubbles: true }));
   });
 
-  //expect(enlace).toBeCalledTimes(1);
+  
 
   expect(container.querySelector('#doc')).toBeTruthy();
   expect(container.querySelector('#card1')).toBeTruthy();
