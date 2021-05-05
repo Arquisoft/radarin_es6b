@@ -3,10 +3,14 @@
 
 [options="header"]
 |===
+| Radarin      | The name of the application.
 | Term         | Definition
 | SOLID        | Specification that lets people store their data securely in decentralized data stores called PODs.
+| SOLID principles  | Refers to the acronym for SOLID. Single responsibility principle, Open/closed principle, Liskov substitution principle, Interface segregation principle, Dependency inversion principle.
 | POD          | Secure personal web servers for data. When data is stored in someone's Pod, they control which people and applications can access it.
 | React        | Framework from Javascript to build user interfaces for the web as well as mobile apps.
+| JavaScript   | Programming language that conforms to the ECMAScript specification, often abbreviated as JS
+| Node.js      | Open-source, cross-platform, back-end JavaScript runtime environment that runs on the V8 engine and executes JavaScript code outside a web browser.
 | Heroku       | Heroku is a cloud platform as a service (PaaS) supporting several programming languages.
 | Docker       | Docker is a set of platform as a service (PaaS) products that use OS-level virtualization to deliver software in packages called containers.
 | GitHub       | Collaborative development platform to host projects using the Git version control system.
@@ -14,7 +18,8 @@
 | Arc42        | Set of templates to describe a software architecture.
 | DBaaS        | Software that enables users to setup, operate and scale databases using a common set of abstractions, without having to either know nor care about the exact implementations of those abstractions for the specific database.
 | MongoDB      | A DBaaS used for the development of this application.
-| Front-end    | The presentation layer of a piece of software
-| Back-end     | The data access layer of a piece of software
+| Front-end    | The presentation layer of a piece of software.
+| Back-end     | The data access layer of a piece of software.
+| Serverless   | A serverless architecture is a way to build and run applications and services without having to manage infrastructure.
 
 |===
