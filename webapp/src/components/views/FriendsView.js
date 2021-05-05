@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { Typography } from '@material-ui/core/';
 import { useWebId } from '@solid/react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import GoogleMapFriends from '../utils/GoogleMapFriends';
-import FriendListEvaluate from '../utils/FriendsListEvaluate';
+import GoogleMapFriends from '../utils/maps/GoogleMapFriends';
+import FriendListEvaluate from '../utils/user/friends/FriendsListEvaluate';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,13 +16,30 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
+    titulo: {
+        textAlign: 'center',
+        margin: '0 auto',
+    }
 }));
-function FriendsView({users}) {
+
+function useWindowSize() {
+    const [size, setSize] = useState([0, 0]);
+    useLayoutEffect(() => {
+        function updateSize() {
+            setSize([window.innerWidth, window.innerHeight]);
+        }
+        window.addEventListener('resize', updateSize);
+        updateSize();
+        return () => window.removeEventListener('resize', updateSize);
+    }, []);
+    return size;
+}
+
+function FriendsView({ users }) {
 
     const webId = useWebId();
     const [selectFriend, setSelectFriend] = useState(null);
-
-
+    const [width] = useWindowSize();
 
     const accionSelectFriend = (id) => {
         setSelectFriend(id);
@@ -32,33 +49,24 @@ function FriendsView({users}) {
     const classes = useStyles();
 
     return (
-        <React.Fragment>
-            <div className={classes.root}>
-                <Grid container spacing={3} alignItems="center" justify="center" direction="column">
-                    <Grid container item xs={12} sm={9} md={6} spacing={0} alignItems="center" justify="center" direction="column">
-                        <Paper className={classes.paper}>
-                            <Typography component="p">
-                                Click on one of your friends to see his last location
+
+        <Grid container spacing={3} alignItems="center" justify="center" direction="column">
+            <Grid container item xs={12} alignItems="center" justify="center" direction="column">
+                <Paper className={classes.paper}>
+                    <Typography gutterBottom variant="h2" component="h2" color='inherit'>Friends</Typography>
+                    <Typography component="p">
+                        Click on one of your friends to see his last location
                             </Typography>
-                        </Paper>
-                    </Grid>
-
-                    <Grid container item xs={12} sm={9} md={6}>
-                        <Paper className={classes.paper}>
-                            <Typography gutterBottom variant="h2" component="h2" color='inherit'>Friends</Typography>
-                            <FriendListEvaluate webId={webId} users={users} accionSelectFriend={accionSelectFriend} />
-                        </Paper>
-                    </Grid>
-                    <Grid container item xs={12} sm={9} md={6}>
-                        <Paper className={classes.paper}>
-                            <Typography gutterBottom variant="h2" component="h2" color='inherit'>Map</Typography>
-                            <GoogleMapFriends selectedFriend={selectFriend} />
-                        </Paper>
-                    </Grid>
-                </Grid>
-
-            </div>
-        </React.Fragment >
+                    <FriendListEvaluate webId={webId} width={width} users={users} accionSelectFriend={accionSelectFriend} />
+                </Paper>
+            </Grid>
+            <Grid container item xs={12}>
+                <Typography variant="h2" component="h2" className={classes.titulo}>
+                    Map
+                            </Typography>
+                <GoogleMapFriends selectedFriend={selectFriend} />
+            </Grid>
+        </Grid>
     );
 }
 

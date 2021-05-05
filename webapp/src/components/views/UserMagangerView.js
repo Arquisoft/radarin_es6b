@@ -4,9 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
-import UsersList from '../utils/UsersList';
+import UsersList from '../utils/user/UsersList';
 import Button from "@material-ui/core/Button";
-import UserRols from '../utils/UserRols';
+import UserRols from '../utils/user/roles/UserRols';
 import { changeRol } from '../../api/api';
 
 const useStyles = makeStyles((theme) => ({
