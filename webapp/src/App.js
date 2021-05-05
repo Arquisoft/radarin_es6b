@@ -21,7 +21,6 @@ function App() {
     }
   };
 
-  saveLocateUser();
 
   useEffect(() => {
     // Guardamos la localización cada 20 segundos

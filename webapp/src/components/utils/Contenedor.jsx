@@ -73,9 +73,13 @@ const Contenedor = ({ webId }) => {
                     const setCurrentUser = current[0];
                     if (setCurrentUser.rol === roles.ADMIN) {
                         setIsAdmin(true);
+                        console.log("cambie admin")
+
                     }
                     else {
                         setIsAdmin(false);
+                        console.log("cambie admin")
+
                     }
                 }
 
@@ -112,9 +116,12 @@ const Contenedor = ({ webId }) => {
                                 const setCurrentUser = current[0];
                                 if (setCurrentUser.rol === roles.ADMIN) {
                                     setIsAdmin(true);
+                                    console.log("cambie admin")
                                 }
                                 else {
                                     setIsAdmin(false);
+                                    console.log("cambie admin")
+
                                 }
                             }
 
