@@ -4,7 +4,6 @@ import HomeView from "../components/views/HomeView";
 import { act } from 'react-dom/test-utils';
 import { render } from "@testing-library/react";
 import { BrowserRouter as Router } from 'react-router-dom';
-import { fireEvent } from "@testing-library/react";
 import LoadGoogleMap from '../components/utils/maps/LoadGoogleMap';
 
 

@@ -5,7 +5,6 @@ import { render,fireEvent, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from 'react-router-dom';
 import UserManagerView from "../components/views/UserMagangerView";
 import UsersList from '../components/utils/user/UsersList';
-
 let container
 
 beforeEach(() => {
@@ -23,6 +22,7 @@ it('UserManager', () => {
     ReactDOM.render(<Router>
       <UserManagerView />
     </Router>, container)
+    
   })
 
   
