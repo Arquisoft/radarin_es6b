@@ -8,12 +8,10 @@ const FriendListNotifications = ({ users, solidFriends }) => {
     var getFriendsToSend = useCallback(function () {
         if (users) {
             const realFriends = users
-                .filter(posibleFriend => solidFriends.includes(posibleFriend.solidId)).map(friend => {
-                    return { friend: friend, sended: friendsToSend.includes(friend) };
-                });
+                .filter(posibleFriend => solidFriends.includes(posibleFriend.solidId));
             setFriendsToSend(realFriends);
         }
-    }, [users, solidFriends, friendsToSend]);
+    }, [users, solidFriends]);
 
 
     useEffect(() => {
@@ -23,12 +21,7 @@ const FriendListNotifications = ({ users, solidFriends }) => {
     if (friendsToSend.length > 0) {
         return (
             friendsToSend.map((user, i) => {
-                if (!user.sended) {
-                    return (<FriendNotification key={"Friend_Notification_" + user.friend.solidId} friend={user.friend}></FriendNotification>);
-                }
-                else {
-                    return null;
-                }
+                return (<FriendNotification key={"Friend_Notification_" + user.solidId} friend={user}></FriendNotification>);
             })
         );
     }

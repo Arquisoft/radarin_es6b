@@ -15,6 +15,7 @@ import { BeatLoader } from 'react-spinners';
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { LoggedIn, LoggedOut } from '@solid/react';
 import Notifications from './FriendsNotifications';
+import ReactNotification from "react-notifications-component";
 
 const estilos = makeStyles(theme => ({
 
@@ -73,13 +74,9 @@ const Contenedor = ({ webId }) => {
                     const setCurrentUser = current[0];
                     if (setCurrentUser.rol === roles.ADMIN) {
                         setIsAdmin(true);
-                        console.log("cambie admin")
-
                     }
                     else {
                         setIsAdmin(false);
-                        console.log("cambie admin")
-
                     }
                 }
 
@@ -116,12 +113,9 @@ const Contenedor = ({ webId }) => {
                                 const setCurrentUser = current[0];
                                 if (setCurrentUser.rol === roles.ADMIN) {
                                     setIsAdmin(true);
-                                    console.log("cambie admin")
                                 }
                                 else {
                                     setIsAdmin(false);
-                                    console.log("cambie admin")
-
                                 }
                             }
 
@@ -156,8 +150,6 @@ const Contenedor = ({ webId }) => {
     return (<div className={classes.root}>
         <LoggedIn>
             {
-                false ? <Notifications users={usersWithoutCurrent} webId={webId} /> : null}
-            {
                 (isAdmin !== null) ?
                     (isAdmin ?
                         <Router>
@@ -177,6 +169,8 @@ const Contenedor = ({ webId }) => {
 
                         <Router>
                             <NavBar isAdmin={isAdmin} />
+                            <Notifications users={usersWithoutCurrent} webId={webId} />
+                            <ReactNotification />
                             <div className={classes.content}>
                                 <div className={classes.toolbar}>
                                 </div>

@@ -15,6 +15,10 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
+    titulo:{
+        textAlign: 'center',
+        margin: '0 auto',
+    }
 }));
 
 function useWindowSize() {
@@ -54,7 +58,7 @@ function LocatesView({ locates, webId }) {
                 </Paper>
             </Grid>
             <Grid container item xs={12} sm={9} md={6} spacing={0}>
-            <Typography variant="h2" component="h2">
+            <Typography variant="h2" component="h2" className={classes.titulo}>
                     Map
                             </Typography>
                 <GoogleMapLocates selectedLocate={selectLocate} />
