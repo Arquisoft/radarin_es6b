@@ -10,5 +10,8 @@
 | _REACT_ | _None of us have worked with this library before, so we must familiarize ourselves with it since learning a framework from scratch requires a lot of time_ | _Read documentation, watch tutorials and practice a lot_
 | _POD_ | _As in the previous cases, we do not have knowledge about this technology so it will have to be investigated_ | _Test the pods in different scenarios for their complete understanding_
 | _Docker_ | _Basic knowledge about the deployment of the application in a Docker container and the basic commands for its use_ | _Learn these commands and know how to use them correctly_
+| _Node_ | _As in the previous cases, we do not have knowledge about this technology so it will have to be investigated_ | _Use what was learned in the lab classes and complete the information by searching the internet_
+| _Prometheus y Grafana_ | _For the monitoring task we will have to use this software so we must learn how to work with it_ | _Read documentation both on the internet and in class slides and do a lot of tests to become familiar with this program_
+| _Test_ | _If any change is made in the application operation, some tests may stop working. Also be careful because many tests that work locally fail when uploaded_ | _Pay attention to the tests keeping in mind that when changes are made check that the tests pass. And check in time that the tests pass when uploading them._
 |===
 
