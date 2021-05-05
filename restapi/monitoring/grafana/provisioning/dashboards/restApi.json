@@ -452,7 +452,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "increase(http_request_duration_seconds_count{status_code != \"200\"}[1m])",
+          "expr": "increase(http_request_duration_seconds_count{status_code != \"200\", status_code != \"204\"}[1m])",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
