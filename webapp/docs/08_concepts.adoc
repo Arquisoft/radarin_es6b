@@ -10,7 +10,7 @@
     ** Map
     ** Locations
 
-image:log_in.png["Runtime view of login option"]
+image:model.png["Runtime view of login option"]
 
 === User Experience concepts  
 
