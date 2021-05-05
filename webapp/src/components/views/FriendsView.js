@@ -50,9 +50,9 @@ function FriendsView({ users }) {
 
     return (
 
-        <Grid id="grid1" container spacing={3} alignItems="center" justify="center" direction="column">
+        <Grid container spacing={3} alignItems="center" justify="center" direction="column">
             <Grid container item xs={12} alignItems="center" justify="center" direction="column">
-                <Paper id="p1" className={classes.paper}>
+                <Paper className={classes.paper}>
                     <Typography gutterBottom variant="h2" component="h2" color='inherit'>Friends</Typography>
                     <Typography component="p">
                         Click on one of your friends to see his last location
@@ -64,7 +64,7 @@ function FriendsView({ users }) {
                 <Typography variant="h2" component="h2" className={classes.titulo}>
                     Map
                             </Typography>
-                <GoogleMapFriends id = "g1" selectedFriend={selectFriend} />
+                <GoogleMapFriends selectedFriend={selectFriend} />
             </Grid>
         </Grid>
     );

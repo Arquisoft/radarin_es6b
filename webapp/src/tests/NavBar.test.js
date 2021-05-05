@@ -4,8 +4,6 @@ import { act } from 'react-dom/test-utils'
 import ReactDOM from 'react-dom'
 import NavBar from '../components/views/NavBar';
 import TemporaryDrawer from '../components/utils/navbar/TemporaryDrawer';
-import ListasAdmin from '../components/utils/navbar/ListasAdmin';
-import ListasStandar from '../components/utils/navbar/ListasStandar';
 import GetProfile from '../components/utils/solid/GetProfile'
 import { render } from "@testing-library/react";
 
@@ -26,11 +24,8 @@ it('NavBar', () => {
   act(() => {
     ReactDOM.render(<Router>
       <NavBar />
-      render(<ListasAdmin /> );
-    render(<ListasStandar /> );
     </Router>, container)
     render(<TemporaryDrawer /> );
-    
   })
 
   expect(container).toBeTruthy();

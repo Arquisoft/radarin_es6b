@@ -26,11 +26,6 @@ it('Friends', () => {
     </Router>, container)
   })
 
- 
-  expect(container.querySelector('#p1')).toBeTruthy();
- 
-  expect(container.querySelector('#grid1')).toBeTruthy();
-  
   expect(container).toBeTruthy();
 }) 
 
@@ -40,5 +35,4 @@ test("Friends view", async () => {
   const { getByText } = render(<FriendsView />);
   expect(getByText("Friends")).toBeInTheDocument();
   expect(getByText("Map")).toBeInTheDocument();
-  
 })

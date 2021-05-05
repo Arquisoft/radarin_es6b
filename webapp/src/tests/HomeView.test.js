@@ -29,13 +29,19 @@ it('HomeView', () => {
       <HomeView />
     </Router>, container)
   });
-  expect(container.querySelector('#div1')).toBeTruthy();
   
- 
 });
 test("Home view", async () => {
   render(<LoadGoogleMap /> );
   const { getByText } = render(<HomeView />);
-  
+  //expect(getByText("Radarin Map")).toBeInTheDocument();
 })
 
+//test("check that we can move to friends view", async () => {
+  //const { getByText, getByAltText } = render(<HomeView />);
+  //const titulo = container.querySelector('button');
+ // enlace.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+ // expect(getByText("Locates")).toBeInTheDocument();
+  //fireEvent.click(getByAltText("Log out"));
+  //expect(getByText("Welcome to Radarin_6b")).toBeInTheDocument();
+//});
