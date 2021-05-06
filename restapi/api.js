@@ -157,9 +157,7 @@ router.post("/user/locate/update", async (req, res) => {
 router.post("/user/delete", async (req, res) => {
     const solidAdmin = req.body.id;
     const solidUserDelete = req.body.userId;
-
-    console.log(solidAdmin);
-    console.log(solidUserDelete);
+    
     const userAmin = await User.findOne({ solidId: solidAdmin });
     const findDelete = await User.find({ solidId: solidUserDelete });
 
