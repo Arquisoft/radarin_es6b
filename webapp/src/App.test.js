@@ -3,6 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import ReactDOM from "react-dom";
 import { act } from 'react-dom/test-utils';
 import App from "./App";
+import { LoggedIn, LoggedOut } from '@solid/react';
 
 let container
 
@@ -22,7 +23,12 @@ it('App', () => {
   act(() => {
     ReactDOM.render(
       <CssBaseline />, container)
+      ReactDOM.render(
+        <LoggedOut />, container)
+        ReactDOM.render(
+          <LoggedIn />, container)
   })
+ 
 })
 test("App", async () => {
   ReactDOM.render(

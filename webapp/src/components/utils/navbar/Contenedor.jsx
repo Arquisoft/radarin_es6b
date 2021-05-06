@@ -123,7 +123,7 @@ const Contenedor = ({ webId }) => {
     }, [getLocatesOfUser, checkRol, listening]);
 
 
-    return (<div className={classes.root}>
+    return (<div id="login"className={classes.root}>
         <LoggedIn>
             {
                 (isAdmin !== null) ?
