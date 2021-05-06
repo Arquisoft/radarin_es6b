@@ -18,7 +18,7 @@ image::testEjemploTDD.PNG[TDD example]
 
 And here you can see the 24 tests passing correctly:
 
-image::testTDD.PNG[Test pass]
+image::testsTDD.png[Test pass]
 
 ==== Restapi
 
@@ -28,7 +28,7 @@ image::testRestapi.png[Test pass]
 
 
 
-==== BDD and acceptance tests
+=== BDD and acceptance tests
 
 At first we created the tests using pupeeter. This way of doing the tests was very attractive visually since we saw all the steps that the test carried out but it also gave many problems. The most important is that the tests did not pass when displayed due to an error in the browser. We left pupeeter aside but with the test format that we had creating Promise, this was done without permissions, so once the login was passed, it never got to see the map and it kept loading. We were not able to give permission to the browser, so we left the view visualization part commented after the login.
 
@@ -103,4 +103,4 @@ To simulate the different petitions to the application we have used Gatling that
 
 Example of a navigation load test with 15 users
 
-image::testCargaEjemplo.png[Load test]
+image::testCargaEjemplo.PNG[Load test]
