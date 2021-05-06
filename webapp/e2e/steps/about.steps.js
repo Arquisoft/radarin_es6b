@@ -20,18 +20,18 @@ defineFeature(feature, test => {
         await popup.type("[name='username']", "Radarin6b", {visible: true});
       await popup.type("[name='password']", "Radarin_es6b", {visible: true});
       await expect(popup).toClick("button", { text: "Log In" });
-      //await expect(page).toMatch("Mapa", {waitUntil: "load", timeout:0});
+      await expect(page).toMatch("Geolocation is not supported by this browser!", {waitUntil: "load", timeout:0});
     });
     
     when("I click on about screen", async () => {
 
-        //await expect(page).toClick('[id="menu"]');
+        await expect(page).toClick('[id="menu"]');
 
-        //await expect(page).toClick('[id="buttonAbout"]');
+        await expect(page).toClick('[id="buttonAbout"]');
     });
     
     then("The screen of the about", async () => {
-      //await expect(page).toMatch("About")
+       await expect(page).toMatch("About")
     });
 });
 
