@@ -12,7 +12,6 @@ defineFeature(feature, test => {
 
         when("I go to the homepage", async () => {
             await expect(page).toMatch("Radarin");
-           
             await page.goto("https://radarines6bwebapp.herokuapp.com/friends");
             await expect(page).toMatch("Log in");
         });
