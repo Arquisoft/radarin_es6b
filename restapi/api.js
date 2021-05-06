@@ -78,13 +78,24 @@ router.post("/user/save", async (req, res) => {
 router.post("/user/getById", async (req, res) => {
     const id = req.body.solidId;
     let user = await User.findOne({ solidId: id });
-    res.send(user);
+
+    if (user != null) {
+        res.send(user);
+    }
+    else {
+        res.send({ error: "No user find" });
+    }
 });
 
 router.post("/user/getUsers", async (req, res) => {
     const id = req.body.solidId;
     const myFriends = await User.find({ solidId: { $ne: id }, rol: "Standard user" });
-    res.send(myFriends);
+    if (myFriends != null && myFriends.length>0) {
+        res.send(myFriends);
+    }
+    else{
+        res.send({ error: "No friends" });
+    }
 });
 
 router.post("/user/getLocates", async (req, res) => {
@@ -123,7 +134,7 @@ router.post("/user/locate/delete", async (req, res) => {
         ChangeLocates(req, res, solidId);
     }
     else {
-        res.send(id);
+        res.send({ error: "Locate does not exist" });
     }
 });
 
@@ -139,7 +150,7 @@ router.post("/user/locate/update", async (req, res) => {
         ChangeLocates(req, res, locate.solidId);
     }
     else {
-        res.send(locate);
+        res.send({ error: "Locate does not exist" });
     }
 });
 
@@ -165,12 +176,12 @@ router.post("/user/delete", async (req, res) => {
                 ChangeUsers(req, res);
             }
             else {
-                res.send(solidUserDelete);
+                res.send({ error: "You can not delete a user" });
             }
         }
     }
     else {
-        res.send(solidAdmin);
+        res.send({ error: "User does not exist" });
     }
 });
 
@@ -185,7 +196,7 @@ router.post("/user/changeRol", async (req, res) => {
 
     let user = await User.findOne({ solidId: id });
     if (user) {
-        user.rol=rolUser;
+        user.rol = rolUser;
         await user.save();
 
         ChangeUsers(req, res);

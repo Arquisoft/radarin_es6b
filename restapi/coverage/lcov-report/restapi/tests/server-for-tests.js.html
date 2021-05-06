@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/28</span>
+                <span class='fraction'>32/32</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>16/28</span>
+                <span class='fraction'>32/32</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -126,87 +126,87 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*
 This server file allow to start the restapi using an in-memory database
 This will be handy for testing
 */
 &nbsp;
-const { MongoMemoryServer } = require("mongodb-memory-server");
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-const api = require("../api");
+const { MongoMemoryServer } = require('mongodb-memory-server');
+const express = require("express")
+const cors = require('cors');
+const mongoose = require("mongoose")
+const api = require("../api") 
 &nbsp;
 &nbsp;
 &nbsp;
 module.exports.startdb = async () =&gt; {
-    var mongod = new MongoMemoryServer({ instance: { port: 27017,dbName: "testdb"}});
+    mongod = new MongoMemoryServer({ instance: { port: 27017,dbName: 'testdb'}})
     const mongo_uri =await mongod.getUri();
-    //console.log(mongo_uri);
+    console.log(mongo_uri)
     
-};
-&nbsp;
-module.exports.startserver = <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {
-    //console.log("conecceting to database");
-<span class="cstat-no" title="statement not covered" >    await mongoose.connect("mongodb://127.0.0.1:27017/testdb?", { useNewUrlParser: true,useUnifiedTopology: true });</span>
-    //console.log("connected");
-    var app = <span class="cstat-no" title="statement not covered" >express();</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    app.use(cors());</span>
-<span class="cstat-no" title="statement not covered" >    app.options("*", cors());</span>
-<span class="cstat-no" title="statement not covered" >    app.use(express.json());</span>
-<span class="cstat-no" title="statement not covered" >    app.use("/api", api);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    server = await app.listen(5000);</span>
-    //console.log("Server has started!");
-<span class="cstat-no" title="statement not covered" >    return app;</span>
-};
-&nbsp;
-module.exports.closeServer = <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {
-<span class="cstat-no" title="statement not covered" >    await mongoose.connection.dropDatabase();</span>
-<span class="cstat-no" title="statement not covered" >    await mongoose.connection.close();</span>
-<span class="cstat-no" title="statement not covered" >    await server.close();</span>
 }
 &nbsp;
-module.exports.closeDB = <span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {
-<span class="cstat-no" title="statement not covered" >    await mongod.stop();</span>
+module.exports.startserver = async () =&gt; {
+    console.log("conecceting to database")
+    await mongoose.connect("mongodb://127.0.0.1:27017/testdb?", { useNewUrlParser: true,useUnifiedTopology: true })
+    console.log("connected")
+    app = express()
+&nbsp;
+    app.use(cors());
+    app.options('*', cors());
+    app.use(express.json())
+    app.use("/api", api)
+&nbsp;
+    server = await app.listen(5000)
+    console.log("Server has started!")
+    return app
+}
+&nbsp;
+module.exports.closeServer = async () =&gt; {
+    await mongoose.connection.dropDatabase();
+    await mongoose.connection.close();
+    await server.close()
+}
+&nbsp;
+module.exports.closeDB = async () =&gt; {
+    await mongod.stop();
 }
 &nbsp;
 module.exports.clearDatabase = async () =&gt; {
@@ -223,7 +223,7 @@ module.exports.clearDatabase = async () =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu May 06 2021 01:50:15 GMT+0200 (hora de verano de Europa central)
+                at Thu May 06 2021 13:08:45 GMT+0200 (hora de verano de Europa central)
             </div>
         </div>
         <script src="../../prettify.js"></script>
