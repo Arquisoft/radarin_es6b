@@ -158,6 +158,8 @@ router.post("/user/delete", async (req, res) => {
     const solidAdmin = req.body.id;
     const solidUserDelete = req.body.userId;
 
+    console.log(solidAdmin);
+    console.log(solidUserDelete);
     const userAmin = await User.findOne({ solidId: solidAdmin });
     const findDelete = await User.find({ solidId: solidUserDelete });
 
@@ -202,7 +204,7 @@ router.post("/user/changeRol", async (req, res) => {
         ChangeUsers(req, res);
     }
     else {
-        res.send(rol);
+        res.send({ error: "User does not exist" });
     }
 });
 

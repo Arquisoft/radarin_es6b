@@ -55,10 +55,14 @@ describe('user ', () => {
         expect(responseAdmin.body.solidId).toBe(webIdAdmin);
         expect(responseAdmin.body.latitud).toBe(posicionAdmin.latitud);
         expect(responseAdmin.body.longitud).toBe(posicionAdmin.longitud);
+        expect(responseAdmin.body.rol).toBe("Standard user");
 
 
         response = await request(app).post('/api/user/changeRol').send({ solidId: webIdAdmin, rol: "Admin user" }).set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
+
+        response = await request(app).post('/api/user/changeRol').send({ solidId: "hola", rol: "Admin user" }).set('Accept', 'application/json');
+        expect(response.body.error).toBe("User does not exist");
 
         responseAdmin = await request(app).post('/api/user/getById').send({ solidId: webIdAdmin }).set('Accept', 'application/json');
 
@@ -85,22 +89,21 @@ describe('user ', () => {
         expect(responseStandar.body.solidId).toBe(webId);
         expect(responseStandar.body.latitud).toBe(posicion.latitud);
         expect(responseStandar.body.longitud).toBe(posicion.longitud);
+        expect(responseStandar.body.rol).toBe("Standard user");
 
+        //add locate
+        locate = { latitud: 43.7, longitud: -3.5, texto: "Locate 1" };
+        response = await request(app).post('/api/user/locate/save').send({ solidId: webId, latitud: locate.latitud, longitud: locate.longitud, texto: locate.texto }).set('Accept', 'application/json');
+        expect(response.statusCode).toBe(200);
 
-        //delete with no admin
-        response = await request(app).post('/api/user/delete').send({ id: responseStandar.solidId, userId: responseStandar.solidId }).set('Accept', 'application/json');
-        expect(response.body.error).toBe("User does not exist");
-
-        //delete user 
-
-        response = await request(app).post('/api/user/delete').send({ id: responseAdmin.solidId, userId: responseStandar.solidId }).set('Accept', 'application/json');
+        //delete with  admin
+        response = await request(app).post('/api/user/delete').send({ id: responseAdmin.body.solidId, userId: responseStandar.body.solidId }).set('Accept', 'application/json');
         expect(responseStandar.statusCode).toBe(200);
 
+        //delete with admin but no exist
+        response = await request(app).post('/api/user/delete').send({ id: responseAdmin.body.solidId, userId: responseStandar.body.solidId }).set('Accept', 'application/json');
+        expect(responseStandar.statusCode).toBe(200);
 
-
-        //delete no exist
-        response = await request(app).post('/api/user/delete').send({ id: responseAdmin.solidId, userId: responseStandar.solidId }).set('Accept', 'application/json');
-        expect(response.body.error).toBe("User does not exist");
     });
 
 
@@ -214,5 +217,47 @@ describe('user ', () => {
         expect(response.statusCode).toBe(200);
 
         expect(response.body.error).toBe("No friends");
+    });
+
+    it('get standar user', async () => {
+
+        //add admin user
+        webIdAdmin = 'https://radarin6b.solidcommunity.net/profile/card#me';
+        posicionAdmin = { latitud: 55.7, longitud: 37.6 };
+        let response = await request(app).post('/api/user/save')
+            .send({ solidId: webIdAdmin, latitud: posicionAdmin.latitud, longitud: posicionAdmin.longitud }).set('Accept', 'application/json');
+
+        expect(response.statusCode).toBe(200);
+
+        let responseAdmin = await request(app).post('/api/user/getById').send({ solidId: webIdAdmin }).set('Accept', 'application/json');
+
+        expect(responseAdmin.statusCode).toBe(200);
+
+        expect(responseAdmin.body.solidId).toBe(webIdAdmin);
+        expect(responseAdmin.body.latitud).toBe(posicionAdmin.latitud);
+        expect(responseAdmin.body.longitud).toBe(posicionAdmin.longitud);
+        expect(responseAdmin.body.rol).toBe("Standard user");
+
+        //add other user
+
+        webId = 'https://standar.solidcommunity.net/profile/card#me';
+        posicion = { latitud: 55.7, longitud: 37.6 };
+        response = await request(app).post('/api/user/save')
+            .send({ solidId: webId, latitud: posicion.latitud, longitud: posicion.longitud }).set('Accept', 'application/json');
+
+        expect(response.statusCode).toBe(200);
+
+        let responseStandar = await request(app).post('/api/user/getById').send({ solidId: webId }).set('Accept', 'application/json');
+
+        expect(responseStandar.statusCode).toBe(200);
+
+        expect(responseStandar.body.solidId).toBe(webId);
+        expect(responseStandar.body.latitud).toBe(posicion.latitud);
+        expect(responseStandar.body.longitud).toBe(posicion.longitud);
+        expect(responseStandar.body.rol).toBe("Standard user");
+
+        responseStandar = await request(app).post('/api/user/getUsers').send({ solidId: webId }).set('Accept', 'application/json');
+        expect(responseStandar.statusCode).toBe(200);
+
     });
 });
