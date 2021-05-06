@@ -123,7 +123,7 @@ const NotLoginHome = () => {
                         will not store personal information but you will be asked for
                         permission to obtain the information needed.
                         </Typography>
-                    <Button id="but1"className={classes.finalButton} variant="contained" color="primary" edge="end" >View the trailer <PlayArrowIcon className={classes.play} /></Button>
+                    <a href="https://youtu.be/fkT6lzCMzRk"><Button id="but1" className={classes.finalButton} variant="contained" color="primary" edge="end" >View the trailer <PlayArrowIcon className={classes.play} /></Button></a>
                 </CardContent>
             </Card>
         </Grid>
@@ -228,7 +228,7 @@ const NotLoginHome = () => {
                             <Typography component="p">
                                 Go to the solid proyect:
                     </Typography>
-                            <a href="https://solidproject.org"><Button id="but3"className={classes.finalButton} variant="contained" size="small" color="primary" edge="end" >Solid Page <RedirectIcon className={classes.play} /></Button></a>
+                            <a href="https://solidproject.org"><Button id="but3" className={classes.finalButton} variant="contained" size="small" color="primary" edge="end" >Solid Page <RedirectIcon className={classes.play} /></Button></a>
                         </CardContent>
                     </Card>
                 </Grid>
@@ -249,7 +249,7 @@ const NotLoginHome = () => {
                                 Go to the github proyect:
                     </Typography>
 
-                            <a href="https://github.com/Arquisoft/radarin_es6b"><Button id="but4"className={classes.finalButton} variant="contained" size="small" color="primary" edge="end" >Github proyect <GitHubIcon className={classes.play} /></Button></a>
+                            <a href="https://github.com/Arquisoft/radarin_es6b"><Button id="but4" className={classes.finalButton} variant="contained" size="small" color="primary" edge="end" >Github proyect <GitHubIcon className={classes.play} /></Button></a>
 
                         </CardContent>
                     </Card>
@@ -269,7 +269,7 @@ const NotLoginHome = () => {
             </Grid>
         </Grid>
 
-        <Grid id="grid5"container item xs={12}>
+        <Grid id="grid5" container item xs={12}>
             <Grid container justify="center" spacing={1}>
                 <Card id="card2">
                     <Typography gutterBottom variant="h3" component="h3">
