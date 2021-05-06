@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import GoogleMapHome from './GoogleMapHome';
 import { deleteLocate, updateLocate, saveLocate } from '../../../api/api'
 
-function MapList({ webId, users, locates, solidFriends }) {
+function MapList({ webId, users, locates, solidFriends, radio }) {
 
     const [friends, setFriends] = useState([]);
 
@@ -41,7 +41,7 @@ function MapList({ webId, users, locates, solidFriends }) {
 
 
     return (
-        <GoogleMapHome friends={friends} locates={locates} addLocalLocate={addLocalLocate} updateLocalLocate={updateLocalLocate} deleteLocalLocate={deleteLocalLocate}></GoogleMapHome>
+        <GoogleMapHome friends={friends} locates={locates} addLocalLocate={addLocalLocate} updateLocalLocate={updateLocalLocate} deleteLocalLocate={deleteLocalLocate} radio={radio}></GoogleMapHome>
     );
 }
 

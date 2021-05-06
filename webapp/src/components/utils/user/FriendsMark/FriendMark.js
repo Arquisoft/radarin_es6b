@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import useProfile from "../../solid/Profile";
 import { Marker, InfoWindow } from "react-google-maps"
 import icon from '../../../img/mark-user.png';
@@ -7,6 +7,7 @@ import {
     makeStyles
 } from '@material-ui/core';
 import Button from "@material-ui/core/Button";
+import WarningIcon from '@material-ui/icons/Warning';
 
 const estilos = makeStyles(theme => ({
 
@@ -72,6 +73,7 @@ const FriendMark = ({ friend }) => {
                     <div className={classes.button}>
                         <Avatar className={classes.large} name={profileFriend.fullName} src={`${profileFriend.imageSrc}`} />
                         <h6 className={classes.onlineColor}>ONLINE</h6>
+                        {friend.covid ? (<h6 className={classes.oflineColor}><WarningIcon />COVID<WarningIcon /></h6>) : null}
                         <h4>{`${profileFriend.fullName}`}</h4>
                         <p>Last login in {myDateParse(friend.updated_at)}</p>
                         <a href={profileFriend.webId}><Button variant="contained" color="primary" edge="end" >Solid profile</Button></a>
@@ -83,6 +85,7 @@ const FriendMark = ({ friend }) => {
                     <div className={classes.button}>
                         <Avatar className={classes.large} name={profileFriend.fullName} src={`${profileFriend.imageSrc}`} />
                         <h6 className={classes.oflineColor}>OFLINE</h6>
+                        {friend.covid ? (<h6 className={classes.oflineColor}><WarningIcon />COVID<WarningIcon /></h6>) : null}
                         <h4>{`${profileFriend.fullName}`}</h4>
                         <p>Last login in {myDateParse(friend.updated_at)}</p>
                         <a href={profileFriend.webId}><Button variant="contained" color="primary" edge="end" >Solid profile</Button></a>

@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import { BeatLoader } from 'react-spinners';
 import Button from "@material-ui/core/Button";
+import getDistanceFromLatLonInKm from './getDistanceFromLatLonInKm';
 
 const estilos = makeStyles(theme => ({
     error: {
@@ -28,7 +29,6 @@ const estilosMapa = makeStyles(theme => ({
     },
 }));
 
-const radioAccion = 50;
 const mapContainerStyle = {
     width: "100vw",
     height: "100vh"
@@ -95,23 +95,7 @@ const MyMapComponent = compose(
                 props.addLocalLocate(event.latLng.lat(), event.latLng.lng(), texto, webId);
             }
         };
-        const getDistanceFromLatLonInKm = function (lat2, lon2) {
-            var R = 6371; // Radius of the earth in km
-            var dLat = deg2rad(lat2 - props.Latitud);  // deg2rad below
-            var dLon = deg2rad(lon2 - props.Longitud);
-            var a =
-                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(deg2rad(props.Latitud)) * Math.cos(deg2rad(lat2)) *
-                Math.sin(dLon / 2) * Math.sin(dLon / 2)
-                ;
-            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            var d = R * c; // Distance in km
-            return d;
-        };
 
-        const deg2rad = function (deg) {
-            return deg * (Math.PI / 180)
-        };
 
         useEffect(() => {
             fitBounds();
@@ -145,7 +129,8 @@ const MyMapComponent = compose(
 
                     }
                 </Marker>
-                <Circle center={{ lat: props.Latitud, lng: props.Longitud }} radius={radioAccion * 1000} options={{
+
+                <Circle center={{ lat: props.Latitud, lng: props.Longitud }} radius={props.radio * 1000} options={{
                     strokeColor: '#0022ff',
                     fillColor: '#0099ff',
                     fillOpacity: 0.1
@@ -153,9 +138,11 @@ const MyMapComponent = compose(
                     onClick={(event) => {
                         onMapClick(event);
                     }} />
+
+
                 {
                     props.friends.map((friend, i) => {
-                        if (getDistanceFromLatLonInKm(friend.latitud, friend.longitud) <= radioAccion) {
+                        if (getDistanceFromLatLonInKm(props.Latitud, props.Longitud, friend.latitud, friend.longitud) <= props.radio) {
                             return <FriendMark key={`friendMark_${i}`} friend={friend} />;
                         }
                         else {
@@ -173,7 +160,7 @@ const MyMapComponent = compose(
         );
     });
 
-function MyFancyComponent({ friends, locates, addLocalLocate, updateLocalLocate, deleteLocalLocate }) {
+function MyFancyComponent({ friends, locates, addLocalLocate, updateLocalLocate, deleteLocalLocate, radio }) {
     const [mapPosition, setMapPosition] = useState({ lat: 0, lng: 0 });
     const [permisos, setPermisos] = useState(false);
     const classes = estilos();
@@ -205,6 +192,7 @@ function MyFancyComponent({ friends, locates, addLocalLocate, updateLocalLocate,
                     addLocalLocate={addLocalLocate}
                     updateLocalLocate={updateLocalLocate}
                     deleteLocalLocate={deleteLocalLocate}
+                    radio={radio}
                 />
             );
         }

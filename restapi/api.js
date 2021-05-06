@@ -206,6 +206,22 @@ router.post("/user/changeRol", async (req, res) => {
     }
 });
 
+router.post("/user/changeCovid", async (req, res) => {
+    const id = req.body.solidId;
+    const covid = req.body.covid;
+
+    let user = await User.findOne({ solidId: id });
+    if (user) {
+        user.covid = covid;
+        await user.save();
+
+        ChangeUsers(req, res);
+    }
+    else {
+        res.send({ error: "User does not exist" });
+    }
+});
+
 
 
 

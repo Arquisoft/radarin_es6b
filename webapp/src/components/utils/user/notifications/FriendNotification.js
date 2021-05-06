@@ -10,10 +10,10 @@ const FriendMark = ({ friend }) => {
 
     const sendNotification = useCallback(function () {
         if (`${profileFriend.fullName}` !== 'undefined' && !isSend) {
-            push(`${profileFriend.fullName}`);
+            push(`${profileFriend.fullName}`,friend.covid);
             setIsSend(true);
         }
-    }, [profileFriend.fullName, isSend]);
+    }, [profileFriend.fullName, isSend, friend.covid]);
     
     useEffect(() => {
         sendNotification();

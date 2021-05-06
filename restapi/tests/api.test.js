@@ -260,4 +260,44 @@ describe('user ', () => {
         expect(responseStandar.statusCode).toBe(200);
 
     });
+
+    it('add and chage covid', async () => {
+
+        //add admin user
+        webIdAdmin = 'https://radarin6b.solidcommunity.net/profile/card#me';
+        posicionAdmin = { latitud: 55.7, longitud: 37.6 };
+        let response = await request(app).post('/api/user/save')
+            .send({ solidId: webIdAdmin, latitud: posicionAdmin.latitud, longitud: posicionAdmin.longitud }).set('Accept', 'application/json');
+
+        expect(response.statusCode).toBe(200);
+
+        let responseAdmin = await request(app).post('/api/user/getById').send({ solidId: webIdAdmin }).set('Accept', 'application/json');
+
+        expect(responseAdmin.statusCode).toBe(200);
+
+        expect(responseAdmin.body.solidId).toBe(webIdAdmin);
+        expect(responseAdmin.body.latitud).toBe(posicionAdmin.latitud);
+        expect(responseAdmin.body.longitud).toBe(posicionAdmin.longitud);
+        expect(responseAdmin.body.rol).toBe("Standard user");
+        expect(responseAdmin.body.covid).toBe(false);
+
+
+        response = await request(app).post('/api/user/changeCovid').send({ solidId: webIdAdmin, covid: true }).set('Accept', 'application/json');
+        expect(response.statusCode).toBe(200);
+
+        responseAdmin = await request(app).post('/api/user/getById').send({ solidId: webIdAdmin }).set('Accept', 'application/json');
+
+        expect(responseAdmin.statusCode).toBe(200);
+
+        expect(responseAdmin.body.solidId).toBe(webIdAdmin);
+        expect(responseAdmin.body.latitud).toBe(posicionAdmin.latitud);
+        expect(responseAdmin.body.longitud).toBe(posicionAdmin.longitud);
+        expect(responseAdmin.body.rol).toBe("Standard user");
+        expect(responseAdmin.body.covid).toBe(true);
+
+
+        response = await request(app).post('/api/user/changeCovid').send({ solidId: "hola", covid: "Admin user" }).set('Accept', 'application/json');
+        expect(response.body.error).toBe("User does not exist");
+    });
+
 });

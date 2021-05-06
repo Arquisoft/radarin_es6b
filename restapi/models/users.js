@@ -17,6 +17,10 @@ const schema = mongoose.Schema({
         type: String,
         default: "Standard user"
     },
+    covid: {
+        type: Boolean,
+        default: false
+    },
     created_at: { type: Date }
     , updated_at: { type: Date }
 });

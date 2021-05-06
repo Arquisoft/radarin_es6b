@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import { BeatLoader } from 'react-spinners';
 import Button from "@material-ui/core/Button";
+import WarningIcon from '@material-ui/icons/Warning';
 
 const estilos = makeStyles(theme => ({
     error: {
@@ -128,6 +129,7 @@ const MyMapComponent = compose(
                         <div className={classes.button}>
                             <Avatar className={classes.large} name={profileFriend.fullName} src={`${profileFriend.imageSrc}`} />
                             <h6 className={classes.onlineColor}>ONLINE</h6>
+                            {props.friend.covid ? (<h6 className={classes.oflineColor}><WarningIcon />COVID<WarningIcon /></h6>) : null}
                             <h4>{profileFriend.fullName}</h4>
                             <p>Last login in {myDateParse(props.friend.updated_at)}</p>
                             <a href={profileFriend.webId}><Button variant="contained" color="primary" edge="end" >Solid profile</Button></a>
@@ -139,6 +141,7 @@ const MyMapComponent = compose(
                         <div className={classes.button}>
                             <Avatar className={classes.large} name={profileFriend.fullName} src={`${profileFriend.imageSrc}`} />
                             <h6 className={classes.oflineColor}>OFLINE</h6>
+                            {props.friend.covid ? (<h6 className={classes.oflineColor}><WarningIcon />COVID<WarningIcon /></h6>) : null}
                             <h4>{`${profileFriend.fullName}`}</h4>
                             <p>Last login in {myDateParse(props.friend.updated_at)}</p>
                             <a href={profileFriend.webId}><Button variant="contained" color="primary" edge="end" >Solid profile</Button></a>

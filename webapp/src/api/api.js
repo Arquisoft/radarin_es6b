@@ -133,6 +133,20 @@ export async function changeRol(id,rol) {
     return await response.json();
 }
 
+export async function changeCovid(id,covid) {
+    const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
+    const information = {
+        "solidId": id,
+        "covid": covid
+    };
+    let response = await fetch(apiEndPoint + '/user/changeCovid', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(information)
+    });
+    return await response.json();
+}
+
 export function getEventsURL() {
     const apiEndPoint = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
     return apiEndPoint + "/events"

@@ -52,12 +52,18 @@ const Contenedor = ({ webId }) => {
 
     //standar user list (include the current user)
     const [users, setUsers] = useState([]);
-    const [standarUsers, setStandarUsers]= useState([]);
+    const [standarUsers, setStandarUsers] = useState([]);
 
     //Locates of current user
     const [locates, setLocates] = useState([]);
 
+    const [radio, setRadio] = useState(50);
+    const [cuurentUser, setCurrentUser]=useState(null);
 
+
+    const changeRadio = (valor) => {
+        setRadio(valor);
+    }
 
     const changeTypeOfUser = (valor) => {
         setIsAdmin(valor);
@@ -75,17 +81,18 @@ const Contenedor = ({ webId }) => {
     var checkRol = useCallback(async function () {
         if (users && users.length > 0) {
             const current = users.filter(user => user.solidId === webId);
-            const currentUser = current[0];
-            if (currentUser) {
-                if (currentUser.rol === roles.ADMIN) {
+            const currentUserLocal = current[0];
+            if (currentUserLocal) {
+                if (currentUserLocal.rol === roles.ADMIN) {
                     setIsAdmin(true);
                 }
                 else {
                     setIsAdmin(false);
                 }
+                setCurrentUser(currentUserLocal)
             }
         }
-    }, [setIsAdmin, users, webId]);
+    }, [setIsAdmin,setCurrentUser, users, webId]);
 
     useEffect(() => {
         if (!listening) {
@@ -123,7 +130,7 @@ const Contenedor = ({ webId }) => {
     }, [getLocatesOfUser, checkRol, listening]);
 
 
-    return (<div id="login"className={classes.root}>
+    return (<div id="login" className={classes.root}>
         <LoggedIn>
             {
                 (isAdmin !== null) ?
@@ -145,13 +152,13 @@ const Contenedor = ({ webId }) => {
 
                         <Router>
                             <NavBar isAdmin={isAdmin} />
-                            <Notifications users={standarUsers.filter(user => user.solidId !== webId)} webId={webId} />
+                            <Notifications users={standarUsers.filter(user => user.solidId !== webId)} webId={webId} radio={radio} user={cuurentUser} />
                             <ReactNotification />
                             <div className={classes.content}>
                                 <div className={classes.toolbar}>
                                 </div>
                                 <Switch>
-                                    <Route path="/" exact ><HomeView webId={webId} users={standarUsers.filter(user => user.solidId !== webId)} locates={locates.filter(locate => locate.solidId === webId)} /></Route>
+                                    <Route path="/" exact ><HomeView webId={webId} users={standarUsers.filter(user => user.solidId !== webId)} locates={locates.filter(locate => locate.solidId === webId)} changeRadio={changeRadio} radio={radio} user={cuurentUser}/></Route>
                                     <Route path="/friends" exact><FriendsView users={standarUsers.filter(user => user.solidId !== webId)} /></Route>
                                     <Route path="/locates" exact ><LocatesView locates={locates.filter(locate => locate.solidId === webId)} /></Route>
                                     <Route path="/about" exact ><AboutView /></Route>
