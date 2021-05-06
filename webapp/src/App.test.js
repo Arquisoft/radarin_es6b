@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import { act } from 'react-dom/test-utils';
 import App from "./App";
 import { LoggedIn, LoggedOut } from '@solid/react';
+import Contaniner from './components/utils/navbar/Contenedor';
 
 let container
 
@@ -17,6 +18,7 @@ afterEach(() => {
   document.body.removeChild(container)
   container = null
 })
+
 
 it('App', () => {
 
@@ -33,6 +35,7 @@ it('App', () => {
 test("App", async () => {
   ReactDOM.render(
     <App />, container)
+    
 })
 
 
