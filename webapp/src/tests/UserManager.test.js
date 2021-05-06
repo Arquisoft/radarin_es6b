@@ -29,6 +29,7 @@ it('UserManager', () => {
   expect(container.querySelector('#card1')).toBeTruthy();
   expect(container.querySelector('#card2')).toBeTruthy();
   expect(container.querySelector('#grid1')).toBeTruthy();
+  expect(container.querySelector('#grid2')).toBeTruthy();
   expect(container.querySelector('#div1')).toBeTruthy();
   expect(container.querySelector('#but1')).toBeTruthy();
   expect(container).toBeTruthy();
@@ -37,9 +38,15 @@ it('UserManager', () => {
 test("User manager view", async () => {
     render(<UsersList /> );
     
-    const { getByText } = render(<UserManagerView />);
+    render(<UserManagerView />);
   
     const element = screen.getByText("Be a standard user");
-          expect(element).toBeInTheDocument();
+      expect(element).toBeInTheDocument();
+     
+     const element1 = screen.getByText("Users list");
+      expect(element1).toBeInTheDocument();
+    const element2 = screen.getByText("To stop being an administrator click here");
+      expect(element2).toBeInTheDocument();
+    
      })
 

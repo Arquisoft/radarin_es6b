@@ -50,7 +50,7 @@ function UserManagerView({ users, webId, changeTypeOfUser }) {
                             </CardContent>
                         </Card>
                     </Grid>
-                    <Grid container item xs={12} sm={9} md={6} spacing={0} justify="center"
+                    <Grid id="grid2" container item xs={12} sm={9} md={6} spacing={0} justify="center"
                         alignItems="stretch"
                         direction="column">
                         <Card id="card2">
