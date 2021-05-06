@@ -5,20 +5,36 @@ We have developed three different types os tests in order to avoid the biggest a
 
 === TDD and continuous integration
 
-We have done 7 tests to be sure that our app render correctly regardless of the size of the screen. 
+A requirement of the project was to have tests that covered as much of the application as possible. To achieve this objective we use the library "testing-library" since it is compatible with react.
+
+==== Webapp
+
+We have done 24 tests in webapp to be sure that our app render correctly regardless of the size of the screen. 
 In addition, we have also verifies that in each view appears what has to appear.
 
-* AboutView.test.js
-* FriendsView.test.js
-* HomeView.test.js
-* LocatesView.test.js
-* LoginBarView.test.js
-* SelectView.test.js
-* NavComponent.test.js
+Here is an example of a TDD test on the About view:
 
-=== BDD and acceptance tests
+image::testEjemploTDD.PNG[TDD example]
 
-We have developed 4 user acceptance tests based in navigation through the application.
+And here you can see the 24 tests passing correctly:
+
+image::testTDD.PNG[Test pass]
+
+==== Restapi
+
+We did a test in restapi checking most of the requests that can be made to the server.
+
+image::testRestapi.png[Test pass]
+
+
+
+==== BDD and acceptance tests
+
+At first we created the tests using pupeeter. This way of doing the tests was very attractive visually since we saw all the steps that the test carried out but it also gave many problems. The most important is that the tests did not pass when displayed due to an error in the browser. We left pupeeter aside but with the test format that we had creating Promise, this was done without permissions, so once the login was passed, it never got to see the map and it kept loading. We were not able to give permission to the browser, so we left the view visualization part commented after the login.
+
+Finally, we did two simple tests without using Promise to check easy operation
+
+We have developed 6 user acceptance tests:
 
 * In the first one we check if the user can login properly.
 
@@ -47,7 +63,7 @@ We have developed 4 user acceptance tests based in navigation through the applic
             When The user click the menu and select friends
             Then The user should see his friends
 
-* The last one checks if the user can access to the about.
+* The next one checks if the user can access to the about.
 
         Feature: About
 
@@ -56,13 +72,35 @@ We have developed 4 user acceptance tests based in navigation through the applic
             When I click on about screen
             Then The screen of the about
 
+* Then the nav one checks navigation.
+        
+        Feature: Nav display
 
-By performing these 4 tests indirectly, we are also testing whether the user can easily access the navigation bar, the menu and its views. 
+        Scenario: User opens log in
+            When I click the button
+            Then I expect to see the log in
+
+* The last one checks the home page.
+
+        Feature: Homepage title
+  
+        Scenario: User opens the app
+            When I go to the homepage
+            Then I try to go to the friends view but I can't because I'm not register
+
+
+By performing these 6 tests indirectly, we are also testing whether the user can easily access the navigation bar, the menu and its views. 
+
+image::testBDD.png[Test pass]
 
 === Load tests
 
-To simulate the different petitions to the application we have used Gatling. The cases that we have develop are:
+To simulate the different petitions to the application we have used Gatling that is written in Scala. The cases that we have develop are:
 
 * Login with 1 and 15 users.
 
 * Navigation through the application (go to the friends, locate and about view) with 1, 15, 50 and 100 users.
+
+Example of a navigation load test with 15 users
+
+image::testCargaEjemplo.png[Load test]
