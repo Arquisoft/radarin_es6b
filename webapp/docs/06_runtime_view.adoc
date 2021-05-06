@@ -16,9 +16,9 @@ You will mainly capture scenarios in your documentation to communicate your arch
 
 === Login
 
-* The user requests the application login
-* The data is sent to the Administrator
-* The pod denies or allows access
+* The user requests the application login.
+* The data is sent to the Server.
+* The Pod denies or allows access.
 
 image:log_in.png["Runtime view of login option"]
 
@@ -26,36 +26,27 @@ image:log_in.png["Runtime view of login option"]
 === Sign up
 
 * The user requests registration from the application.
-* The data is sent to the Administrator.
+* The data is sent to the Server.
 * The pod communicates if the user has registered successfully or not.
 
 image:register.png["Runtime view of the option to sign up"]
 
 
-=== Add friend
-
-* The user see another user near him on the map and click on his marker.
-* The user click on "add user".
-* The pod checks if the name exists.
-* Friend is added.
-
-image:add_friend.png["Runtime view of adding friends"]
-
-
-=== Delete friend
-
-* The user see another user near him on the map and click on his marker.
-* The user click on "delete user".
-* The pod checks if the name exists.
-* The friend is removed.
-
-image:delete_friend.png["Runtime View of Remove Friends"]
-
-
 === Show friends
 
-* User requesto to see her friends.
-* The pod sends the list with her friends.
+* User request to see his friends.
+* The pod sends the list with his friends.
+* The server returns the users of the application.
+* The app only shows the friends who have ever used the application
 
 image:show_friends.png["Runtime view to visualize friends"]
 
+
+=== Show locates
+
+* User request to see his friends locates and also his marks in map.
+* The pod sends the solid profile to the app.
+* The server returns users locations.
+* The marks added to the map and the users locations are shown to the user.
+
+image:show_locates.png["Runtime view to visualize locates"]

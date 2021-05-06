@@ -4,14 +4,26 @@
 This table will increase during the development of our project. This point is related to the point 4 of this documentation.
 The design decision are:
 
+=== Decisions
+
 [options="header",cols="2,2,2"]
 |===
 |Decision and comments|Advantages|Disadvantages
+| Application deployed on web|The user will be able to access the same web application from both the computer and the mobile phone|Some browser: Safari or IOS devices, the application does not work
 | The language of the documentation will be in English | Internationalization | Need to write in a language we don't control
-| Use of React | The teachers can help us and there are a lot of tutorials online
-| Use of Google Maps API | Plenty of documentation and the most easy API to obtain the location 
-| Use of Git for control system and GitHub | Keep a backup of the code and work at the same time in the project | Some of the members of the group need to get used to work with it
-| Use of Visual Studio Code as developmet environment | Easy for us to use it 
+| Use of React | The official documentation and there are a lot of tutorials online| Use of Google Maps API, complexity of the lenguage 
+| Plenty of documentation and the most easy API to obtain the location | Use of Git for control system and GitHub | Keep a backup of the code and work at the same time in the project 
+| Some of the members of the group need to get used to work with it| Use of Visual Studio Code as developmet environment | Easy for us to use it 
+|===
+
+=== Rejected alternatives
+
+[options="header",cols="1,2"]
+|===
+|Decision rejected|Reason
+|React Native|Difficulties when logging in with solid
+|Mobile Web Notification|The library  API Notifications, was not supported by mobile devices
+|Here map API| Problems with the key as it had to be updated every so often and worked slowly
 |===
 
 === Mobile App Decision
@@ -36,3 +48,24 @@ and different tests in the sub-branches of:
     - cande: https://github.com/Arquisoft/radarin_es6b/tree/cande
 
     - UO270656: https://github.com/Arquisoft/radarin_es6b/tree/UO270656 
+
+
+=== Mobile notifications
+
+Once the idea of creating an app for the cell phone was discarded, it was necessary to send notifications from the web app to the cell phone.  The first alternative that was tested was using the Push API, which is still used on PC but was incompatible with mobile browsers.
+
+Searching for documentation we found in firebase the cloud messaging option that explained that both on PC and Android mobiles, in principle it should work. Apart from the fact that the documentation is quite incomplete as it does not explain all the steps to make it work, a test project was made to check its operation and on web it works but on mobile it still fails.
+
+Finally we opted for the only option that we saw viable, which was to display messages on the web screen instead of sending notifications if the app detected that it was a mobile device.
+
+To find a trace to this problem go to the following link: https://github.com/Arquisoft/radarin_es6b/issues/56 
+
+The different tests can be found in the following branches:
+
+    - https://github.com/Arquisoft/radarin_es6b/tree/notificaciones 
+
+    - https://github.com/Arquisoft/radarin_es6b/tree/notificaciones_posibleSolucion 
+
+Auxiliar proyect to test push notification with firebase cloud messaging:
+
+    - https://github.com/FernandoGiganto/prueba-notificaciones-firebase 

@@ -8,6 +8,9 @@
     ** User
     ** Friends
     ** Map
+    ** Locations
+
+image:model.png["Runtime view of login option"]
 
 === User Experience concepts  
 

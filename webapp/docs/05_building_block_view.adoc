@@ -12,28 +12,15 @@ image:ASW-A5.png["General image of level design"]
 image:ASW-A5L1.png["Level 1"]
 
 
-Motivation::
-
-The application has two main blocks; which are Radarin and Solid Server. All Radarin components communicate with Solid Server; but in turn these are independent in order to separate the different layers and prevent a simple modification from having a great impact on the application.
-
-The user is given the possibility to access the Solid Server directly; although this possibility is not currently in use.
+The user can manage his own Pod, managing access to his own data. On the other hand Radarin, which at this level is represented as a black box; interacts with the user's Pod to access information stored in it like friends; although new information could also be added to the Pod.
 
 
-Contained Building Blocks::
+Description of level 1 black boxes::
 [options="header"]
 |===
 |Name|Responsability
-| _Radarin_ | _The application that allows the user to interact with friends close to their current location._
-| _Solid Server_ | _Provides the way to store the information of each user such as their list of friends or their current location._
+| _Radarin_ | _The part of the system that allows managing requests made by users._
 | _Server_ | _Stores persistent information._
-|===
-
-Important Interfaces::
-[options="header"]
-|===
-|Interface name|Responsability
-| _POD Manager_ | _The interface manages the user POD._
-| _Server Manager_ | _The interface that stores user locations on the server._
 |===
 
 
@@ -42,13 +29,17 @@ Important Interfaces::
 
 image:ASW-A5L2.png["Level 2"]
 
-Contained Building Blocks::
+This level describes the architecture of the user interface (Front End), the server logic (Back End) and the Solid authentication system.
+The Front End needs the services of the Back End layer to be able to store information and to be able to respond to requests made by the user. In addition to this, it is the Front End that performs the authentication in solid to have the webId of the concurrent Radarin user.
+
+On the other hand, the Back End is also related to the Solid authentication system since the Solid webId of the user is saved, which is registered with additional information regarding the application.
+
+Description of level 2 black boxes::
 [options="header"]
 |===
 |Name|Responsability
-| _Front End_ | _Manage user communication with the web application._
-| _Radarin App_ | _Manage user communication with the mobile application._
-| _Back End_ | _Treat user requests; both the requests made in the mobile application and on the website._
+| _Front End_ | _Manage user communication with the web application. This part of the system interacts with the end user; responding to your requests and displaying the pertinent information occasioned by those requests._
+| _Back End_ | _Part of the system that receives requests provided by the Front End to be processed and perform the necessary operations to later obtain a response that will be sent back to the Front End._
 | _Authentification_ | _Authenticate a user session to be able to use the user's POD and thus perform operations with the user's information centrally._
 |===
 
@@ -58,3 +49,27 @@ Contained Building Blocks::
 === Level 3
 
 image:ASW-A5L3.png["Level 3"]
+
+The third level divides the Front End into the different views that the application has, depending on whether you are logged in or not; such as the login view, the main map view, the friends view and the locations view.
+
+Regarding the login view, once you authenticate yourself from the Front End, it sends the webId to the client so that the user's information regarding the application can be used and sent to the Back End.
+
+On the other hand, the main map view, accesses the users of the application and the friends of solid to calculate the friends of solid who have ever used the application. In addition to this, it also accesses the locations created by the concurrent user to show friends and locations on the map in the Front End.
+
+For locations and friends views, the required information is requested and the relevant maps and lists are displayed.
+
+Finally, the case of notifications, which is a part of the system that runs continuously in the background while the application is logged in; that sends notifications from users who are close to you.
+
+Description of level 3 black boxes::
+[options="header"]
+|===
+|Name|Responsability
+| _Login Manager_ | _It is the solid login system through providers._
+| _Login view_ | _Show the user the main view of the application to register or log in._
+| _Friends view_ | _It shows the user the view that has a list of users with the possibility of selecting a single solid friend to see their position on the map._
+| _Locates view_ | _It shows the user the view that has a list of its locations with the possibility of selecting a single solid location to see its position on the map. You can also update or delete locations._
+| _Map_ | _This component shows the main map where you can see all your solid friends who have used the application and who are within the action radius. Also, in this view you can see, create, update and delete locations._
+| _User Manager_ | _This component forms the information regarding users, I can execute actions such as recovering users, adding users, deleting them, and updating them._
+| _Locate Manager_ | _This component forms the information regarding the locations of the users, being able to manage requests such as retrieving locations, updating them, deleting them and adding them._
+| _Notifications Manager_ | _This component is responsible for sending notifications in the background to the concurrent user about his friends who are in the system; regardless of whether they are online or not._
+|===

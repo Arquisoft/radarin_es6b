@@ -13,7 +13,6 @@ Diagram of two people using the application:
 
 image::03_CasosDeUso.png[Case of use]
 
-The application is the same although it is accessed through the mobile browser, but to better explain the case of use, in the diagram it is separated into two components.
 
 === Business Context
 
@@ -26,23 +25,19 @@ The application is the same although it is accessed through the mobile browser, 
 
 |Users
 |They receive the location of their friends.
-|They choose who their friends are.
+|They can insert locations in the app.
 
-|Mobile
-|They broadcast the users' location.
-|Receive notifications from nearby friend users. 
-
-|Web
-|Receive and save locations from Mobile 
-|Manage and visualize locations 
+|Mobile/Web
+|Recive data from Solid and server.
+|Shows the relevant information on screen.
 
 |PODs
-|They act like a server of personal information of the user
-|Share information with the application
+|We dont save information in the PODs
+|We extract friends information from the user's PODs.
 
-|Locations Server
-|Save locations with an ID
-|Share locations 
+|Server
+|Save locations and users
+|Share with radarin the locations and user rol
 |===
 
 === Technical Context
@@ -52,5 +47,6 @@ As we mentioned earlier, the application will use *SOLID* for communication.
 For development we will use *React*, an open source JavaScript library, which will make creating user intefaces easier for us.
 We will also use *JavaScript* for application development.
 To launch the application in the cloud we use a tool called *Heroku*, this tool enables us to build, run and operate the application once in the remote repository.
-The locations server is a cloud DBaaS (Database as a Service), more specifically a *MongoDB server*.
+The locations server is a cloud DBaaS (Database as a Service), more specifically a *MongoDB server*. *Node.js* JavaScript runtime environment that runs on the V8 engine and executes JavaScript code outside a web browser. To monitoring the app we use 2 new software, *Grafana and Prometheus*. 
 
+image::03-Framworks.png[Framworks]

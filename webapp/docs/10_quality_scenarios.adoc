@@ -5,21 +5,30 @@
 
 image::10_QualityTree.png[Quality Tree]
 
+.Legend
+
+ - Circle: Usefullness
+ - Hexagon: Quality Requirements
+ - Cloud: Specific scenario
+
 === Quality Scenarios
 
 .Quality Requirements Table 
 |===============================================
 |Requirements   |Scenarios      |Priority (1-10)
-.3+|Usability                             
+.3+|Usability   
+|All types of users must know how to use the application|8                           
 |Users must understand how to use the application|7                           
-|All types of users must know how to use the application|8 
 |The application must work independently of the machine on which it is running|6
-.2+|Security                                 
+.3+|Security   
+|Save personal information using SOLID principles|10  
+|make a decentralized application|10                             
 |Make users feel safe using our app|7                           
-|Save personal information using SOLID principles|10   
 .2+|Reliability   
 |The app must maintain its performance level|8
 |The app must be resilience as possible|6
+.1+|System robustness
+|The application manages possible failures or bugs|7
 .1+|Efficiency
 |Response times and loading times should be as short as possible|6
 |===============================================
