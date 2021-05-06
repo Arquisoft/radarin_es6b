@@ -7,12 +7,12 @@ module.exports = async () => {
             debug: true,
             port: 27017,
         },*/
-        /* {
+         {
             command: 'node start-restapi.js',
             launchTimeout: 60000,
             debug: true,
             port: 5000,
-        }, */
+        }, 
         {
             command: 'npm start',
             launchTimeout: 60000,
