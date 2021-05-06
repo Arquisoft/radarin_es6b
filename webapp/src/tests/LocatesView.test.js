@@ -30,6 +30,10 @@ it('Locates', () => {
     </Router>, container)
   })
 
+  expect(container.querySelector('#grid1')).toBeTruthy();
+  expect(container.querySelector('#grid2')).toBeTruthy();
+ 
+
   expect(container).toBeTruthy();
  
 }) 
@@ -38,6 +42,7 @@ test("Locates view", async () => {
   render(<GoogleMapLocates /> );
  // render(<Locate /> );
   render(<LocatesList /> );
+  render(<React.Fragment /> );
   //render(<Locations /> );
  // render(<LocateMark /> );
   render(<LocatesMarksEvaluate /> );
@@ -45,4 +50,7 @@ test("Locates view", async () => {
   const { getByText } = render(<LocatesView />);
   expect(getByText("Locates")).toBeInTheDocument();
   expect(getByText("Map")).toBeInTheDocument();
+  expect(getByText("Click on one of your locates to see in the map")).toBeInTheDocument();
+  
+  
 })

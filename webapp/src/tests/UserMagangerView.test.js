@@ -32,4 +32,6 @@ test("UserMagangerView 2", async () => {
   const { getByText } = render(<UserMagangerView  />);
   expect(getByText("To stop being an administrator click here")).toBeInTheDocument();
   expect(getByText("Users list")).toBeInTheDocument();
+  expect(getByText("Be a standard user")).toBeInTheDocument();
+  
 })

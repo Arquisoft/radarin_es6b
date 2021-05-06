@@ -47,7 +47,7 @@ function LocatesView({ locates, webId }) {
     const classes = useStyles();
 
     return (
-        <Grid container spacing={3} alignItems="center" justify="center" direction="column">
+        <Grid id="grid1" container spacing={3} alignItems="center" justify="center" direction="column">
             <Grid container item xs={12} alignItems="center" justify="center" direction="column">
                 <Paper className={classes.paper}>
                     <Typography gutterBottom variant="h2" component="h2" color='inherit'>Locates</Typography>
@@ -57,7 +57,7 @@ function LocatesView({ locates, webId }) {
                     <LocatesList width={width} locates={locates} webId={webId} accionSelectLocate={accionSelectLocate} selectedLocate={selectLocate} />
                 </Paper>
             </Grid>
-            <Grid container item xs={12}>
+            <Grid id="grid2" container item xs={12}>
             <Typography variant="h2" component="h2" className={classes.titulo}>
                     Map
                             </Typography>
