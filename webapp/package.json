@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
+    "@rdfjs/data-model": "^1.2.0",
     "@react-google-maps/api": "^2.1.1",
     "@solid/react": "^1.10.0",
     "@testing-library/jest-dom": "^5.12.0",
