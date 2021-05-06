@@ -1,7 +1,7 @@
 [[section-tests]]
 == Tests
 
-We have developed three different types os tests in order to avoid the biggest ammount of issues.
+We have developed three different types of tests in order to avoid the biggest ammount of issues.
 
 === TDD and continuous integration
 
@@ -30,7 +30,7 @@ image::testRestapi.png[Test pass]
 
 === BDD and acceptance tests
 
-At first we created the tests using pupeeter. This way of doing the tests was very attractive visually since we saw all the steps that the test carried out but it also gave many problems. The most important is that the tests did not pass when displayed due to an error in the browser. We left pupeeter aside but with the test format that we had creating Promise, this was done without permissions, so once the login was passed, it never got to see the map and it kept loading. We were not able to give permission to the browser, so we left the view visualization part commented after the login.
+At first we created the tests using pupeeter. This way of doing the tests was very attractive visually since we saw all the steps that the test carried out but it also gave many problems. The most important is that the tests did not pass when displayed due to an error in the browser. We left pupeeter aside but with the test format that we had creating Promise, this was done without permissions, so once the login was passed, it never got to see the map and it kept loading. We were not able to give permission to the browser, so instead of verifying that the map appears, we verify that an error appears that the geolocation is not supported.
 
 Finally, we did two simple tests without using Promise to check easy operation
 
