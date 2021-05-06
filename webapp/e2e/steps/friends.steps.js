@@ -30,23 +30,23 @@ defineFeature(feature, test => {
       await popup.type("[name='password']", "Radarin_es6b", {visible: true});
       await expect(popup).toClick("button", { text: "Log In" });       
       
-      //await expect(global.page).toMatch("Geolocation is not supported by this browser!", {waitUntil: "load", timeout:0});     
+      await expect(global.page).toMatch("Geolocation is not supported by this browser!", {waitUntil: "load", timeout:0});     
     });
 
     when('The user click the menu and select friends', async () => {
       
-      //await expect(page).toClick('[id="menu"]');
-      //await wait(8000);
+      await expect(page).toClick('[id="menu"]');
+      await wait(8000);
       
       //clik friends      
-      //await expect(page).toClick('[id="friends"]');
-      //await wait(8000);
+      await expect(page).toClick('[id="friends"]');
+      await wait(8000);
       
     
     });
 
     then('The user should see his friends', async () => {      
-      //await expect(global.page).toMatch('Friends');
+      await expect(global.page).toMatch('Friends');
       
       
       
